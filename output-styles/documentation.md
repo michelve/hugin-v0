@@ -26,7 +26,7 @@ Present parameters, props, return types, and configuration options in tables:
 
 | Parameter | Type     | Required | Default | Description      |
 |-----------|----------|----------|---------|------------------|
-| `name`    | `string` | Yes      | —       | The display name |
+| `name`    | `string` | Yes      | -       | The display name |
 
 For React components, document props. For functions, document parameters and return type. For modules, document exports.
 

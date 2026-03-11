@@ -42,9 +42,9 @@ Set `"enabled": false` to disable for a project.
 
 ## How It Works
 
-1. PostToolUse hook logs file modifications to `/tmp/event-log-{SESSION_ID}.jsonl`
-2. Stop hook checks for new files since last review
-3. Triggers `automatic-code-reviewer` agent with file list
+1. PostToolUse hook (in root `hooks/hooks.json`) logs file modifications to `/tmp/event-log-{SESSION_ID}.jsonl`
+2. Stop hook (in root `hooks/hooks.json`) checks for new files since last review
+3. Triggers `automatic-code-reviewer` agent (in root `agents/`) with file list
 4. Agent reads rules from configured rulesFile and enforces them
 
 ## Requirements

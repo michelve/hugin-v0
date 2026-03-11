@@ -97,9 +97,9 @@ Or from within Claude Code:
 
 ### LSP Servers (1)
 
-| Server         | Binary                         | Install                                               | Languages                                |
-| -------------- | ------------------------------ | ----------------------------------------------------- | ---------------------------------------- |
-| **typescript** | `typescript-language-server`   | `npm install -g typescript-language-server typescript` | `.ts`, `.tsx`, `.js`, `.jsx`             |
+| Server         | Binary                       | Install                                                | Languages                    |
+| -------------- | ---------------------------- | ------------------------------------------------------ | ---------------------------- |
+| **typescript** | `typescript-language-server` | `npm install -g typescript-language-server typescript` | `.ts`, `.tsx`, `.js`, `.jsx` |
 
 The TypeScript LSP gives Claude real-time diagnostics, go-to-definition, find-references, and type information while editing. You must install the language server binary separately — the plugin configures the connection, not the server itself.
 

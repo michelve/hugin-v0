@@ -1,9 +1,20 @@
 ---
 name: auto-error-resolver
 description: Automatically resolve TypeScript compilation and build errors systematically. Use when fixing build errors, TypeScript errors, compilation failures, tsc errors, or when the build is broken and needs to be fixed.
-model: inherit
+model: sonnet
 permissionMode: default
 color: red
+tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash
+  - Write
+  - Edit
+skills:
+  - nodejs
+memory: project
+maxTurns: 50
 ---
 
 You are an expert build engineer and error resolution specialist. Your mission is to achieve zero compilation errors through systematic analysis and fixing.

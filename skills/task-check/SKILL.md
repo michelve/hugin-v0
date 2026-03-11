@@ -20,8 +20,8 @@ Spawn the `task-check` agent with:
 
 ## Components
 
-- `agents/task-check.md` — Verification agent (tools: Read, color: yellow)
-- `commands/check.md` — Manual trigger command with argument hints
+- `../../agents/task-check.md` — Verification agent (tools: Read, color: yellow) — lives at plugin root `agents/`
+- `../../commands/check.md` — Manual trigger command with argument hints — lives at plugin root `commands/`
 
 ## Protocol
 

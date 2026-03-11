@@ -33,7 +33,7 @@ Set `"enabled": false` to disable for a project.
 
 ## Components
 
-- `agents/automatic-code-reviewer.md` — Review agent (model: haiku, tools: Read, Grep, Glob)
-- `hooks/hooks.json` — Hook manifest (PostToolUse + Stop)
-- `hooks/tools/` — Shell scripts for logging and review triggering
-- `default-rules.md` — Default semantic review rules
+- `../../agents/automatic-code-reviewer.md` — Review agent (model: haiku, tools: Read, Grep, Glob) — lives at plugin root `agents/`
+- `../../hooks/hooks.json` — Hook manifest (PostToolUse + Stop) — merged into plugin root `hooks/`
+- `../../scripts/automatic-code-review-plugin.sh` — Shell script for logging and review triggering — lives at plugin root `scripts/`
+- `default-rules.md` — Default semantic review rules (stays with skill)

@@ -142,7 +142,7 @@ get_or_initialize_plugin_settings() {
       echo "$existing" | jq '.automaticCodeReview = {"enabled": true, "fileExtensions": ["ts", "tsx"], "rulesFile": ".claude/automatic-code-review/rules.md"}' > "$settings_file"
 
       if [[ ! -f "$rules_file" ]]; then
-        cp "${CLAUDE_SKILL_DIR}/default-rules.md" "$rules_file" 2>/dev/null || true
+        cp "${CLAUDE_PLUGIN_ROOT}/skills/automatic-code-review/default-rules.md" "$rules_file" 2>/dev/null || true
       fi
 
       echo "✅ automatic-code-review plugin initialized!" >&2

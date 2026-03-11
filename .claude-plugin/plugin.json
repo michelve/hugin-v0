@@ -1,0 +1,27 @@
+{
+  "name": "hugin-v0",
+  "version": "1.0.0",
+  "description": "Full-stack development skills, agents, and hooks for Claude Code — React 19, TypeScript, Express, Prisma, Tailwind CSS v4, shadcn/ui, and more.",
+  "author": {
+    "name": "michelve",
+    "url": "https://github.com/michelve"
+  },
+  "homepage": "https://github.com/michelve/hugin-v0",
+  "repository": "https://github.com/michelve/hugin-v0",
+  "license": "MIT",
+  "keywords": [
+    "fullstack",
+    "react",
+    "typescript",
+    "express",
+    "prisma",
+    "tailwindcss",
+    "shadcn",
+    "figma",
+    "playwright",
+    "code-quality",
+    "architecture",
+    "skills",
+    "agents"
+  ]
+}

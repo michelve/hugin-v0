@@ -1,0 +1,8 @@
+UNLICENSED
+
+Copyright (c) 2024-2026 DSAi. All rights reserved.
+
+This skill is proprietary and confidential. Unauthorized copying, modification,
+distribution, or use of this skill, via any medium, is strictly prohibited.
+
+For licensing inquiries, contact the DSAi team.

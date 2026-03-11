@@ -1,8 +1,10 @@
 # hugin-v0
 
-A Claude Code plugin with **23 skills**, **8 agents**, **5 event hooks**, and **7 MCP servers** for full-stack development with React 19, TypeScript, Express, Prisma, Tailwind CSS v4, and shadcn/ui.
+A Claude Code plugin that helps **product designers and engineers ship design-to-production React 19 apps** — translating Figma mockups into accessible, production-ready components with automated code reviews, architecture guardrails, and quality gates baked into every workflow.
 
-Built and tested in [draft_v0](https://github.com/michelve/draft_v0) — a full-stack React 19 + Express + Prisma starter with opinionated architecture, ADR workflows, task management, Figma integration, and automated code quality gates.
+Packed with **23 skills**, **13 agents**, **8 event hooks**, **7 MCP servers**, **4 output styles**, and **1 LSP server** covering the full stack: React 19, TypeScript, Express, Prisma, Tailwind CSS v4, and shadcn/ui.
+
+Built for and tested with [draft_v0](https://github.com/michelve/draft_v0) — a full-stack React 19 + Express + Prisma starter with opinionated architecture, ADR workflows, task management, Figma integration, and automated code quality gates.
 
 ## Requirements
 
@@ -60,28 +62,36 @@ Or from within Claude Code:
 | **web-design-guidelines**      | UI accessibility and design review                                       |   `/web-design-guidelines`    |
 | **writing-tests**              | Test naming, assertions, edge case coverage (BugMagnet-based)            |       `/writing-tests`        |
 
-### Agents (8)
+### Agents (13)
 
-| Agent                          | Purpose                                                                  |
-| ------------------------------ | ------------------------------------------------------------------------ |
-| **auto-error-resolver**        | Fix TypeScript compilation and build errors systematically               |
-| **code-architecture-reviewer** | Review code for best practices and architectural consistency             |
-| **code-refactor-master**       | Refactor code for better organization and maintainability                |
-| **documentation-architect**    | Create, update, and enhance documentation                                |
-| **plan-reviewer**              | Review development plans before implementation                           |
-| **principal-engineer**         | First-principles engineering analysis (Carmack-style thinking)           |
-| **refactor-planner**           | Analyze code structure and create refactoring plans with risk assessment |
-| **web-research-specialist**    | Research debugging solutions, best practices, documentation              |
+| Agent                          | Model   | Purpose                                                                  |
+| ------------------------------ | ------- | ------------------------------------------------------------------------ |
+| **principal-engineer**         | opus    | First-principles engineering analysis (default main agent)               |
+| **code-architecture-reviewer** | opus    | Review code for best practices and architectural consistency             |
+| **plan-reviewer**              | opus    | Review development plans before implementation                           |
+| **auto-error-resolver**        | sonnet  | Fix TypeScript compilation and build errors systematically               |
+| **code-refactor-master**       | sonnet  | Refactor code for better organization and maintainability                |
+| **documentation-architect**    | sonnet  | Create, update, and enhance documentation                                |
+| **refactor-planner**           | sonnet  | Analyze code structure and create refactoring plans with risk assessment |
+| **analyzer**                   | sonnet  | Post-hoc analysis of blind comparison results                            |
+| **comparator**                 | sonnet  | Blind comparison of two outputs for skill evaluation                     |
+| **grader**                     | sonnet  | Evaluate expectations against execution transcripts                      |
+| **automatic-code-reviewer**    | haiku   | Semantic code review using project-specific rules                        |
+| **task-check**                 | haiku   | Verify task completion against acceptance criteria                        |
+| **web-research-specialist**    | haiku   | Research debugging solutions, best practices, documentation              |
 
-### Hooks (5 event hooks)
+### Hooks (8 event hooks across 4 event types)
 
-| Hook                      | Event            | Trigger                  | Purpose                                     |
-| ------------------------- | ---------------- | ------------------------ | ------------------------------------------- |
-| **commitlint-enforcer**   | PreToolUse       | Before bash commands     | Enforce conventional commit messages        |
-| **anti-pattern-guard**    | PreToolUse       | Before file writes       | Warn on React 19 anti-patterns              |
-| **adr-gate**              | UserPromptSubmit | Before prompt processing | Check for ADR-qualifying decisions          |
-| **task-context-injector** | UserPromptSubmit | Before prompt processing | Inject task context from `.tasks/`          |
-| **quality-gate-reminder** | PostToolUse      | After file edits         | Remind to run `typecheck` and `biome:check` |
+| Hook                           | Event            | Trigger                  | Purpose                                     |
+| ------------------------------ | ---------------- | ------------------------ | ------------------------------------------- |
+| **commitlint-enforcer**        | PreToolUse       | Before bash commands     | Enforce conventional commit messages        |
+| **anti-pattern-guard**         | PreToolUse       | Before file writes       | Warn on React 19 anti-patterns              |
+| **adr-gate**                   | UserPromptSubmit | Before prompt processing | Check for ADR-qualifying decisions          |
+| **task-context-injector**      | UserPromptSubmit | Before prompt processing | Inject task context from `.tasks/`          |
+| **inject-adr-context**         | UserPromptSubmit | Before prompt processing | Inject ADR context into prompts             |
+| **quality-gate-reminder**      | PostToolUse      | After file edits         | Remind to run `typecheck` and `biome:check` |
+| **automatic-code-review** (log)| PostToolUse      | After file edits         | Log modified files for review               |
+| **automatic-code-review** (run)| Stop             | Before session ends      | Run semantic code review on all changes     |
 
 ### MCP Servers (7)
 
@@ -94,6 +104,17 @@ Or from within Claude Code:
 | **sequential-thinking** | `@anthropic/sequential-thinking-mcp` | Complex reasoning chains           |
 | **miro-mcp**            | URL-based (`mcp.miro.com`)           | Board creation and data extraction |
 | **shadcn**              | `shadcn@latest mcp`                  | Component registry access          |
+
+### Output Styles (4)
+
+| Style                    | Description                                                                    |
+| ------------------------ | ------------------------------------------------------------------------------ |
+| **architecture-review**  | Structured architectural analysis with dependency mapping and component diagrams |
+| **code-review**          | Inline findings with severity levels and diff-block fix suggestions             |
+| **refactoring**          | Before/after comparisons with risk-tagged migration steps                       |
+| **documentation**        | Technical documentation with API tables and progressive code examples           |
+
+Switch styles with `/output-style architecture-review`, `/output-style code-review`, etc.
 
 ### LSP Servers (1)
 
@@ -118,20 +139,16 @@ hugin-v0/
 ├── .claude-plugin/
 │   └── plugin.json           # Plugin manifest
 ├── skills/                   # 23 skills (SKILL.md + supporting files)
-├── agents/                   # 8 specialized agents
+├── agents/                   # 13 specialized agents
 ├── agent-rules/              # Agent routing metadata (JSON)
+├── commands/                 # Slash commands (check.md)
 ├── hooks/
-│   └── hooks.json            # Hook event configuration
-├── scripts/                  # Hook scripts (Python + cross-platform runners)
-│   ├── run-hook.cjs          # Cross-platform Python runner (Windows/Unix)
-│   ├── commitlint-enforcer.py
-│   ├── anti-pattern-guard.py
-│   ├── adr-gate.py
-│   ├── task-context-injector.py
-│   └── quality-gate-reminder.py
-├── .mcp.json                 # MCP server configurations
+│   └── hooks.json            # Hook event configuration (8 hooks)
+├── scripts/                  # Hook scripts (Python + shell + cross-platform runners)
+├── output-styles/            # 4 custom output styles
+├── .mcp.json                 # MCP server configurations (7 servers)
 ├── .lsp.json                 # LSP server configurations
-├── settings.json             # Default plugin settings
+├── settings.json             # Default plugin settings (agent: principal-engineer)
 ├── LICENSE
 ├── CHANGELOG.md
 └── README.md

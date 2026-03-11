@@ -126,11 +126,55 @@ The TypeScript LSP gives Claude real-time diagnostics, go-to-definition, find-re
 
 ## Environment Variables
 
-Some MCP servers require API keys. Set them in your environment:
+Some MCP servers and skills require API keys to function. Set them in your shell **before** launching Claude Code — the plugin reads from your environment at startup.
+
+### Required keys
+
+| Variable         | Used by                          | Get it from                                                        |
+| ---------------- | -------------------------------- | ------------------------------------------------------------------ |
+| `FIGMA_API_KEY`  | figma, figma-console MCP servers | [Figma → Settings → Personal access tokens](https://www.figma.com/developers/api#access-tokens) |
+
+### Optional keys
+
+| Variable         | Used by           | Notes                                                              |
+| ---------------- | ----------------- | ------------------------------------------------------------------ |
+| `MIRO_API_KEY`   | miro-mcp server   | Only needed if your Miro board requires auth beyond the web URL    |
+
+### Setup by OS
+
+**macOS / Linux** — add to your `~/.zshrc`, `~/.bashrc`, or `~/.profile`:
 
 ```bash
-export FIGMA_API_KEY=your-figma-api-key
+export FIGMA_API_KEY=fig_xxxxxxxxxxxxxxxxxxxxx
 ```
+
+Then reload: `source ~/.zshrc`
+
+**Windows (PowerShell)** — add to your `$PROFILE`:
+
+```powershell
+$env:FIGMA_API_KEY = "fig_xxxxxxxxxxxxxxxxxxxxx"
+```
+
+Then reload: `. $PROFILE`
+
+**Windows (system-wide)** — or set it permanently:
+
+```powershell
+[Environment]::SetEnvironmentVariable("FIGMA_API_KEY", "fig_xxxxxxxxxxxxxxxxxxxxx", "User")
+```
+
+Restart your terminal after setting system-wide variables.
+
+### Verify your setup
+
+After setting your keys, run the `/setup` command inside Claude Code to verify everything is configured:
+
+```text
+/setup
+```
+
+This checks that required environment variables are set, MCP servers can initialize, and the TypeScript LSP binary is installed.
 
 ## Plugin Structure
 

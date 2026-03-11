@@ -45,19 +45,19 @@ Install via: `npx shadcn@latest add dialog dropdown-menu select tabs` - componen
 
 ## Keyboard Navigation
 
-See [keyboard-navigation.md](reference/keyboard-navigation.md) for required keys by component type, useKeyPress hook, and inline arrow key navigation patterns.
+See [keyboard-navigation.md](references/keyboard-navigation.md) for required keys by component type, useKeyPress hook, and inline arrow key navigation patterns.
 
 ---
 
 ## ARIA Attributes
 
-See [aria-attributes.md](reference/aria-attributes.md) for interactive elements, form elements, and live region ARIA patterns.
+See [aria-attributes.md](references/aria-attributes.md) for interactive elements, form elements, and live region ARIA patterns.
 
 ---
 
 ## Focus Management
 
-See [focus-management.md](reference/focus-management.md) for FocusScope (Radix UI), focus trapping, and return focus patterns.
+See [focus-management.md](references/focus-management.md) for FocusScope (Radix UI), focus trapping, and return focus patterns.
 
 ---
 
@@ -86,7 +86,7 @@ Place live region containers in your layout so they persist between renders:
 
 ## Reduced Motion
 
-See [reduced-motion.md](reference/reduced-motion.md) for useReducedMotion hook, Tailwind motion-reduce variant, and CSS alternatives.
+See [reduced-motion.md](references/reduced-motion.md) for useReducedMotion hook, Tailwind motion-reduce variant, and CSS alternatives.
 
 ---
 
@@ -174,7 +174,7 @@ Use it for icon-only buttons, decorative separators with labels, and skip links.
 
 ## Testing Accessibility
 
-See [testing-a11y.md](reference/testing-a11y.md) for browser DevTools, Playwright + axe-core, and Vitest + vitest-axe testing approaches.
+See [testing-a11y.md](references/testing-a11y.md) for browser DevTools, Playwright + axe-core, and Vitest + vitest-axe testing approaches.
 
 ---
 

@@ -36,6 +36,14 @@
             "command": "node ${CLAUDE_PLUGIN_ROOT}/scripts/run-hook.cjs task-context-injector.py"
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node ${CLAUDE_PLUGIN_ROOT}/scripts/run-hook.cjs inject-adr-context.py"
+          }
+        ]
       }
     ],
     "PostToolUse": [

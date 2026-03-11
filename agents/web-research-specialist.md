@@ -9,6 +9,9 @@ tools:
   - Grep
   - Glob
   - Bash
+skills:
+  - nodejs
+  - react
 disallowedTools:
   - Write
   - Edit

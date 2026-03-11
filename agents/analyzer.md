@@ -1,3 +1,18 @@
+---
+name: analyzer
+description: Analyze blind comparison results to understand WHY the winner won and generate improvement suggestions for skill evaluation.
+model: sonnet
+tools:
+  - Read
+  - Grep
+  - Glob
+disallowedTools:
+  - Write
+  - Edit
+memory: project
+color: cyan
+---
+
 # Post-hoc Analyzer Agent
 
 Analyze blind comparison results to understand WHY the winner won and generate improvement suggestions.

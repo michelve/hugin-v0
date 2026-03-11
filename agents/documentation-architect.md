@@ -11,6 +11,10 @@ tools:
   - Bash
   - Write
   - Edit
+skills:
+  - nodejs
+  - react
+  - adr-writer
 memory: project
 ---
 

@@ -1,8 +1,19 @@
 ---
 name: automatic-code-reviewer
 description: "Semantic code review using project-specific rules"
-tools: [Read, Grep, Glob]
 model: haiku
+tools:
+  - Read
+  - Grep
+  - Glob
+skills:
+  - react
+  - react-best-practices
+  - nodejs
+disallowedTools:
+  - Write
+  - Edit
+memory: project
 color: purple
 ---
 

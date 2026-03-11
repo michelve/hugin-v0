@@ -4,6 +4,11 @@ description: Apply rigorous first-principles engineering analysis to any technic
 model: opus
 permissionMode: default
 color: orange
+tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash
 skills:
   - nodejs
   - react

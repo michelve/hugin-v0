@@ -1,3 +1,18 @@
+---
+name: grader
+description: Evaluate expectations against execution transcripts and outputs for skill evaluation. Grades assertions and critiques eval quality.
+model: sonnet
+tools:
+  - Read
+  - Grep
+  - Glob
+disallowedTools:
+  - Write
+  - Edit
+memory: project
+color: cyan
+---
+
 # Grader Agent
 
 Evaluate expectations against an execution transcript and outputs.

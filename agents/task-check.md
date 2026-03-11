@@ -1,7 +1,15 @@
 ---
 name: task-check
 description: Verify task completion before finishing work. Spawn with task ID, location, and work summary.
-tools: Read
+model: haiku
+tools:
+  - Read
+  - Grep
+  - Glob
+disallowedTools:
+  - Write
+  - Edit
+memory: project
 color: yellow
 ---
 

@@ -5,6 +5,13 @@ All notable changes to hugin-v0 will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-03-11
+
+### Added
+
+- TypeScript LSP server configuration (`.lsp.json`) — real-time diagnostics, go-to-definition, and type information for `.ts`, `.tsx`, `.js`, `.jsx` files
+- `lsp` keyword in plugin manifest
+
 ## [1.0.0] - 2026-03-11
 
 ### Added

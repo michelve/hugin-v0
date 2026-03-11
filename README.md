@@ -95,6 +95,14 @@ Or from within Claude Code:
 | **miro-mcp**            | URL-based (`mcp.miro.com`)           | Board creation and data extraction |
 | **shadcn**              | `shadcn@latest mcp`                  | Component registry access          |
 
+### LSP Servers (1)
+
+| Server         | Binary                         | Install                                               | Languages                                |
+| -------------- | ------------------------------ | ----------------------------------------------------- | ---------------------------------------- |
+| **typescript** | `typescript-language-server`   | `npm install -g typescript-language-server typescript` | `.ts`, `.tsx`, `.js`, `.jsx`             |
+
+The TypeScript LSP gives Claude real-time diagnostics, go-to-definition, find-references, and type information while editing. You must install the language server binary separately — the plugin configures the connection, not the server itself.
+
 ## Environment Variables
 
 Some MCP servers require API keys. Set them in your environment:
@@ -122,6 +130,7 @@ hugin-v0/
 │   ├── task-context-injector.py
 │   └── quality-gate-reminder.py
 ├── .mcp.json                 # MCP server configurations
+├── .lsp.json                 # LSP server configurations
 ├── settings.json             # Default plugin settings
 ├── LICENSE
 ├── CHANGELOG.md

@@ -1,6 +1,6 @@
 {
   "name": "hugin-v0",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Full-stack development skills, agents, and hooks for Claude Code — React 19, TypeScript, Express, Prisma, Tailwind CSS v4, shadcn/ui, and more.",
   "author": {
     "name": "michelve",
@@ -22,6 +22,8 @@
     "code-quality",
     "architecture",
     "skills",
-    "agents"
-  ]
+    "agents",
+    "lsp"
+  ],
+  "lspServers": "./.lsp.json"
 }

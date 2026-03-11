@@ -4,6 +4,8 @@
 
 A Claude Code plugin packaging **23 skills**, **8 agents**, **5 event hooks**, and **7 MCP servers** for full-stack development with React 19, TypeScript, Express, Prisma, Tailwind CSS v4, and shadcn/ui.
 
+Extracted from and battle-tested in [draft_v0](https://github.com/michelve/draft_v0) — a full-stack React 19 + Express + Prisma starter with opinionated architecture, ADR workflows, task management, Figma integration, and automated code quality gates.
+
 ## Requirements
 
 - [Claude Code](https://code.claude.com) v1.0.33+
@@ -150,7 +152,11 @@ claude plugin validate ./hugin-v0
 
 ## License
 
-MIT
+MIT — see [LICENSE](LICENSE)
+
+## Origin
+
+This plugin was extracted from [draft_v0](https://github.com/michelve/draft_v0), where all skills, agents, and hooks were developed and refined in a production full-stack codebase. Contributions and issues should be filed in this repo.
 
 ## Author
 

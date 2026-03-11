@@ -1,10 +1,8 @@
 # hugin-v0
 
-> _Hugin_ — Odin's raven of **Thought**. Skills that bring knowledge to Claude.
+A Claude Code plugin with **23 skills**, **8 agents**, **5 event hooks**, and **7 MCP servers** for full-stack development with React 19, TypeScript, Express, Prisma, Tailwind CSS v4, and shadcn/ui.
 
-A Claude Code plugin packaging **23 skills**, **8 agents**, **5 event hooks**, and **7 MCP servers** for full-stack development with React 19, TypeScript, Express, Prisma, Tailwind CSS v4, and shadcn/ui.
-
-Extracted from and battle-tested in [draft_v0](https://github.com/michelve/draft_v0) — a full-stack React 19 + Express + Prisma starter with opinionated architecture, ADR workflows, task management, Figma integration, and automated code quality gates.
+Built and tested in [draft_v0](https://github.com/michelve/draft_v0) — a full-stack React 19 + Express + Prisma starter with opinionated architecture, ADR workflows, task management, Figma integration, and automated code quality gates.
 
 ## Requirements
 

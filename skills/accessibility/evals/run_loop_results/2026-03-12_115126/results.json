@@ -1,0 +1,840 @@
+{
+  "exit_reason": "all_passed (iteration 3)",
+  "original_description": "Implements WCAG 2.2 AA (+ AAA aspirational) accessibility for draft_v0 React 19 components built with shadcn/ui and Tailwind CSS v4. Use this skill whenever building or reviewing interactive components (buttons, forms, modals, menus, grids, trees, carousels), adding keyboard navigation, implementing ARIA roles/states/properties, managing focus, ensuring color or non-text contrast, supporting screen readers (NVDA, JAWS, VoiceOver, TalkBack, Narrator), handling touch/pointer interactions, writing semantic HTML, running accessibility tests, or auditing for WCAG 2.2 compliance. Make sure to use this skill whenever the user mentions aria, wcag, a11y, accessible, keyboard nav, focus trap, screen reader, skip link, tab order, contrast ratio, or any WCAG success criterion -- even if they don't explicitly say 'accessibility'.",
+  "best_description": "Use this skill for any accessibility concern: WCAG compliance (any success criterion including SC 1.3.5 autocomplete, SC 2.4.11 focus obscured), ARIA roles/attributes, screen reader behavior, axe-core or WAVE audit failures, color/non-text contrast, keyboard navigation, focus trapping/management, skip links, touch targets, VPAT reports, or accessible form patterns. Also trigger when a user asks whether a UI library (shadcn, Radix) handles keyboard interactions \u2014 but only if the question is specifically about accessibility behavior, not general usage. Do NOT trigger for general component usage questions where keyboard behavior is incidental (e.g., \"does shadcn Tooltip show on hover and focus?\" without an accessibility problem to solve).",
+  "best_score": "8/8",
+  "best_train_score": "12/12",
+  "best_test_score": "8/8",
+  "final_description": "Use this skill for any accessibility concern: WCAG compliance (any success criterion including SC 1.3.5 autocomplete, SC 2.4.11 focus obscured), ARIA roles/attributes, screen reader behavior, axe-core or WAVE audit failures, color/non-text contrast, keyboard navigation, focus trapping/management, skip links, touch targets, VPAT reports, or accessible form patterns. Also trigger when a user asks whether a UI library (shadcn, Radix) handles keyboard interactions \u2014 but only if the question is specifically about accessibility behavior, not general usage. Do NOT trigger for general component usage questions where keyboard behavior is incidental (e.g., \"does shadcn Tooltip show on hover and focus?\" without an accessibility problem to solve).",
+  "iterations_run": 3,
+  "holdout": 0.4,
+  "train_size": 12,
+  "test_size": 8,
+  "history": [
+    {
+      "iteration": 1,
+      "description": "Use this skill when users need to implement WCAG 2.2 AA/AAA compliance in React, shadcn/ui, or Tailwind components; fix keyboard navigation (arrow keys, tab order, roving tabindex, focus trapping); add ARIA roles, states, or properties; ensure color or non-text contrast; support screen readers; write accessible forms with correct autocomplete attributes; handle touch targets or pointer interactions; interpret failures from accessibility tools like axe-core or WAVE; audit against specific WCAG success criteria (e.g. SC 1.3.5, 2.4.11); or produce VPAT and accessibility conformance reports. Trigger on: aria, wcag, a11y, axe-core, VPAT, SC [number], keyboard nav, focus trap, screen reader, skip link, contrast ratio, autocomplete -- or when a user describes keyboard behavior problems in interactive components (menus, dropdowns, dialogs, tabs) even without using the word 'accessibility'.",
+      "train_passed": 11,
+      "train_failed": 1,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "client is asking for a VPAT for our SaaS app. never done one before. what sections does it need and how do we fill out the wcag conformance tables?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "some of our users use keyboard only \u2014 no mouse. they're saying they can't reach the buttons inside our data table because tab just skips over the cells. data grid keyboard model help?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "running axe-core on our login page and it's flagging SC 1.3.5 \u2014 says our email and password fields are missing autocomplete attributes. what values should i use?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "building a search autocomplete. screen readers aren't announcing the suggestions at all. it's just a plain input and ul. how do i make this a proper combobox?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "hey so i'm building this dropdown menu with shadcn and when you tab to it and hit enter it opens but then you can't navigate the items with arrow keys. do i need to add keyboard support myself or does radix handle it?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "my modal dialog is using FocusScope but when it closes focus just disappears instead of going back to the button that opened it. how do i fix the return focus?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "what's the difference between useCallback and useMemo in react 19? when should i use which one?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "setting up playwright for e2e testing in my next.js app. how do i test that a form submits correctly and shows a success message?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "want to add a tooltip to my icon buttons using shadcn Tooltip. it should show on hover and also when the button is focused with keyboard. is this already built in?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "i want to add a nice animated page transition in my react router app. what's the best framer motion pattern for this? something smooth that slides between routes",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "i have a react component that re-renders too often. when i add a console.log inside i see it fires 6 times on a single button click. how do i debug this?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "how do i add a loading spinner that shows while my API call is in flight? i'm using tanstack query. want it to replace the content area, not overlay it",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ],
+      "test_passed": 7,
+      "test_failed": 1,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "the focus ring only shows up sometimes on our buttons. looks like it triggers on mouse click too which our designer hates. how do i show it only for keyboard navigation in tailwind",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "our design team says we need to pass a WCAG 2.2 audit before launch. i don't know where to start \u2014 we have about 40 React components. what's the process?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "i need to add aria-expanded and aria-haspopup to my nav toggle button but i'm not sure which values to use exactly and where to put them",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "my image carousel auto-plays every 4 seconds. a user filed a bug saying they get motion sick. also it's not keyboard accessible at all. two problems, need to fix both",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "my shadcn Dialog component doesn't close when i click outside. how do i override the default behavior to keep it open until the user explicitly clicks the X button?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "building a form with react hook form and zod. need validation that shows error messages below each field. what's the best way to wire up the schema?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "need to style a button component using tailwind css v4. want it to have a hover effect, active state, and disabled state. what's the cleanest way to do this?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "how do i add dark mode support to my shadcn/ui app? i want to use the class strategy with a toggle button that saves the preference to localStorage",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ],
+      "passed": 11,
+      "failed": 1,
+      "total": 12,
+      "results": [
+        {
+          "query": "client is asking for a VPAT for our SaaS app. never done one before. what sections does it need and how do we fill out the wcag conformance tables?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "some of our users use keyboard only \u2014 no mouse. they're saying they can't reach the buttons inside our data table because tab just skips over the cells. data grid keyboard model help?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "running axe-core on our login page and it's flagging SC 1.3.5 \u2014 says our email and password fields are missing autocomplete attributes. what values should i use?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "building a search autocomplete. screen readers aren't announcing the suggestions at all. it's just a plain input and ul. how do i make this a proper combobox?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "hey so i'm building this dropdown menu with shadcn and when you tab to it and hit enter it opens but then you can't navigate the items with arrow keys. do i need to add keyboard support myself or does radix handle it?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "my modal dialog is using FocusScope but when it closes focus just disappears instead of going back to the button that opened it. how do i fix the return focus?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "what's the difference between useCallback and useMemo in react 19? when should i use which one?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "setting up playwright for e2e testing in my next.js app. how do i test that a form submits correctly and shows a success message?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "want to add a tooltip to my icon buttons using shadcn Tooltip. it should show on hover and also when the button is focused with keyboard. is this already built in?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "i want to add a nice animated page transition in my react router app. what's the best framer motion pattern for this? something smooth that slides between routes",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "i have a react component that re-renders too often. when i add a console.log inside i see it fires 6 times on a single button click. how do i debug this?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "how do i add a loading spinner that shows while my API call is in flight? i'm using tanstack query. want it to replace the content area, not overlay it",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 2,
+      "description": "Use this skill when users ask about keyboard navigation in interactive UI components (menus, dropdowns, dialogs, tabs, comboboxes) \u2014 including questions about arrow key behavior, tab order, focus management, or whether a library like Radix/shadcn handles keyboard interactions automatically. Also trigger for: WCAG compliance, ARIA roles/attributes, screen reader support, axe-core failures, color contrast, accessible forms, focus trapping, skip links, touch targets, VPAT reports, or any a11y/accessibility concern. The unifying theme: the user is trying to make UI work correctly for keyboard users, assistive technology users, or compliance requirements.",
+      "train_passed": 10,
+      "train_failed": 2,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "client is asking for a VPAT for our SaaS app. never done one before. what sections does it need and how do we fill out the wcag conformance tables?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "some of our users use keyboard only \u2014 no mouse. they're saying they can't reach the buttons inside our data table because tab just skips over the cells. data grid keyboard model help?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "running axe-core on our login page and it's flagging SC 1.3.5 \u2014 says our email and password fields are missing autocomplete attributes. what values should i use?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "building a search autocomplete. screen readers aren't announcing the suggestions at all. it's just a plain input and ul. how do i make this a proper combobox?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "hey so i'm building this dropdown menu with shadcn and when you tab to it and hit enter it opens but then you can't navigate the items with arrow keys. do i need to add keyboard support myself or does radix handle it?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "my modal dialog is using FocusScope but when it closes focus just disappears instead of going back to the button that opened it. how do i fix the return focus?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "setting up playwright for e2e testing in my next.js app. how do i test that a form submits correctly and shows a success message?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "what's the difference between useCallback and useMemo in react 19? when should i use which one?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "want to add a tooltip to my icon buttons using shadcn Tooltip. it should show on hover and also when the button is focused with keyboard. is this already built in?",
+          "should_trigger": false,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "i want to add a nice animated page transition in my react router app. what's the best framer motion pattern for this? something smooth that slides between routes",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "i have a react component that re-renders too often. when i add a console.log inside i see it fires 6 times on a single button click. how do i debug this?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "how do i add a loading spinner that shows while my API call is in flight? i'm using tanstack query. want it to replace the content area, not overlay it",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ],
+      "test_passed": 7,
+      "test_failed": 1,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "the focus ring only shows up sometimes on our buttons. looks like it triggers on mouse click too which our designer hates. how do i show it only for keyboard navigation in tailwind",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "our design team says we need to pass a WCAG 2.2 audit before launch. i don't know where to start \u2014 we have about 40 React components. what's the process?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "i need to add aria-expanded and aria-haspopup to my nav toggle button but i'm not sure which values to use exactly and where to put them",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "my image carousel auto-plays every 4 seconds. a user filed a bug saying they get motion sick. also it's not keyboard accessible at all. two problems, need to fix both",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "my shadcn Dialog component doesn't close when i click outside. how do i override the default behavior to keep it open until the user explicitly clicks the X button?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "building a form with react hook form and zod. need validation that shows error messages below each field. what's the best way to wire up the schema?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "need to style a button component using tailwind css v4. want it to have a hover effect, active state, and disabled state. what's the cleanest way to do this?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "how do i add dark mode support to my shadcn/ui app? i want to use the class strategy with a toggle button that saves the preference to localStorage",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ],
+      "passed": 10,
+      "failed": 2,
+      "total": 12,
+      "results": [
+        {
+          "query": "client is asking for a VPAT for our SaaS app. never done one before. what sections does it need and how do we fill out the wcag conformance tables?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "some of our users use keyboard only \u2014 no mouse. they're saying they can't reach the buttons inside our data table because tab just skips over the cells. data grid keyboard model help?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "running axe-core on our login page and it's flagging SC 1.3.5 \u2014 says our email and password fields are missing autocomplete attributes. what values should i use?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "building a search autocomplete. screen readers aren't announcing the suggestions at all. it's just a plain input and ul. how do i make this a proper combobox?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "hey so i'm building this dropdown menu with shadcn and when you tab to it and hit enter it opens but then you can't navigate the items with arrow keys. do i need to add keyboard support myself or does radix handle it?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "my modal dialog is using FocusScope but when it closes focus just disappears instead of going back to the button that opened it. how do i fix the return focus?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "setting up playwright for e2e testing in my next.js app. how do i test that a form submits correctly and shows a success message?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "what's the difference between useCallback and useMemo in react 19? when should i use which one?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "want to add a tooltip to my icon buttons using shadcn Tooltip. it should show on hover and also when the button is focused with keyboard. is this already built in?",
+          "should_trigger": false,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": false
+        },
+        {
+          "query": "i want to add a nice animated page transition in my react router app. what's the best framer motion pattern for this? something smooth that slides between routes",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "i have a react component that re-renders too often. when i add a console.log inside i see it fires 6 times on a single button click. how do i debug this?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "how do i add a loading spinner that shows while my API call is in flight? i'm using tanstack query. want it to replace the content area, not overlay it",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 3,
+      "description": "Use this skill for any accessibility concern: WCAG compliance (any success criterion including SC 1.3.5 autocomplete, SC 2.4.11 focus obscured), ARIA roles/attributes, screen reader behavior, axe-core or WAVE audit failures, color/non-text contrast, keyboard navigation, focus trapping/management, skip links, touch targets, VPAT reports, or accessible form patterns. Also trigger when a user asks whether a UI library (shadcn, Radix) handles keyboard interactions \u2014 but only if the question is specifically about accessibility behavior, not general usage. Do NOT trigger for general component usage questions where keyboard behavior is incidental (e.g., \"does shadcn Tooltip show on hover and focus?\" without an accessibility problem to solve).",
+      "train_passed": 12,
+      "train_failed": 0,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "client is asking for a VPAT for our SaaS app. never done one before. what sections does it need and how do we fill out the wcag conformance tables?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "some of our users use keyboard only \u2014 no mouse. they're saying they can't reach the buttons inside our data table because tab just skips over the cells. data grid keyboard model help?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "running axe-core on our login page and it's flagging SC 1.3.5 \u2014 says our email and password fields are missing autocomplete attributes. what values should i use?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "building a search autocomplete. screen readers aren't announcing the suggestions at all. it's just a plain input and ul. how do i make this a proper combobox?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "hey so i'm building this dropdown menu with shadcn and when you tab to it and hit enter it opens but then you can't navigate the items with arrow keys. do i need to add keyboard support myself or does radix handle it?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "my modal dialog is using FocusScope but when it closes focus just disappears instead of going back to the button that opened it. how do i fix the return focus?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "setting up playwright for e2e testing in my next.js app. how do i test that a form submits correctly and shows a success message?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "what's the difference between useCallback and useMemo in react 19? when should i use which one?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "want to add a tooltip to my icon buttons using shadcn Tooltip. it should show on hover and also when the button is focused with keyboard. is this already built in?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "i want to add a nice animated page transition in my react router app. what's the best framer motion pattern for this? something smooth that slides between routes",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "i have a react component that re-renders too often. when i add a console.log inside i see it fires 6 times on a single button click. how do i debug this?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "how do i add a loading spinner that shows while my API call is in flight? i'm using tanstack query. want it to replace the content area, not overlay it",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ],
+      "test_passed": 8,
+      "test_failed": 0,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "the focus ring only shows up sometimes on our buttons. looks like it triggers on mouse click too which our designer hates. how do i show it only for keyboard navigation in tailwind",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "our design team says we need to pass a WCAG 2.2 audit before launch. i don't know where to start \u2014 we have about 40 React components. what's the process?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "i need to add aria-expanded and aria-haspopup to my nav toggle button but i'm not sure which values to use exactly and where to put them",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "my image carousel auto-plays every 4 seconds. a user filed a bug saying they get motion sick. also it's not keyboard accessible at all. two problems, need to fix both",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "my shadcn Dialog component doesn't close when i click outside. how do i override the default behavior to keep it open until the user explicitly clicks the X button?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "building a form with react hook form and zod. need validation that shows error messages below each field. what's the best way to wire up the schema?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "need to style a button component using tailwind css v4. want it to have a hover effect, active state, and disabled state. what's the cleanest way to do this?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "how do i add dark mode support to my shadcn/ui app? i want to use the class strategy with a toggle button that saves the preference to localStorage",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ],
+      "passed": 12,
+      "failed": 0,
+      "total": 12,
+      "results": [
+        {
+          "query": "client is asking for a VPAT for our SaaS app. never done one before. what sections does it need and how do we fill out the wcag conformance tables?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "some of our users use keyboard only \u2014 no mouse. they're saying they can't reach the buttons inside our data table because tab just skips over the cells. data grid keyboard model help?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "running axe-core on our login page and it's flagging SC 1.3.5 \u2014 says our email and password fields are missing autocomplete attributes. what values should i use?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "building a search autocomplete. screen readers aren't announcing the suggestions at all. it's just a plain input and ul. how do i make this a proper combobox?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "hey so i'm building this dropdown menu with shadcn and when you tab to it and hit enter it opens but then you can't navigate the items with arrow keys. do i need to add keyboard support myself or does radix handle it?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "my modal dialog is using FocusScope but when it closes focus just disappears instead of going back to the button that opened it. how do i fix the return focus?",
+          "should_trigger": true,
+          "trigger_rate": 1.0,
+          "triggers": 1,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "setting up playwright for e2e testing in my next.js app. how do i test that a form submits correctly and shows a success message?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "what's the difference between useCallback and useMemo in react 19? when should i use which one?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "want to add a tooltip to my icon buttons using shadcn Tooltip. it should show on hover and also when the button is focused with keyboard. is this already built in?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "i want to add a nice animated page transition in my react router app. what's the best framer motion pattern for this? something smooth that slides between routes",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "i have a react component that re-renders too often. when i add a console.log inside i see it fires 6 times on a single button click. how do i debug this?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        },
+        {
+          "query": "how do i add a loading spinner that shows while my API call is in flight? i'm using tanstack query. want it to replace the content area, not overlay it",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 1,
+          "pass": true
+        }
+      ]
+    }
+  ]
+}

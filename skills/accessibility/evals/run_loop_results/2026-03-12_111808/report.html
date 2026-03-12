@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>accessibility — Skill Description Optimization</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lora', Georgia, serif;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            background: #faf9f5;
+            color: #141413;
+        }
+        h1 { font-family: 'Poppins', sans-serif; color: #141413; }
+        .explainer {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #e8e6dc;
+            color: #b0aea5;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+        .summary {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #e8e6dc;
+        }
+        .summary p { margin: 5px 0; }
+        .best { color: #788c5d; font-weight: bold; }
+        .table-container {
+            overflow-x: auto;
+            width: 100%;
+        }
+        table {
+            border-collapse: collapse;
+            background: white;
+            border: 1px solid #e8e6dc;
+            border-radius: 6px;
+            font-size: 12px;
+            min-width: 100%;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #e8e6dc;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+        th {
+            font-family: 'Poppins', sans-serif;
+            background: #141413;
+            color: #faf9f5;
+            font-weight: 500;
+        }
+        th.test-col {
+            background: #6a9bcc;
+        }
+        th.query-col { min-width: 200px; }
+        td.description {
+            font-family: monospace;
+            font-size: 11px;
+            word-wrap: break-word;
+            max-width: 400px;
+        }
+        td.result {
+            text-align: center;
+            font-size: 16px;
+            min-width: 40px;
+        }
+        td.test-result {
+            background: #f0f6fc;
+        }
+        .pass { color: #788c5d; }
+        .fail { color: #c44; }
+        .rate {
+            font-size: 9px;
+            color: #b0aea5;
+            display: block;
+        }
+        tr:hover { background: #faf9f5; }
+        .score {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 11px;
+        }
+        .score-good { background: #eef2e8; color: #788c5d; }
+        .score-ok { background: #fef3c7; color: #d97706; }
+        .score-bad { background: #fceaea; color: #c44; }
+        .train-label { color: #b0aea5; font-size: 10px; }
+        .test-label { color: #6a9bcc; font-size: 10px; font-weight: bold; }
+        .best-row { background: #f5f8f2; }
+        th.positive-col { border-bottom: 3px solid #788c5d; }
+        th.negative-col { border-bottom: 3px solid #c44; }
+        th.test-col.positive-col { border-bottom: 3px solid #788c5d; }
+        th.test-col.negative-col { border-bottom: 3px solid #c44; }
+        .legend { font-family: 'Poppins', sans-serif; display: flex; gap: 20px; margin-bottom: 10px; font-size: 13px; align-items: center; }
+        .legend-item { display: flex; align-items: center; gap: 6px; }
+        .legend-swatch { width: 16px; height: 16px; border-radius: 3px; display: inline-block; }
+        .swatch-positive { background: #141413; border-bottom: 3px solid #788c5d; }
+        .swatch-negative { background: #141413; border-bottom: 3px solid #c44; }
+        .swatch-test { background: #6a9bcc; }
+        .swatch-train { background: #141413; }
+    </style>
+</head>
+<body>
+    <h1>accessibility — Skill Description Optimization</h1>
+    <div class="explainer">
+        <strong>Optimizing your skill's description.</strong> This page updates automatically as Claude tests different versions of your skill's description. Each row is an iteration - a new description attempt. The columns show test queries: green checkmarks mean the skill triggered correctly (or correctly didn't trigger), red crosses mean it got it wrong. The "Train" score shows performance on queries used to improve the description; the "Test" score shows performance on held-out queries the optimizer hasn't seen. When it's done, Claude will apply the best-performing description to your skill.
+    </div>
+
+    <div class="summary">
+        <p><strong>Original:</strong> Implements WCAG 2.2 AA (+ AAA aspirational) accessibility for draft_v0 React 19 components built with shadcn/ui and Tailwind CSS v4. Use this skill whenever building or reviewing interactive components (buttons, forms, modals, menus, grids, trees, carousels), adding keyboard navigation, implementing ARIA roles/states/properties, managing focus, ensuring color or non-text contrast, supporting screen readers (NVDA, JAWS, VoiceOver, TalkBack, Narrator), handling touch/pointer interactions, writing semantic HTML, running accessibility tests, or auditing for WCAG 2.2 compliance. Make sure to use this skill whenever the user mentions aria, wcag, a11y, accessible, keyboard nav, focus trap, screen reader, skip link, tab order, contrast ratio, or any WCAG success criterion -- even if they don&#x27;t explicitly say &#x27;accessibility&#x27;.</p>
+        <p class="best"><strong>Best:</strong> Use this skill for accessibility (a11y) work in React/shadcn/Radix UI: debugging keyboard navigation issues (arrow keys not working in dropdowns/menus, tab order problems, roving tabindex), fixing focus management bugs (focus not returning after modal/dialog close, focus trapping with FocusScope), resolving axe-core or audit tool violations, implementing ARIA roles and attributes, adding autocomplete attributes to form fields (WCAG 1.3.5), supporting screen readers, meeting color contrast requirements, writing VPATs, or achieving WCAG 2.2 AA/AAA compliance. Trigger whenever a user describes interactive component behavior that involves keyboard interaction, focus, or assistive technology — even if they never say &quot;accessibility.</p>
+        <p><strong>Best Score:</strong> 8/8 (test)</p>
+        <p><strong>Iterations:</strong> 5 | <strong>Train:</strong> 12 | <strong>Test:</strong> 8</p>
+    </div>
+
+    <div class="legend">
+        <span style="font-weight:600">Query columns:</span>
+        <span class="legend-item"><span class="legend-swatch swatch-positive"></span> Should trigger</span>
+        <span class="legend-item"><span class="legend-swatch swatch-negative"></span> Should NOT trigger</span>
+        <span class="legend-item"><span class="legend-swatch swatch-train"></span> Train</span>
+        <span class="legend-item"><span class="legend-swatch swatch-test"></span> Test</span>
+    </div>
+
+    <div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Iter</th>
+                <th>Train</th>
+                <th>Test</th>
+                <th class="query-col">Description</th>
+                <th class="positive-col">client is asking for a VPAT for our SaaS app. never done one before. what sections does it need and how do we fill out the wcag conformance tables?</th>
+                <th class="positive-col">some of our users use keyboard only — no mouse. they&#x27;re saying they can&#x27;t reach the buttons inside our data table because tab just skips over the cells. data grid keyboard model help?</th>
+                <th class="positive-col">running axe-core on our login page and it&#x27;s flagging SC 1.3.5 — says our email and password fields are missing autocomplete attributes. what values should i use?</th>
+                <th class="positive-col">building a search autocomplete. screen readers aren&#x27;t announcing the suggestions at all. it&#x27;s just a plain input and ul. how do i make this a proper combobox?</th>
+                <th class="positive-col">hey so i&#x27;m building this dropdown menu with shadcn and when you tab to it and hit enter it opens but then you can&#x27;t navigate the items with arrow keys. do i need to add keyboard support myself or does radix handle it?</th>
+                <th class="positive-col">my modal dialog is using FocusScope but when it closes focus just disappears instead of going back to the button that opened it. how do i fix the return focus?</th>
+                <th class="negative-col">what&#x27;s the difference between useCallback and useMemo in react 19? when should i use which one?</th>
+                <th class="negative-col">setting up playwright for e2e testing in my next.js app. how do i test that a form submits correctly and shows a success message?</th>
+                <th class="negative-col">want to add a tooltip to my icon buttons using shadcn Tooltip. it should show on hover and also when the button is focused with keyboard. is this already built in?</th>
+                <th class="negative-col">i want to add a nice animated page transition in my react router app. what&#x27;s the best framer motion pattern for this? something smooth that slides between routes</th>
+                <th class="negative-col">i have a react component that re-renders too often. when i add a console.log inside i see it fires 6 times on a single button click. how do i debug this?</th>
+                <th class="negative-col">how do i add a loading spinner that shows while my API call is in flight? i&#x27;m using tanstack query. want it to replace the content area, not overlay it</th>
+                <th class="test-col positive-col">the focus ring only shows up sometimes on our buttons. looks like it triggers on mouse click too which our designer hates. how do i show it only for keyboard navigation in tailwind</th>
+                <th class="test-col positive-col">our design team says we need to pass a WCAG 2.2 audit before launch. i don&#x27;t know where to start — we have about 40 React components. what&#x27;s the process?</th>
+                <th class="test-col positive-col">i need to add aria-expanded and aria-haspopup to my nav toggle button but i&#x27;m not sure which values to use exactly and where to put them</th>
+                <th class="test-col positive-col">my image carousel auto-plays every 4 seconds. a user filed a bug saying they get motion sick. also it&#x27;s not keyboard accessible at all. two problems, need to fix both</th>
+                <th class="test-col negative-col">my shadcn Dialog component doesn&#x27;t close when i click outside. how do i override the default behavior to keep it open until the user explicitly clicks the X button?</th>
+                <th class="test-col negative-col">building a form with react hook form and zod. need validation that shows error messages below each field. what&#x27;s the best way to wire up the schema?</th>
+                <th class="test-col negative-col">need to style a button component using tailwind css v4. want it to have a hover effect, active state, and disabled state. what&#x27;s the cleanest way to do this?</th>
+                <th class="test-col negative-col">how do i add dark mode support to my shadcn/ui app? i want to use the class strategy with a toggle button that saves the preference to localStorage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="">
+                <td>1</td>
+                <td><span class="score score-ok">27/36</span></td>
+                <td><span class="score score-good">21/24</span></td>
+                <td class="description">Implements WCAG 2.2 AA (+ AAA aspirational) accessibility for draft_v0 React 19 components built with shadcn/ui and Tailwind CSS v4. Use this skill whenever building or reviewing interactive components (buttons, forms, modals, menus, grids, trees, carousels), adding keyboard navigation, implementing ARIA roles/states/properties, managing focus, ensuring color or non-text contrast, supporting screen readers (NVDA, JAWS, VoiceOver, TalkBack, Narrator), handling touch/pointer interactions, writing semantic HTML, running accessibility tests, or auditing for WCAG 2.2 compliance. Make sure to use this skill whenever the user mentions aria, wcag, a11y, accessible, keyboard nav, focus trap, screen reader, skip link, tab order, contrast ratio, or any WCAG success criterion -- even if they don&#x27;t explicitly say &#x27;accessibility&#x27;.</td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">1/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">2/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">3/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">3/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+            <tr class="">
+                <td>2</td>
+                <td><span class="score score-ok">28/36</span></td>
+                <td><span class="score score-ok">19/24</span></td>
+                <td class="description">Use this skill for any web accessibility (a11y) work: implementing WCAG 2.2 AA/AAA compliance, fixing accessibility violations found by axe-core or other audit tools, debugging keyboard navigation problems, writing VPATs or accessibility conformance reports, adding ARIA roles/states/properties, managing focus traps and tab order, meeting color contrast requirements, adding autocomplete attributes for WCAG 1.3.5, supporting screen readers, and building accessible forms, modals, menus, and interactive widgets. Applies to React/shadcn/Radix UI components specifically. Trigger on any mention of WCAG success criteria (e.g. SC 1.3.5), accessibility tools (axe-core, WAVE), VPAT, a11y, aria, screen reader, keyboard navigation, focus management, or contrast — whether the user is building new features, debugging issues, running audits, or preparing compliance documentation.</td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result fail">✗<span class="rate">1/3</span></td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">1/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">3/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">3/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+            <tr class="best-row">
+                <td>3</td>
+                <td><span class="score score-good">33/36</span></td>
+                <td><span class="score score-good">22/24</span></td>
+                <td class="description">Use this skill for accessibility (a11y) work in React/shadcn/Radix UI: debugging keyboard navigation issues (arrow keys not working in dropdowns/menus, tab order problems, roving tabindex), fixing focus management bugs (focus not returning after modal/dialog close, focus trapping with FocusScope), resolving axe-core or audit tool violations, implementing ARIA roles and attributes, adding autocomplete attributes to form fields (WCAG 1.3.5), supporting screen readers, meeting color contrast requirements, writing VPATs, or achieving WCAG 2.2 AA/AAA compliance. Trigger whenever a user describes interactive component behavior that involves keyboard interaction, focus, or assistive technology — even if they never say &quot;accessibility.</td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">2/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">3/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">3/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">2/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+            <tr class="">
+                <td>4</td>
+                <td><span class="score score-good">33/36</span></td>
+                <td><span class="score score-good">24/24</span></td>
+                <td class="description">Use this skill whenever a user is working on web accessibility: fixing violations flagged by axe-core, WAVE, or other audit tools; looking up correct values for WCAG success criteria (autocomplete attributes, contrast ratios, ARIA roles); debugging keyboard navigation or focus behavior; implementing ARIA patterns; writing VPATs or accessibility statements; supporting screen readers; or achieving WCAG 2.2 AA/AAA compliance. Also trigger when a user describes interactive component behavior involving keyboard interaction, focus management, or assistive technology — even if they never say &quot;accessibility.&quot; Applies to React/shadcn/Radix UI components but covers general a11y questions too.</td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result fail">✗<span class="rate">1/3</span></td>
+                <td class="result pass">✓<span class="rate">2/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">3/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">3/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">3/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">3/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+            <tr class="">
+                <td>5</td>
+                <td><span class="score score-good">32/36</span></td>
+                <td><span class="score score-good">24/24</span></td>
+                <td class="description">Use this skill for any web accessibility work: WCAG 2.2 AA/AAA compliance, fixing axe-core or audit tool violations, keyboard navigation problems (arrow keys in menus/dropdowns, tab order, roving tabindex), focus management (trapping, return focus after close, FocusScope), ARIA roles and attributes, screen reader support, color contrast, autocomplete attributes for form fields, target size requirements, writing VPATs, and accessible authentication. Trigger whenever a user describes interactive component behavior involving keyboard interaction or assistive technology — even without the word &quot;accessibility.&quot; Covers React, shadcn/ui, and Radix UI components specifically, but applies to general a11y questions too.</td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result fail">✗<span class="rate">1/3</span></td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result pass">✓<span class="rate">3/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">2/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">3/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">3/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">3/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">3/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+</body>
+</html>

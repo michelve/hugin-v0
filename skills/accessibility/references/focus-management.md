@@ -1,5 +1,18 @@
 # Focus Management
 
+## Contents
+
+- [FocusScope (Radix UI)](#focusscope-radix-ui)
+- [Return Focus Pattern](#return-focus-pattern)
+- [Focus Not Obscured (WCAG 2.4.11 AA)](#focus-not-obscured-wcag-2411-aa)
+- [Skip Link Focus Target](#skip-link-focus-target)
+- [Route Change Focus Management](#route-change-focus-management)
+- [Dialog Focus Auto-Focus Override](#dialog-focus-auto-focus-override)
+- [Skip Links](#skip-links)
+- [Page Title Management](#page-title-management)
+
+---
+
 ## FocusScope (Radix UI)
 
 The `FocusScope` component from `radix-ui` is the standard way to trap focus in modals and

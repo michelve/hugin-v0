@@ -7,6 +7,20 @@ WCAG 2.2 added 9 success criteria not present in WCAG 2.1. This file provides de
 
 ---
 
+## Contents
+
+- [2.4.11 Focus Not Obscured (Minimum) — AA](#2411-focus-not-obscured-minimum--aa-required)
+- [2.4.12 Focus Not Obscured (Enhanced) — AAA](#2412-focus-not-obscured-enhanced--aaa-aspirational)
+- [2.4.13 Focus Appearance — AAA](#2413-focus-appearance--aaa-aspirational)
+- [2.5.7 Dragging Movements — AA](#257-dragging-movements--aa-required)
+- [2.5.8 Target Size (Minimum) — AA](#258-target-size-minimum--aa-required)
+- [3.2.6 Consistent Help — A](#326-consistent-help--a-required)
+- [3.3.7 Redundant Entry — A](#337-redundant-entry--a-required)
+- [3.3.8 Accessible Authentication (Minimum) — AA](#338-accessible-authentication-minimum--aa-required)
+- [3.3.9 Accessible Authentication (Enhanced) — AAA](#339-accessible-authentication-enhanced--aaa-aspirational)
+
+---
+
 ## 2.4.11 Focus Not Obscured (Minimum) — AA (Required)
 
 ### Requirement

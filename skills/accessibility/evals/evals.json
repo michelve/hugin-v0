@@ -1,0 +1,111 @@
+{
+  "skill_name": "accessibility",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm building a custom DropdownMenu component with shadcn/ui. My list items are all in the DOM but keyboard users can't Tab through them — they have to Tab to the trigger and then the whole menu closes. Fix the keyboard navigation so Arrow keys move through items and Tab closes the menu. Use roving tabindex.",
+      "expected_output": "Component updated with roving tabindex — only the active item has tabIndex=0, others have tabIndex=-1. Arrow Down/Up navigate items, wrapping at ends. Home/End jump to first/last. Tab and Escape close the menu and return focus to the trigger. Items use role='menuitem', container uses role='menu', trigger uses aria-haspopup='menu' and aria-expanded.",
+      "files": [],
+      "expectations": [
+        "Output sets tabIndex={-1} on non-active items and tabIndex={0} on the active item",
+        "Output handles ArrowDown and ArrowUp to move through menu items",
+        "Output uses role='menu' on the container and role='menuitem' on items",
+        "Output uses aria-haspopup and aria-expanded on the trigger",
+        "Output returns focus to the trigger on Escape or Tab"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I have a custom modal dialog built without shadcn Dialog. When it opens, focus goes to the document body. When it closes, focus is lost completely. Also keyboard users can Tab out of the modal while it's open. Fix these issues using FocusScope from radix-ui.",
+      "expected_output": "Dialog uses FocusScope with loop and trapped props. On open, focus moves to the first focusable element or a defined autoFocus target. On close, focus returns to the element that triggered the dialog (stored in a ref). The implementation uses the correct import: import { FocusScope } from 'radix-ui'.",
+      "files": [],
+      "expectations": [
+        "Output uses FocusScope from 'radix-ui' (not '@radix-ui/react-focus-scope')",
+        "Output passes loop and trapped props to FocusScope",
+        "Output stores the trigger element in a ref before opening the dialog",
+        "Output restores focus to the trigger ref on dialog close",
+        "Output moves focus into the dialog on open (autoFocus or first focusable)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I have a search input that shows a dropdown list of suggestions as the user types. It's just a plain <input> and a <ul> below it — no ARIA at all. Screen readers don't know the suggestions exist. Make it a proper combobox.",
+      "expected_output": "Input gets role='combobox', aria-expanded, aria-autocomplete='list', aria-controls pointing to the listbox id. The suggestions list gets role='listbox'. Each suggestion gets role='option' and aria-selected. Active suggestion is tracked with aria-activedescendant on the input. Keyboard: Arrow Down enters list, Arrow Up/Down navigate options, Enter selects, Escape closes.",
+      "files": [],
+      "expectations": [
+        "Output adds role='combobox' to the input",
+        "Output adds aria-expanded to the input (true when open, false when closed)",
+        "Output adds aria-autocomplete='list' to the input",
+        "Output adds aria-controls on the input pointing to the listbox id",
+        "Output adds role='listbox' to the suggestions container",
+        "Output adds role='option' to each suggestion item",
+        "Output tracks the focused option with aria-activedescendant"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I'm building a 3-step checkout form: step 1 asks for shipping address, step 2 asks for billing (same fields as shipping), step 3 shows order review. Make this fully WCAG 2.2 AA compliant — especially the new 3.3.7 (Redundant Entry), 3.3.8 (Accessible Authentication), and proper error handling.",
+      "expected_output": "Step 2 pre-populates billing fields if 'same as shipping' is checked, or offers a checkbox to copy them (3.3.7). All fields have associated labels, correct autocomplete attributes per WCAG 1.3.5 (name, street-address, postal-code, etc.). Error messages use aria-describedby and aria-invalid. A form-level error summary for multiple errors uses role='alert'. Progress is communicated with aria-label on the step indicator.",
+      "files": [],
+      "expectations": [
+        "Output pre-populates or offers to copy shipping data to billing (WCAG 3.3.7)",
+        "Output adds correct autocomplete attributes to all address/personal data fields",
+        "Output uses aria-invalid and aria-describedby for field-level errors",
+        "Output includes a form-level error summary with role='alert' or aria-live for multiple validation errors",
+        "Output communicates step progress accessibly (aria-label or aria-current on step indicators)"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "My React Router SPA doesn't update document.title on navigation — it always shows the app name. Screen readers also don't announce route changes. Add skip links and fix page title + route announcement. The main content area has id='main-content'.",
+      "expected_output": "useDocumentTitle hook or equivalent called in each route component with format 'Page Name — Site Name'. RouteAnnouncer component added once in App.tsx announces new page title on navigate without moving focus. SkipLink component rendered as first child of App, linking to #main-content. The main element has tabIndex={-1} on the target.",
+      "files": [],
+      "expectations": [
+        "Output adds document.title update on each route change (useDocumentTitle or equivalent)",
+        "Output formats titles as 'Page — Site' pattern",
+        "Output adds a RouteAnnouncer or aria-live region that announces navigation",
+        "Output adds a skip link as the first focusable element in the DOM",
+        "Output ensures the skip link target (#main-content) has tabIndex={-1}"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Set up automated accessibility testing in my React project. I want axe-core checks in Playwright for CI and vitest-axe for component unit tests. Include a GitHub Actions workflow that fails PRs when new violations are introduced. My test runner is already configured with Playwright and Vitest.",
+      "expected_output": "Playwright test file using @axe-core/playwright with await checkA11y(page) calls. A vitest-axe test that renders a component and asserts expect(results).toHaveNoViolations(). A GitHub Actions .github/workflows/accessibility.yml that runs on pull_request, executes playwright tests, and fails the build on violations. Axe rules configured to disabledRules for known exceptions with explanatory comments.",
+      "files": [],
+      "expectations": [
+        "Output includes a Playwright test using @axe-core/playwright (import { checkA11y } or injectAxe + checkA11y pattern)",
+        "Output includes a vitest-axe test with expect(results).toHaveNoViolations()",
+        "Output includes a GitHub Actions workflow file on pull_request trigger",
+        "Output runs playwright accessibility tests in the CI workflow",
+        "Output does not suppress all violations blindly"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "I have a drag-and-drop task list where users can reorder items by dragging. The entire reorder feature is inaccessible — keyboard users and screen reader users can't reorder at all. Fix it for WCAG 2.5.7 (Dragging Movements AA) without removing the drag functionality.",
+      "expected_output": "Each list item gets Up and Down buttons (or keyboard shortcuts like Ctrl+Arrow) as a single-pointer alternative to dragging, satisfying WCAG 2.5.7. Buttons have sr-only labels 'Move [item] up' / 'Move [item] down'. The list uses appropriate role (list/listitem). When an item moves, a live region announces the new position. The drag-and-drop library event handlers are preserved alongside the keyboard alternative.",
+      "files": [],
+      "expectations": [
+        "Output adds keyboard-operable controls (buttons or keyboard shortcuts) as a drag alternative",
+        "Output provides sr-only labels on the move controls identifying what is being moved",
+        "Output announces position changes to screen readers via aria-live or role='status'",
+        "Output preserves the existing drag-and-drop functionality (not replaced, kept alongside)",
+        "Output references WCAG 2.5.7 or explains the requirement"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "I need to make my image carousel accessible. Currently it auto-advances every 3 seconds, has no keyboard controls, no pause button, and screen readers read nothing useful. Fix keyboard navigation, add a pause button, announce slide changes, and respect reduced-motion preferences.",
+      "expected_output": "Carousel container gets role='region' and aria-label='Image carousel'. A pause/play button stops auto-advance (WCAG 2.2.2). Arrow Left/Right keys navigate slides. Each slide is announced to screen readers via an aria-live='polite' region or aria-label on the slide showing current position (e.g. 'Slide 2 of 5'). Auto-advance is paused when prefers-reduced-motion is set (via useReducedMotion or CSS motion-reduce: class). Prev/Next buttons have sr-only labels.",
+      "files": [],
+      "expectations": [
+        "Output adds a pause/play button that stops auto-advancement (WCAG 2.2.2)",
+        "Output adds Arrow Left/Right keyboard navigation between slides",
+        "Output announces slide changes to screen readers (aria-live or aria-label with position)",
+        "Output disables auto-advance when prefers-reduced-motion is set",
+        "Output adds descriptive labels to previous/next buttons (aria-label or sr-only text)"
+      ]
+    }
+  ]
+}

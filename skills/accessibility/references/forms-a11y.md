@@ -2,6 +2,20 @@
 
 Accessible forms work correctly for keyboard users, screen reader users, and users with cognitive and motor disabilities. This reference covers WCAG conformant implementation for all common form patterns in React 19 with shadcn/ui.
 
+## Contents
+
+- [Labels](#labels)
+- [autocomplete Attributes (WCAG 1.3.5 AA)](#autocomplete-attributes-wcag-135-aa)
+- [Required Fields](#required-fields)
+- [Error Handling (WCAG 3.3.1 A / 3.3.3 AA)](#error-handling-wcag-331-a--error-identification-333-aa--error-suggestion)
+- [Grouped Inputs — fieldset / legend](#grouped-inputs--fieldset--legend)
+- [Character Count (Textarea)](#character-count-textarea)
+- [Multi-step Forms](#multi-step-forms)
+- [Redundant Entry (WCAG 3.3.7 A)](#redundant-entry-wcag-337-a)
+- [Accessible Authentication (WCAG 3.3.8 AA)](#accessible-authentication-wcag-338-aa)
+- [Form Submission Feedback](#form-submission-feedback)
+- [Search Forms](#search-forms)
+
 ---
 
 ## Labels

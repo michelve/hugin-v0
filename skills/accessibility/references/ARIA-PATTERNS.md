@@ -2,6 +2,27 @@
 
 Common ARIA patterns for draft_v0 components (React 19 + shadcn/ui).
 
+## Contents
+
+- [Button Pattern](#button-pattern)
+- [Input Pattern](#input-pattern)
+- [Checkbox Pattern](#checkbox-pattern)
+- [Radio Group Pattern](#radio-group-pattern)
+- [Switch/Toggle Pattern](#switchtoggle-pattern)
+- [Dialog/Modal Pattern](#dialogmodal-pattern)
+- [Alert Pattern](#alert-pattern)
+- [Menu Pattern](#menu-pattern)
+- [Tabs Pattern](#tabs-pattern)
+- [Accordion Pattern](#accordion-pattern)
+- [Tooltip Pattern](#tooltip-pattern)
+- [Progress Pattern](#progress-pattern)
+- [Live Region Pattern](#live-region-pattern)
+- [Table Pattern](#table-pattern)
+- [Keyboard Navigation Reference](#keyboard-navigation-reference)
+- [Screen Reader Announcements](#screen-reader-announcements)
+
+---
+
 ## Button Pattern
 
 ```tsx

@@ -2,6 +2,19 @@
 
 Semantic HTML uses the correct HTML element for the content's meaning. It provides built-in accessibility at no cost — screen readers, browsers, search engines, and assistive technologies all understand semantic meaning and expose it correctly to users.
 
+## Contents
+
+- [Images — Alt Text Decision Tree](#images--alt-text-decision-tree)
+- [SVG Accessibility](#svg-accessibility)
+- [Landmark Regions](#landmark-regions)
+- [Heading Hierarchy](#heading-hierarchy)
+- [Data Tables](#data-tables)
+- [Lists](#lists)
+- [Language Declaration](#language-declaration)
+- [Interactive vs. Non-Interactive Elements](#interactive-vs-non-interactive-elements)
+- [Time and Dates](#time-and-dates)
+- [Microdata and Rich Content](#microdata-and-rich-content)
+
 ---
 
 ## Images — Alt Text Decision Tree

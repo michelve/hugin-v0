@@ -1,0 +1,4 @@
+{
+  "name": "accessibility",
+  "description": "Implements WCAG 2.2 AA (+ AAA aspirational) accessibility for draft_v0 React 19 components built with shadcn/ui and Tailwind CSS v4. Use this skill whenever building or reviewing interactive components (buttons, forms, modals, menus, grids, trees, carousels), adding keyboard navigation, implementing ARIA roles/states/properties, managing focus, ensuring color or non-text contrast, supporting screen readers (NVDA, JAWS, VoiceOver, TalkBack, Narrator), handling touch/pointer interactions, writing semantic HTML, running accessibility tests, or auditing for WCAG 2.2 compliance. Make sure to use this skill whenever the user mentions aria, wcag, a11y, accessible, keyboard nav, focus trap, screen reader, skip link, tab order, contrast ratio, or any WCAG success criterion -- even if they don't explicitly say 'accessibility'."
+}

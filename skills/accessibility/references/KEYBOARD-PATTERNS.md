@@ -2,6 +2,24 @@
 
 Complete keyboard navigation patterns for draft_v0 components (React 19 + shadcn/ui).
 
+## Contents
+
+- [Focus Management](#focus-management)
+  - [Focus Order](#focus-order)
+  - [Focus Trap Hook](#focus-trap-hook)
+  - [Return Focus](#return-focus)
+- [Key Event Handlers](#key-event-handlers)
+  - [Key Detection Utilities](#key-detection-utilities)
+  - [Menu Keyboard Handler](#menu-keyboard-handler)
+  - [Tab Keyboard Handler](#tab-keyboard-handler)
+  - [Grid/Table Keyboard Handler](#gridtable-keyboard-handler)
+- [Roving TabIndex](#roving-tabindex)
+- [Skip Links](#skip-links)
+- [Testing Keyboard Navigation](#testing-keyboard-navigation)
+- [Focus Visible Styles](#focus-visible-styles)
+
+---
+
 ## Focus Management
 
 ### Focus Order

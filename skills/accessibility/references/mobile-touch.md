@@ -2,6 +2,19 @@
 
 This reference covers WCAG 2.2 success criteria specifically relevant to touch interfaces, pointer interactions, and mobile contexts.
 
+## Contents
+
+- [Target Size Minimum (WCAG 2.5.8 AA)](#target-size-minimum-wcag-258-aa)
+- [Pointer Gestures (WCAG 2.5.1 AA)](#pointer-gestures-wcag-251-aa)
+- [Pointer Cancellation (WCAG 2.5.2 AA)](#pointer-cancellation-wcag-252-aa)
+- [Orientation (WCAG 1.3.4 AA)](#orientation-wcag-134-aa)
+- [Motion Actuation (WCAG 2.5.4 AA)](#motion-actuation-wcag-254-aa)
+- [Dragging Movements (WCAG 2.5.7 AA)](#dragging-movements-wcag-257-aa)
+- [Content on Hover or Focus (WCAG 1.4.13 AA)](#content-on-hover-or-focus-wcag-1413-aa)
+- [Reflow (WCAG 1.4.10 AA)](#reflow-wcag-1410-aa)
+- [Text Spacing (WCAG 1.4.12 AA)](#text-spacing-wcag-1412-aa)
+- [iOS / Android Screen Reader Notes](#ios--android-screen-reader-notes)
+
 ---
 
 ## Target Size Minimum (WCAG 2.5.8 AA)

@@ -1,6 +1,6 @@
 ---
 name: accessibility
-description: Implements WCAG 2.2 AA (+ AAA aspirational) accessibility for draft_v0 components. Use when ensuring keyboard navigation, screen reader support, focus management, ARIA attributes, color contrast, target sizes, semantic HTML, form accessibility, or any WCAG 2.2 requirement in React 19 components built with shadcn/ui and Tailwind CSS v4.
+description: "Implements WCAG 2.2 AA (+ AAA aspirational) accessibility for draft_v0 React 19 components built with shadcn/ui and Tailwind CSS v4. Use this skill whenever building or reviewing interactive components (buttons, forms, modals, menus, grids, trees, carousels), adding keyboard navigation, implementing ARIA roles/states/properties, managing focus, ensuring color or non-text contrast, supporting screen readers (NVDA, JAWS, VoiceOver, TalkBack, Narrator), handling touch/pointer interactions, writing semantic HTML, running accessibility tests, or auditing for WCAG 2.2 compliance. Make sure to use this skill whenever the user mentions aria, wcag, a11y, accessible, keyboard nav, focus trap, screen reader, skip link, tab order, contrast ratio, or any WCAG success criterion -- even if they don't explicitly say 'accessibility'."
 user-invocable: true
 ---
 
@@ -22,22 +22,6 @@ Implement WCAG 2.2 AA compliant accessibility in React 19 components using the d
 | **Operable** | Keyboard, focus management, focus not obscured, skip links, page titles, target size, dragging, pointer gestures | [keyboard-navigation.md](references/keyboard-navigation.md), [focus-management.md](references/focus-management.md), [mobile-touch.md](references/mobile-touch.md), [wcag22-new-criteria.md](references/wcag22-new-criteria.md) |
 | **Understandable** | ARIA, forms, error handling, auth, redundant entry, consistent help, live regions | [aria-attributes.md](references/aria-attributes.md), [forms-a11y.md](references/forms-a11y.md) |
 | **Robust** | Screen reader support, status messages, automated + manual testing, VPAT, CI/CD | [testing-a11y.md](references/testing-a11y.md) |
-
----
-
-## When to Use
-
-- Building any interactive component (button, form, modal, menu, grid, tree, carousel)
-- Adding or reviewing keyboard navigation
-- Implementing ARIA roles, states, or properties
-- Managing focus (modals, drawers, toasts, route changes)
-- Ensuring color and non-text contrast compliance
-- Supporting screen readers (NVDA, JAWS, VoiceOver, TalkBack, Narrator)
-- Implementing forms, authentication flows, or multi-step processes
-- Handling touch and pointer interactions on mobile
-- Writing or reviewing semantic HTML structure
-- Setting up automated or manual accessibility testing
-- Auditing for WCAG 2.2 compliance or preparing a VPAT/accessibility statement
 
 ---
 
@@ -419,6 +403,18 @@ These exceed the required AA level. Implement where feasible to provide a superi
 | **2.5.6** | Concurrent Input Mechanisms | Do not restrict the user to a single input modality (e.g., do not disable mouse when touch is detected) |
 | **3.1.5** | Reading Level | If content exceeds lower secondary school reading level, provide supplemental simpler version |
 | **3.3.9** | Accessible Auth Enhanced | No cognitive function test (including CAPTCHA with alternatives) in any auth step |
+
+---
+
+## Platform Notes
+
+| Platform | Metadata | Shell commands | Packaging |
+|----------|----------|----------------|-----------|
+| **Claude Code** | YAML frontmatter in `SKILL.md` | ✅ Full `!`command`` support | n/a |
+| **Cowork** | `skills-rules.json` (see `skills-rules.json` in this skill) | ✅ | `.skill` file via `python -m scripts.package_skill skills/accessibility`; use `present_files` to deliver packaged results |
+| **Claude.ai** | Paste `SKILL.md` body into Project instructions; attach reference files as knowledge | ❌ No shell commands | n/a |
+
+See [skill-creator/reference/platform-specific.md](../skill-creator/reference/platform-specific.md) for the full platform compatibility guide.
 
 ---
 

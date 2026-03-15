@@ -1,32 +1,5 @@
 {
   "mcpServers": {
-    "playwright": {
-      "command": "npx",
-      "args": ["-y", "@playwright/mcp@latest"]
-    },
-    "figma": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "figma-developer-mcp@latest",
-        "--figma-api-key=$FIGMA_API_KEY",
-        "--stdio"
-      ]
-    },
-    "figma-console": {
-      "command": "npx",
-      "args": ["-y", "figma-console-mcp@latest", "--figma-api-key=$FIGMA_API_KEY"],
-      "env": {
-        "ENABLE_MCP_APPS": "true"
-      }
-    },
-    "sequential-thinking": {
-      "command": "npx",
-      "args": ["-y", "@anthropic/sequential-thinking-mcp"]
-    },
-    "shadcn": {
-      "command": "npx",
-      "args": ["shadcn@latest", "mcp"]
-    }
+
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "hugin-v0",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Ship design-to-production React 19 apps with Claude Code — Figma-to-code translation, automated code reviews, architecture guardrails, and accessibility enforcement for designers and engineers.",
   "author": {
     "name": "michelve",

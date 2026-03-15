@@ -12,14 +12,17 @@
       "command": "npx",
       "args": [
         "-y",
-        "figma-developer-mcp",
+        "figma-developer-mcp@latest",
         "--figma-api-key=$FIGMA_API_KEY",
         "--stdio"
       ]
     },
     "figma-console": {
       "command": "npx",
-      "args": ["-y", "figma-console-mcp", "--figma-api-key=$FIGMA_API_KEY"]
+      "args": ["-y", "figma-console-mcp@latest", "--figma-api-key=$FIGMA_API_KEY"],
+      "env": {
+        "ENABLE_MCP_APPS": "true"
+      }
     },
     "sequential-thinking": {
       "command": "npx",

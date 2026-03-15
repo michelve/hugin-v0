@@ -6,6 +6,9 @@ node_modules/
 Thumbs.db
 Desktop.ini
 
+# Claude Code local config
+.claude/
+
 # IDE
 .vscode/
 .idea/
@@ -18,3 +21,4 @@ Desktop.ini
 
 #Ignore vscode AI rules
 .github\instructions\codacy.instructions.md
+__pycache__/

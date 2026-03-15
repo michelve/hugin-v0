@@ -1,5 +1,6 @@
 ---
 name: react
+version: 1.0.0
 description: Core React 19 patterns including hooks, Suspense, lazy loading, component structure, TypeScript best practices, and performance optimization. Use when working with React components, hooks, lazy loading, Suspense boundaries, or React-specific TypeScript patterns.
 user-invocable: true
 ---

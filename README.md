@@ -140,31 +140,15 @@ Some MCP servers and skills require API keys to function. Set them in your shell
 | ---------------- | ----------------- | ------------------------------------------------------------------ |
 | `MIRO_API_KEY`   | miro-mcp server   | Only needed if your Miro board requires auth beyond the web URL    |
 
-### Setup by OS
+### Setup
 
-**macOS / Linux** — add to your `~/.zshrc`, `~/.bashrc`, or `~/.profile`:
+Add to your `~/.zshrc`, `~/.bashrc`, or `~/.profile`:
 
 ```bash
 export FIGMA_API_KEY=fig_xxxxxxxxxxxxxxxxxxxxx
 ```
 
 Then reload: `source ~/.zshrc`
-
-**Windows (PowerShell)** — add to your `$PROFILE`:
-
-```powershell
-$env:FIGMA_API_KEY = "fig_xxxxxxxxxxxxxxxxxxxxx"
-```
-
-Then reload: `. $PROFILE`
-
-**Windows (system-wide)** — or set it permanently:
-
-```powershell
-[Environment]::SetEnvironmentVariable("FIGMA_API_KEY", "fig_xxxxxxxxxxxxxxxxxxxxx", "User")
-```
-
-Restart your terminal after setting system-wide variables.
 
 ### Verify your setup
 
@@ -182,10 +166,9 @@ This checks that required environment variables are set, MCP servers can initial
 hugin-v0/
 ├── .claude-plugin/
 │   └── plugin.json           # Plugin manifest
-├── skills/                   # 23 skills (SKILL.md + supporting files)
+├── skills/                   # 25 skills (SKILL.md + supporting files)
 ├── agents/                   # 13 specialized agents
 ├── agent-rules/              # Agent routing metadata (JSON)
-├── commands/                 # Slash commands (check.md)
 ├── hooks/
 │   └── hooks.json            # Hook event configuration (8 hooks)
 ├── scripts/                  # Hook scripts (Python + shell + cross-platform runners)

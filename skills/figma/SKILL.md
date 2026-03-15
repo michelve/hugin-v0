@@ -1,9 +1,13 @@
 ---
 name: figma
+version: 1.0.0
 description: Use the Figma MCP server to fetch design context, screenshots, variables, and assets from Figma, and to translate Figma nodes into production code. Trigger when a task involves Figma URLs, node IDs, design-to-code implementation, or Figma MCP setup and troubleshooting.
 argument-hint: "Figma URL or node-id"
 user-invocable: true
 allowed-tools: figma__get_design_context, figma__get_screenshot, figma__get_assets, figma__get_variables, figma__get_code_connect_suggestions, figma__create_design_system_rules
+compatibility: "Requires Figma MCP server and FIGMA_API_KEY environment variable"
+metadata:
+    mcp-server: figma
 ---
 
 # Figma MCP

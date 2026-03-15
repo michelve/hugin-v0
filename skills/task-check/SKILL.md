@@ -1,5 +1,6 @@
 ---
 name: task-check
+version: 1.0.0
 description: "Verify task completion before finishing work. Agent-driven skill that checks acceptance criteria, catches incomplete work, bugs, and quality issues. Spawn with task ID, location, and work summary."
 argument-hint: "<task-id> <task-location> [attempt]"
 user-invocable: true

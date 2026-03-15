@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 /**
- * Cross-platform hook runner.
- * On Windows: uses `python` (python.exe, real install)
- * On macOS/Linux: uses `python3` (standard)
+ * Hook runner.
  *
  * Usage: node .claude/hooks/run-hook.js <hook-filename.py>
  * Stdin is forwarded so Claude Code's JSON payload reaches the hook.
@@ -16,7 +14,7 @@ if (!script) {
     process.exit(1);
 }
 
-const python = process.platform === "win32" ? "python" : "python3";
+const python = "python3";
 const hookPath = path.resolve(__dirname, script);
 
 const result = spawnSync(python, [hookPath], {

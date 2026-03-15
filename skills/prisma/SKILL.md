@@ -1,7 +1,9 @@
 ---
 name: prisma
+version: 1.0.0
 description: Prisma ORM patterns including Prisma Client usage, queries, mutations, relations, transactions, and schema management. Use when working with Prisma database operations or schema definitions.
 user-invocable: true
+compatibility: "Requires Prisma ORM installed in the project"
 ---
 
 # Prisma ORM Patterns

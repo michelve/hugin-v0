@@ -1,10 +1,12 @@
 ---
 name: create-design-system-rules
+version: 1.0.0
 description: Generates custom design system rules for the user's codebase. Use when user says "create design system rules", "generate rules for my project", "set up design rules", "customize design system guidelines", or wants to establish project-specific conventions for Figma-to-code workflows. Requires Figma MCP server connection.
 argument-hint: "output path (optional, defaults to project rules location)"
 user-invocable: true
 context: fork
 allowed-tools: figma__create_design_system_rules, figma__get_variables
+compatibility: "Requires Figma MCP server and FIGMA_API_KEY environment variable"
 metadata:
     mcp-server: figma
 ---

@@ -1,9 +1,11 @@
 ---
 name: playwright-skill
+version: 1.0.0
 description: Complete browser automation with Playwright. Auto-detects dev servers, writes clean test scripts to /tmp. Test pages, fill forms, take screenshots, check responsive design, validate UX, test login flows, check links, automate any browser task. Use when user wants to test websites, automate browser interactions, validate web functionality, or perform any browser-based testing.
 argument-hint: "<url-or-test-description>"
 user-invocable: true
 disable-model-invocation: true
+compatibility: "Requires Node.js and Playwright (npx playwright install)"
 ---
 
 ## Current Project Context

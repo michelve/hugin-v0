@@ -9,8 +9,6 @@ user-invocable: true
 
 How to write tests that catch bugs, document behavior, and remain maintainable.
 
-> Based on [BugMagnet](https://github.com/gojko/bugmagnet-ai-assistant) by Gojko Adzic. Adapted with attribution.
-
 ## Critical Rules
 
 🚨 **Test names describe outcomes, not actions.** "returns empty array when input is null" not "test null input". The name IS the specification.

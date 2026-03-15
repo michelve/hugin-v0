@@ -1,7 +1,9 @@
 ---
 name: tailwindcss
+version: 1.0.0
 description: Tailwind CSS v4 utility-first styling patterns including responsive design, dark mode, and custom configuration. Use when styling with Tailwind, adding utility classes, configuring Tailwind, setting up dark mode, or customizing the theme.
 user-invocable: true
+compatibility: "Requires Tailwind CSS v4 installed in the project"
 ---
 
 # Tailwind CSS v4 Development Guidelines

@@ -1,10 +1,12 @@
 ---
 name: component-visualizer
+version: 1.0.0
 description: >-
     Generate interactive HTML dependency graphs for React components.
     Use when asked to "visualize components", "show component dependencies",
     "dependency graph", "component map", or "what depends on what".
 user-invocable: true
+compatibility: "Requires Python 3 and a React project with .tsx components"
 ---
 
 # Component Visualizer

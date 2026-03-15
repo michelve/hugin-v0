@@ -212,6 +212,39 @@ claude --plugin-dir ./hugin-v0
 claude plugin validate ./hugin-v0
 ```
 
+### Local validation
+
+The plugin ships a standalone validator that checks frontmatter, hooks, evals, and project structure — the same checks that run in CI.
+
+```bash
+# Full project scan
+./scripts/validate-plugin.sh
+
+# Validate a specific skill or agent
+./scripts/validate-plugin.sh skills/react/SKILL.md
+
+# Validate only git-staged files
+./scripts/validate-plugin.sh --staged
+
+# Auto-fix: generate missing evals/, trigger-evals.json, skills-rules.json
+./scripts/validate-plugin.sh --fix
+
+# Fix a specific skill
+./scripts/validate-plugin.sh --fix skills/react/SKILL.md
+```
+
+Errors block with exit code 1. Warnings are shown but do not block.
+
+### Pre-commit hook
+
+Install the pre-commit hook to automatically validate plugin files before every commit:
+
+```bash
+ln -sf ../../scripts/pre-commit-validate.sh .git/hooks/pre-commit
+```
+
+The hook detects which staged files are plugin-relevant and runs targeted or full validation accordingly. Bypass once with `git commit --no-verify`.
+
 ### Hot reload (inside Claude Code)
 
 ```bash

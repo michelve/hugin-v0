@@ -25,6 +25,11 @@
     "agents",
     "lsp"
   ],
+  "skills": "./skills/",
+  "agents": "./agents/",
+  "commands": "./commands/",
+  "hooks": "./hooks/hooks.json",
+  "mcpServers": "./.mcp.json",
   "outputStyles": "./output-styles/",
   "lspServers": "./.lsp.json"
 }

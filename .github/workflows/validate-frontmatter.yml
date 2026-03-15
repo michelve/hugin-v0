@@ -1,0 +1,23 @@
+name: Validate Frontmatter
+
+on:
+  pull_request:
+    paths:
+      - 'agents/*.md'
+      - 'skills/*/SKILL.md'
+      - 'skills/*/evals/*.json'
+      - 'skills/*/skills-rules.json'
+      - 'commands/*.md'
+      - 'output-styles/*.md'
+      - 'hooks/hooks.json'
+      - 'settings.json'
+      - '.claude-plugin/plugin.json'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate frontmatter and project structure
+        run: python3 .github/scripts/validate-frontmatter.py

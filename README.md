@@ -15,8 +15,8 @@ Built for and tested with [draft_v0](https://github.com/michelve/draft_v0) — a
 ### From a marketplace (recommended)
 
 ```bash
-/plugin marketplace add michelve/hugin-v0
-/plugin install hugin-v0@michelve
+/plugin marketplace add michelve/hugin-marketplace
+/plugin install hugin-v0@hugin-marketplace
 ```
 
 ### Local testing
@@ -165,7 +165,7 @@ This checks that required environment variables are set, MCP servers can initial
 ```
 hugin-v0/
 ├── .claude-plugin/
-│   └── plugin.json           # Plugin manifest
+│   └── plugin.json           # Plugin manifest (marketplace catalog lives in michelve/hugin-marketplace)
 ├── skills/                   # 25 skills (SKILL.md + supporting files)
 ├── agents/                   # 13 specialized agents
 ├── agent-rules/              # Agent routing metadata (JSON)

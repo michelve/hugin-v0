@@ -28,9 +28,6 @@
       "command": "npx",
       "args": ["-y", "@anthropic/sequential-thinking-mcp"]
     },
-    "miro-mcp": {
-      "url": "https://mcp.miro.com/"
-    },
     "shadcn": {
       "command": "npx",
       "args": ["shadcn@latest", "mcp"]

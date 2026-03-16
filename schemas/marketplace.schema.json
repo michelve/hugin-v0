@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/michelve/hugin-v0/schemas/marketplace.schema.json",
+  "title": "Claude Code Marketplace",
+  "description": "Schema for Claude Code marketplace.json — inferred from anthropics/claude-plugins-official (upstream $schema URL returns 404, see https://github.com/anthropics/claude-code/issues/9686).",
+  "type": "object",
+  "required": ["name", "description", "owner", "plugins"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema reference (canonical URL is https://anthropic.com/claude-code/marketplace.schema.json but returns 404)."
+    },
+    "name": {
+      "type": "string",
+      "description": "Marketplace catalog name."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the marketplace catalog."
+    },
+    "owner": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" }
+      }
+    },
+    "plugins": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/pluginEntry" }
+    }
+  },
+  "$defs": {
+    "pluginEntry": {
+      "type": "object",
+      "required": ["name", "description", "source", "category"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Plugin identifier (kebab-case recommended)."
+        },
+        "description": {
+          "type": "string",
+          "description": "What the plugin does — shown in marketplace listings."
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+",
+          "description": "Semver version string. Used by LSP plugins; optional for others."
+        },
+        "author": {
+          "type": "object",
+          "required": ["name"],
+          "additionalProperties": false,
+          "properties": {
+            "name": { "type": "string" },
+            "email": { "type": "string", "format": "email" }
+          }
+        },
+        "source": {
+          "description": "Plugin source location — relative path (monorepo) or remote git reference.",
+          "oneOf": [
+            {
+              "type": "string",
+              "description": "Relative path within the same marketplace repo (e.g. './plugins/my-plugin')."
+            },
+            { "$ref": "#/$defs/sourceUrl" },
+            { "$ref": "#/$defs/sourceGitSubdir" }
+          ]
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "database",
+            "deployment",
+            "design",
+            "development",
+            "learning",
+            "location",
+            "migration",
+            "monitoring",
+            "productivity",
+            "security",
+            "testing"
+          ],
+          "description": "Plugin category for marketplace filtering."
+        },
+        "strict": {
+          "type": "boolean",
+          "description": "When true, restricts the plugin to files matching its lspServers extensions. Used only by LSP plugins."
+        },
+        "lspServers": {
+          "type": "object",
+          "description": "Language server definitions — used only by dedicated LSP wrapper plugins. Non-LSP plugins ship .lsp.json at repo root for auto-discovery instead.",
+          "additionalProperties": { "$ref": "#/$defs/lspServer" }
+        },
+        "homepage": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the plugin's homepage or repository."
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Freeform tags (e.g. 'community-managed')."
+        }
+      }
+    },
+    "sourceUrl": {
+      "type": "object",
+      "required": ["source", "url"],
+      "additionalProperties": false,
+      "properties": {
+        "source": { "const": "url" },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Git clone URL (must end in .git)."
+        },
+        "sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$",
+          "description": "Pin to a specific commit SHA."
+        }
+      }
+    },
+    "sourceGitSubdir": {
+      "type": "object",
+      "required": ["source", "url", "path"],
+      "additionalProperties": false,
+      "properties": {
+        "source": { "const": "git-subdir" },
+        "url": {
+          "type": "string",
+          "description": "Git repository URL or GitHub owner/repo shorthand."
+        },
+        "path": {
+          "type": "string",
+          "description": "Subdirectory within the repo containing the plugin."
+        },
+        "ref": {
+          "type": "string",
+          "description": "Git ref (branch or tag) to use."
+        },
+        "sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$",
+          "description": "Pin to a specific commit SHA."
+        }
+      }
+    },
+    "lspServer": {
+      "type": "object",
+      "required": ["command", "extensionToLanguage"],
+      "additionalProperties": false,
+      "properties": {
+        "command": {
+          "type": "string",
+          "description": "Language server binary name."
+        },
+        "args": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "CLI arguments passed to the language server."
+        },
+        "extensionToLanguage": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "Maps file extensions (e.g. '.ts') to language identifiers (e.g. 'typescript')."
+        },
+        "startupTimeout": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Milliseconds to wait for the server to start (default varies by runtime)."
+        }
+      }
+    }
+  }
+}

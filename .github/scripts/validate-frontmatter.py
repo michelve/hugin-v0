@@ -623,6 +623,36 @@ def _validate_hooks_json(base: Path) -> list[tuple[str, str]]:
                         f'"async" should be a boolean',
                     ))
 
+                # Timeout range warning
+                timeout_val = hook.get('timeout')
+                if timeout_val is not None:
+                    if isinstance(timeout_val, (int, float)):
+                        if timeout_val > 600:
+                            issues.append((
+                                'warn',
+                                f'hooks.json: {event_name}[{i}].hooks[{j}] '
+                                f'timeout {timeout_val}s is very high (>600s)',
+                            ))
+                        elif timeout_val < 5:
+                            issues.append((
+                                'warn',
+                                f'hooks.json: {event_name}[{i}].hooks[{j}] '
+                                f'timeout {timeout_val}s is very low (<5s)',
+                            ))
+
+                # CLAUDE_PLUGIN_ROOT portability check
+                cmd = hook.get('command', '')
+                if isinstance(cmd, str) and cmd:
+                    if ('/home/' in cmd or '/Users/' in cmd
+                            or '/opt/' in cmd or '/usr/local/' in cmd):
+                        if '${CLAUDE_PLUGIN_ROOT}' not in cmd:
+                            issues.append((
+                                'warn',
+                                f'hooks.json: {event_name}[{i}].hooks[{j}] '
+                                f'command has hardcoded absolute path. '
+                                f'Use ${{CLAUDE_PLUGIN_ROOT}} for portability',
+                            ))
+
     return issues
 
 

@@ -1,6 +1,15 @@
 {
+  "description": "hugin-v0 plugin hooks — setup checks, code quality, and architecture guardrails",
   "hooks": {
     "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node ${CLAUDE_PLUGIN_ROOT}/scripts/run-hook.cjs setup-env-check.py"
+          }
+        ]
+      },
       {
         "matcher": "Bash",
         "hooks": [

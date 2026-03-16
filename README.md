@@ -1,10 +1,10 @@
 # hugin-v0
 
-A Claude Code plugin that helps **product designers and engineers ship design-to-production React 19 apps** — translating Figma mockups into accessible, production-ready components with automated code reviews, architecture guardrails, and quality gates baked into every workflow.
+A Claude Code plugin that helps **product designers and engineers ship design-to-production react apps** — translating Figma mockups into accessible, production-ready components with automated code reviews, architecture guardrails, and quality gates baked into every workflow.
 
 Packed with **23 skills**, **13 agents**, **8 event hooks**, **7 MCP servers**, **4 output styles**, and **1 LSP server** covering the full stack: React 19, TypeScript, Express, Prisma, Tailwind CSS v4, and shadcn/ui.
 
-Built for and tested with [draft_v0](https://github.com/michelve/draft_v0) — a full-stack React 19 + Express + Prisma starter with opinionated architecture, ADR workflows, task management, Figma integration, and automated code quality gates.
+Built for and tested with [draft_v0](https://github.com/michelve/draft_v0) — a full-stack starter with opinionated architecture, ADR workflows, task management, Figma integration, and automated code quality gates.
 
 ## Requirements
 
@@ -160,27 +160,6 @@ After setting your keys, run the `/setup` command inside Claude Code to verify e
 
 This checks that required environment variables are set, MCP servers can initialize, and the TypeScript LSP binary is installed.
 
-## Plugin Structure
-
-```
-hugin-v0/
-├── .claude-plugin/
-│   └── plugin.json           # Plugin manifest (marketplace catalog lives in michelve/hugin-marketplace)
-├── skills/                   # 25 skills (SKILL.md + supporting files)
-├── agents/                   # 13 specialized agents
-├── agent-rules/              # Agent routing metadata (JSON)
-├── hooks/
-│   └── hooks.json            # Hook event configuration (8 hooks)
-├── scripts/                  # Hook scripts (Python + shell + cross-platform runners)
-├── output-styles/            # 4 custom output styles
-├── .mcp.json                 # MCP server configurations (7 servers)
-├── .lsp.json                 # LSP server configurations
-├── settings.json             # Default plugin settings (agent: principal-engineer)
-├── LICENSE
-├── CHANGELOG.md
-└── README.md
-```
-
 ## Development
 
 ### Test locally
@@ -233,14 +212,6 @@ The hook detects which staged files are plugin-relevant and runs targeted or ful
 ```bash
 /reload-plugins
 ```
-
-## License
-
-MIT — see [LICENSE](LICENSE)
-
-## Origin
-
-This plugin was extracted from [draft_v0](https://github.com/michelve/draft_v0), where all skills, agents, and hooks were developed and refined in a production full-stack codebase. Contributions and issues should be filed in this repo.
 
 ## Author
 

@@ -35,6 +35,10 @@ def _quote_special_values(text: str) -> str:
         m = re.match(r'^([a-zA-Z_-]+):\s+(.+)$', line)
         if m:
             key, value = m.group(1), m.group(2)
+            # Skip block scalar indicators — they must stay unquoted
+            if value in ('>', '>-', '|', '|-'):
+                result.append(line)
+                continue
             if not ((value.startswith('"') and value.endswith('"')) or
                     (value.startswith("'") and value.endswith("'"))):
                 if _YAML_SPECIAL.search(value):
@@ -46,13 +50,36 @@ def _quote_special_values(text: str) -> str:
 
 
 def _parse_yaml_simple(text: str) -> dict:
-    """Minimal YAML parser for flat frontmatter (handles scalars and lists)."""
+    """Minimal YAML parser for flat frontmatter (handles scalars, lists, block scalars)."""
     result: dict = {}
     current_key: str | None = None
     current_list: list | None = None
+    # Block scalar state: 'folded' for > / >-, 'literal' for | / |-
+    block_mode: str | None = None
+    block_lines: list[str] = []
+
+    def _flush_block():
+        """Save accumulated block scalar lines to result."""
+        nonlocal block_mode, block_lines
+        if current_key and block_mode and block_lines:
+            if block_mode == 'folded':
+                result[current_key] = ' '.join(block_lines)
+            else:
+                result[current_key] = '\n'.join(block_lines)
+        block_mode = None
+        block_lines = []
 
     for line in text.split('\n'):
         stripped = line.strip()
+
+        # Collect indented continuation lines for block scalars
+        if block_mode is not None:
+            if stripped and (line.startswith('  ') or line.startswith('\t')):
+                block_lines.append(stripped)
+                continue
+            else:
+                _flush_block()
+
         if not stripped or stripped.startswith('#'):
             continue
 
@@ -77,6 +104,14 @@ def _parse_yaml_simple(text: str) -> dict:
                 current_list = []
                 continue
 
+            # Block scalar indicators
+            if value in ('>', '>-', '|', '|-'):
+                current_key = key
+                current_list = None
+                block_mode = 'folded' if value.startswith('>') else 'literal'
+                block_lines = []
+                continue
+
             # Unquote strings
             if (value.startswith('"') and value.endswith('"')) or \
                (value.startswith("'") and value.endswith("'")):
@@ -98,7 +133,8 @@ def _parse_yaml_simple(text: str) -> dict:
         if line.startswith('    ') or line.startswith('\t'):
             continue
 
-    # Save trailing list
+    # Save trailing block scalar or list
+    _flush_block()
     if current_key is not None and current_list is not None and current_list:
         result[current_key] = current_list
 
@@ -691,6 +727,60 @@ def _validate_settings_agent_ref(base: Path) -> list[tuple[str, str]]:
 
     return issues
 
+def _validate_available_skills_xml(base: Path) -> list[tuple[str, str]]:
+    """Check available-skills.xml exists and lists all skills."""
+    issues: list[tuple[str, str]] = []
+    xml_path = base / 'available-skills.xml'
+
+    if not xml_path.is_file():
+        issues.append((
+            'warn',
+            'available-skills.xml not found. '
+            'Run: python3 scripts/generate-available-skills.py',
+        ))
+        return issues
+
+    try:
+        import xml.etree.ElementTree as ET
+        tree = ET.parse(xml_path)
+    except ET.ParseError as exc:
+        issues.append(('error', f'available-skills.xml: malformed XML — {exc}'))
+        return issues
+
+    # Collect names listed in XML
+    xml_names = {
+        el.text for el in tree.findall('.//skill/name') if el.text
+    }
+
+    # Collect actual skill directories
+    skills_dir = base / 'skills'
+    if skills_dir.is_dir():
+        fs_names = {
+            d.name
+            for d in sorted(skills_dir.iterdir())
+            if (d / 'SKILL.md').is_file()
+        }
+    else:
+        fs_names = set()
+
+    missing = fs_names - xml_names
+    extra = xml_names - fs_names
+
+    for name in sorted(missing):
+        issues.append((
+            'warn',
+            f'available-skills.xml: skill "{name}" exists on disk '
+            'but is not listed in the catalog.',
+        ))
+    for name in sorted(extra):
+        issues.append((
+            'warn',
+            f'available-skills.xml: lists "{name}" '
+            'but no matching skills/{name}/SKILL.md exists.',
+        ))
+
+    return issues
+
 
 # ---------------------------------------------------------------------------
 # File type detection
@@ -896,6 +986,19 @@ def main() -> int:
     if settings_issues:
         print('settings.json')
         for level, msg in settings_issues:
+            prefix = '  ERROR' if level == 'error' else '  WARN '
+            print(f'{prefix}: {msg}')
+            if level == 'error':
+                total_errors += 1
+            else:
+                total_warnings += 1
+        print()
+
+    # available-skills.xml catalog check
+    xml_issues = _validate_available_skills_xml(base)
+    if xml_issues:
+        print('available-skills.xml')
+        for level, msg in xml_issues:
             prefix = '  ERROR' if level == 'error' else '  WARN '
             print(f'{prefix}: {msg}')
             if level == 'error':

@@ -9,6 +9,18 @@ user-invocable: true
 
 How to write tests that catch bugs, document behavior, and remain maintainable.
 
+## Table of Contents
+
+- [Critical Rules](#critical-rules)
+- [When This Applies](#when-this-applies)
+- [Test Naming](#test-naming)
+- [Assertion Best Practices](#assertion-best-practices)
+- [Test Structure](#test-structure)
+- [Edge Case Checklists](#edge-case-checklists)
+- [Bug Clustering](#bug-clustering)
+- [When Tempted to Cut Corners](#when-tempted-to-cut-corners)
+- [Integration with Other Skills](#integration-with-other-skills)
+
 ## Critical Rules
 
 🚨 **Test names describe outcomes, not actions.** "returns empty array when input is null" not "test null input". The name IS the specification.
@@ -57,89 +69,18 @@ Your test name should read like a specification. If someone reads ONLY the test 
 
 ## Assertion Best Practices
 
-### Assert Specific Values
+See [resources/assertion-examples.ts](resources/assertion-examples.ts) for complete examples covering:
 
-```typescript
-// ❌ WEAK - passes even if completely wrong data
-expect(result).toBeDefined();
-expect(result.items).toHaveLength(2);
-expect(user).toBeTruthy();
-
-// ✅ STRONG - catches actual bugs
-expect(result).toEqual({ status: "success", items: ["a", "b"] });
-expect(user.email).toBe("test@example.com");
-```
-
-### Match Assertions to Test Title
-
-```typescript
-// ❌ TEST SAYS "different IDs" BUT ASSERTS COUNT
-it("generates different IDs for each call", () => {
-    const id1 = generateId();
-    const id2 = generateId();
-    expect([id1, id2]).toHaveLength(2); // WRONG: doesn't check they're different!
-});
-
-// ✅ ACTUALLY VERIFIES DIFFERENT IDs
-it("generates different IDs for each call", () => {
-    const id1 = generateId();
-    const id2 = generateId();
-    expect(id1).not.toBe(id2); // RIGHT: verifies the claim
-});
-```
-
-### Avoid Implementation Coupling
-
-```typescript
-// ❌ BRITTLE - tests implementation details
-expect(mockDatabase.query).toHaveBeenCalledWith("SELECT * FROM users WHERE id = 1");
-
-// ✅ FLEXIBLE - tests behavior
-expect(result.user.name).toBe("Alice");
-```
+- **Assert Specific Values** — weak (`toBeDefined`) vs strong (`toEqual`) assertions
+- **Match Assertions to Test Title** — asserting count vs asserting actual difference
+- **Avoid Implementation Coupling** — testing implementation details vs behavior
 
 ## Test Structure
 
-### Arrange-Act-Assert
+See [resources/test-structure-examples.ts](resources/test-structure-examples.ts) for complete examples covering:
 
-```typescript
-it("calculates total with tax for non-exempt items", () => {
-    // Arrange: Set up test data
-    const item = { price: 100, taxExempt: false };
-    const taxRate = 0.1;
-
-    // Act: Execute the behavior
-    const total = calculateTotal(item, taxRate);
-
-    // Assert: Verify the outcome
-    expect(total).toBe(110);
-});
-```
-
-### One Concept Per Test
-
-```typescript
-// ❌ MULTIPLE CONCEPTS - hard to diagnose failures
-it("validates and processes order", () => {
-    expect(validate(order)).toBe(true);
-    expect(process(order).status).toBe("complete");
-    expect(sendEmail).toHaveBeenCalled();
-});
-
-// ✅ SINGLE CONCEPT - clear failures
-it("accepts valid orders", () => {
-    expect(validate(validOrder)).toBe(true);
-});
-
-it("rejects orders with negative quantities", () => {
-    expect(validate(negativeQuantityOrder)).toBe(false);
-});
-
-it("sends confirmation email after processing", () => {
-    process(order);
-    expect(sendEmail).toHaveBeenCalledWith(order.customerEmail);
-});
-```
+- **Arrange-Act-Assert** — the standard test structure pattern
+- **One Concept Per Test** — multiple concepts vs single concept per test
 
 ## Edge Case Checklists
 

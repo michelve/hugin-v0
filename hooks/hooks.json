@@ -1,6 +1,16 @@
 {
   "description": "hugin-v0 plugin hooks — setup checks, code quality, and architecture guardrails",
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks-handlers/session-start.sh"
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
         "hooks": [

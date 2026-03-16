@@ -1,0 +1,58 @@
+[
+  {
+    "query": "I need to add tests for my user registration function. What should I test and how should I name the test cases?",
+    "should_trigger": true
+  },
+  {
+    "query": "My test says 'test submit form' but my tech lead says the name is bad. Why is that a problem and what should I use instead?",
+    "should_trigger": true
+  },
+  {
+    "query": "I'm using expect(result).toBeDefined() everywhere in my tests. Is that good enough?",
+    "should_trigger": true
+  },
+  {
+    "query": "What edge cases should I consider when testing a function that takes a date string as input?",
+    "should_trigger": true
+  },
+  {
+    "query": "I found a bug in my price calculation. I wrote one test for it. Am I done?",
+    "should_trigger": true
+  },
+  {
+    "query": "How do I structure a test properly? I always just throw assertions at the end of some setup code.",
+    "should_trigger": true
+  },
+  {
+    "query": "Review this test: it('validates and saves and sends email', () => { ... }) — is this ok?",
+    "should_trigger": true
+  },
+  {
+    "query": "What's the difference between toBe and toEqual in jest?",
+    "should_trigger": true
+  },
+  {
+    "query": "How do I set up a PostgreSQL database with Prisma?",
+    "should_trigger": false
+  },
+  {
+    "query": "Can you help me style this button component with Tailwind CSS?",
+    "should_trigger": false
+  },
+  {
+    "query": "What's the best way to handle authentication in a Next.js app?",
+    "should_trigger": false
+  },
+  {
+    "query": "How do I deploy my React app to Vercel?",
+    "should_trigger": false
+  },
+  {
+    "query": "Explain how React Server Components work",
+    "should_trigger": false
+  },
+  {
+    "query": "Help me create a responsive navbar with shadcn/ui",
+    "should_trigger": false
+  }
+]

@@ -1,6 +1,6 @@
 ---
 name: writing-tests
-description: "Principles for writing effective, maintainable tests. Covers naming conventions, assertion best practices, and comprehensive edge case checklists. Based on BugMagnet by Gojko Adzic. Triggers on: writing any test, 'add tests', test review, test naming, assertion choices, edge case coverage, 'what should I test', test structure decisions."
+description: "Use this skill when writing, reviewing, or improving tests. Trigger on: 'write tests', 'add tests', 'test naming', 'what should I test', 'edge cases', 'test structure', 'assertion', 'toBe vs toEqual', 'toBeDefined', 'toBeTruthy', 'test review', 'test quality', 'test coverage', 'how to test', 'bug found write test', 'one test enough', 'test name', 'arrange act assert', 'AAA pattern'. Also trigger when user shares a test and asks for review, asks about assertion best practices, asks what edge cases to consider, mentions test names like 'test login' or 'should work', asks about splitting tests, or reports finding a bug and wants to know what else to test. Do NOT trigger for test runner configuration (jest.config, vitest.config), CI/CD pipeline setup, or questions about testing frameworks that aren't about how to write the tests themselves."
 version: 1.0.0
 user-invocable: true
 ---

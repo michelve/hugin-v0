@@ -1,6 +1,6 @@
 ---
 name: writing-tests
-description: "Principles for writing effective, maintainable tests. Covers naming conventions, assertion best practices, and comprehensive edge case checklists. Based on BugMagnet by Gojko Adzic. Triggers on: writing any test, 'add tests', test review, test naming, assertion choices, edge case coverage, 'what should I test', test structure decisions."
+description: "Use this skill when writing, reviewing, or improving tests. Trigger on: 'write tests', 'add tests', 'test naming', 'what should I test', 'edge cases', 'test structure', 'assertion', 'toBe vs toEqual', 'toBeDefined', 'toBeTruthy', 'test review', 'test quality', 'test coverage', 'how to test', 'bug found write test', 'one test enough', 'test name', 'arrange act assert', 'AAA pattern'. Also trigger when user shares a test and asks for review, asks about assertion best practices, asks what edge cases to consider, mentions test names like 'test login' or 'should work', asks about splitting tests, or reports finding a bug and wants to know what else to test. Do NOT trigger for test runner configuration (jest.config, vitest.config), CI/CD pipeline setup, or questions about testing frameworks that aren't about how to write the tests themselves."
 version: 1.0.0
 user-invocable: true
 ---
@@ -8,6 +8,18 @@ user-invocable: true
 # Writing Tests
 
 How to write tests that catch bugs, document behavior, and remain maintainable.
+
+## Table of Contents
+
+- [Critical Rules](#critical-rules)
+- [When This Applies](#when-this-applies)
+- [Test Naming](#test-naming)
+- [Assertion Best Practices](#assertion-best-practices)
+- [Test Structure](#test-structure)
+- [Edge Case Checklists](#edge-case-checklists)
+- [Bug Clustering](#bug-clustering)
+- [When Tempted to Cut Corners](#when-tempted-to-cut-corners)
+- [Integration with Other Skills](#integration-with-other-skills)
 
 ## Critical Rules
 
@@ -57,89 +69,18 @@ Your test name should read like a specification. If someone reads ONLY the test 
 
 ## Assertion Best Practices
 
-### Assert Specific Values
+See [resources/assertion-examples.ts](resources/assertion-examples.ts) for complete examples covering:
 
-```typescript
-// ❌ WEAK - passes even if completely wrong data
-expect(result).toBeDefined();
-expect(result.items).toHaveLength(2);
-expect(user).toBeTruthy();
-
-// ✅ STRONG - catches actual bugs
-expect(result).toEqual({ status: "success", items: ["a", "b"] });
-expect(user.email).toBe("test@example.com");
-```
-
-### Match Assertions to Test Title
-
-```typescript
-// ❌ TEST SAYS "different IDs" BUT ASSERTS COUNT
-it("generates different IDs for each call", () => {
-    const id1 = generateId();
-    const id2 = generateId();
-    expect([id1, id2]).toHaveLength(2); // WRONG: doesn't check they're different!
-});
-
-// ✅ ACTUALLY VERIFIES DIFFERENT IDs
-it("generates different IDs for each call", () => {
-    const id1 = generateId();
-    const id2 = generateId();
-    expect(id1).not.toBe(id2); // RIGHT: verifies the claim
-});
-```
-
-### Avoid Implementation Coupling
-
-```typescript
-// ❌ BRITTLE - tests implementation details
-expect(mockDatabase.query).toHaveBeenCalledWith("SELECT * FROM users WHERE id = 1");
-
-// ✅ FLEXIBLE - tests behavior
-expect(result.user.name).toBe("Alice");
-```
+- **Assert Specific Values** — weak (`toBeDefined`) vs strong (`toEqual`) assertions
+- **Match Assertions to Test Title** — asserting count vs asserting actual difference
+- **Avoid Implementation Coupling** — testing implementation details vs behavior
 
 ## Test Structure
 
-### Arrange-Act-Assert
+See [resources/test-structure-examples.ts](resources/test-structure-examples.ts) for complete examples covering:
 
-```typescript
-it("calculates total with tax for non-exempt items", () => {
-    // Arrange: Set up test data
-    const item = { price: 100, taxExempt: false };
-    const taxRate = 0.1;
-
-    // Act: Execute the behavior
-    const total = calculateTotal(item, taxRate);
-
-    // Assert: Verify the outcome
-    expect(total).toBe(110);
-});
-```
-
-### One Concept Per Test
-
-```typescript
-// ❌ MULTIPLE CONCEPTS - hard to diagnose failures
-it("validates and processes order", () => {
-    expect(validate(order)).toBe(true);
-    expect(process(order).status).toBe("complete");
-    expect(sendEmail).toHaveBeenCalled();
-});
-
-// ✅ SINGLE CONCEPT - clear failures
-it("accepts valid orders", () => {
-    expect(validate(validOrder)).toBe(true);
-});
-
-it("rejects orders with negative quantities", () => {
-    expect(validate(negativeQuantityOrder)).toBe(false);
-});
-
-it("sends confirmation email after processing", () => {
-    process(order);
-    expect(sendEmail).toHaveBeenCalledWith(order.customerEmail);
-});
-```
+- **Arrange-Act-Assert** — the standard test structure pattern
+- **One Concept Per Test** — multiple concepts vs single concept per test
 
 ## Edge Case Checklists
 

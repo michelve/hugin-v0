@@ -1,0 +1,70 @@
+{
+  "skill_name": "writing-tests",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need to write tests for a calculateDiscount function that takes a price and a discount percentage. What test cases should I cover?",
+      "expected_output": "Tests with descriptive outcome-based names, specific value assertions, edge cases for numbers (zero, negative, boundary values like 100%), and Arrange-Act-Assert structure.",
+      "files": [],
+      "expectations": [
+        "Test names describe outcomes, not actions (e.g. 'returns zero when discount is 100%' not 'test 100% discount')",
+        "Assertions use specific expected values (toBe/toEqual with concrete numbers, not toBeDefined/toBeTruthy)",
+        "Covers zero edge case (0% discount or $0 price)",
+        "Covers boundary values (100% discount, negative numbers)",
+        "Uses Arrange-Act-Assert structure"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review these test names and suggest improvements:\n- test login\n- should work correctly\n- handles edge cases\n- validateEmail test",
+      "expected_output": "Rewrites each name using the [outcome] when [condition] pattern with specific, descriptive names.",
+      "files": [],
+      "expectations": [
+        "Rewrites 'test login' to describe a specific outcome",
+        "Rewrites 'should work correctly' to specify what 'work' means",
+        "Rewrites 'handles edge cases' to list specific edge cases",
+        "Uses the [outcome] when [condition] naming pattern",
+        "Explains why the original names are bad (too vague, don't describe behavior)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I wrote this test but I'm not sure the assertions are right:\n```typescript\nit('generates unique user IDs', () => {\n  const users = createUsers(3);\n  expect(users).toHaveLength(3);\n  expect(users[0].id).toBeTruthy();\n});\n```\nWhat's wrong with it?",
+      "expected_output": "Identifies that the assertions don't actually verify uniqueness — checking length and truthiness doesn't confirm IDs are different. Suggests asserting that all IDs are distinct.",
+      "files": [],
+      "expectations": [
+        "Identifies that toHaveLength(3) doesn't verify uniqueness",
+        "Identifies that toBeTruthy() doesn't verify uniqueness",
+        "Points out the mismatch between test name ('unique') and assertions",
+        "Suggests asserting actual ID values are different from each other",
+        "Provides a corrected test with specific uniqueness assertions"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I'm testing a function that parses user input strings. What edge cases should I test?",
+      "expected_output": "Comprehensive edge case checklist for strings including empty string, whitespace, unicode, special characters, injection patterns, long strings, and boundary values.",
+      "files": [],
+      "expectations": [
+        "Lists empty string as an edge case",
+        "Lists whitespace-only strings",
+        "Lists unicode characters (emojis, RTL, combining characters)",
+        "Lists special characters (quotes, backslashes, null bytes)",
+        "Lists very long strings as a performance edge case"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "I found a bug where my date formatter crashes on February 29. I wrote a test for it. Should I write more tests?",
+      "expected_output": "Yes — bugs cluster. Suggests testing related date edge cases: other leap year dates, DST transitions, timezone boundaries, midnight, year boundaries, invalid dates.",
+      "files": [],
+      "expectations": [
+        "References the bug clustering principle",
+        "Suggests testing other leap year scenarios",
+        "Suggests testing DST transitions or timezone edge cases",
+        "Suggests testing other date boundaries (midnight, year boundary)",
+        "Suggests testing invalid dates (Feb 30, Month 13)"
+      ]
+    }
+  ]
+}

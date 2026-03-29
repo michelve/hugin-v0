@@ -1,6 +1,6 @@
 # ARIA Patterns Reference
 
-Common ARIA patterns for draft_v0 components (React 19 + shadcn/ui).
+Common ARIA patterns for draft_v0 components (React 19 + DSAI Design System).
 
 ## Contents
 

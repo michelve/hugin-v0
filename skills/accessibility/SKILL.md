@@ -1,7 +1,7 @@
 ---
 name: accessibility
 version: 1.0.0
-description: "Use this skill for any accessibility concern: WCAG compliance (any success criterion including SC 1.3.5 autocomplete, SC 2.4.11 focus obscured), ARIA roles/attributes, screen reader behavior, axe-core or WAVE audit failures, color/non-text contrast, keyboard navigation, focus trapping/management, skip links, touch targets, VPAT reports, or accessible form patterns. Also trigger when a user asks whether a UI library (shadcn, Radix) handles keyboard interactions — but only if the question is specifically about accessibility behavior, not general usage. Do NOT trigger for general component usage questions where keyboard behavior is incidental (e.g., \"does shadcn Tooltip show on hover and focus?\" without an accessibility problem to solve)."
+description: "Use this skill for any accessibility concern: WCAG compliance (any success criterion including SC 1.3.5 autocomplete, SC 2.4.11 focus obscured), ARIA roles/attributes, screen reader behavior, axe-core or WAVE audit failures, color/non-text contrast, keyboard navigation, focus trapping/management, skip links, touch targets, VPAT reports, or accessible form patterns. Also trigger when a user asks whether a UI library (DSAI) handles keyboard interactions — but only if the question is specifically about accessibility behavior, not general usage. Do NOT trigger for general component usage questions where keyboard behavior is incidental (e.g., \"does DSAI Tooltip show on hover and focus?\" without an accessibility problem to solve)."
 user-invocable: true
 argument-hint: "Describe the accessibility problem, WCAG criterion (e.g. SC 1.3.5), component to audit, or topic (aria, keyboard nav, contrast, screen reader, VPAT)"
 ---
@@ -9,7 +9,7 @@ argument-hint: "Describe the accessibility problem, WCAG criterion (e.g. SC 1.3.
 # Accessibility
 
 > **Standard:** WCAG 2.2 AA required · AAA aspirational
-> **Stack:** React 19 · shadcn/ui · Tailwind CSS v4 · Radix UI (`radix-ui` v1.4.3)
+> **Stack:** React 19 · DSAI Design System · Bootstrap 5 · CSS Custom Properties (--dsai-* tokens)
 > **POUR Principles:** Perceivable · Operable · Understandable · Robust
 
 Implement WCAG 2.2 AA compliant accessibility in React 19 components using the draft_v0 stack. Items marked **(AAA)** exceed the required AA level and are aspirational best practices to pursue where feasible.
@@ -51,37 +51,36 @@ See [wcag22-new-criteria.md](references/wcag22-new-criteria.md) for detailed imp
 
 | Tool / Pattern | How to Use | Notes |
 |----------------|-----------|-------|
-| `FocusScope` | `import { FocusScope } from 'radix-ui'` | Focus trapping for modals/dialogs. Already installed (v1.4.3). |
-| `sr-only` | `className="sr-only"` | Visually hidden, screen-reader visible text. |
-| `focus-visible:` | `focus-visible:ring-[3px] focus-visible:ring-ring/50` | Focus ring on keyboard interaction only (not mouse click). |
-| `motion-reduce:` | `motion-reduce:transition-none` | Respects `prefers-reduced-motion` OS preference. |
-| `aria-*:` | `aria-invalid:border-destructive` | Style elements based on ARIA state via Tailwind variant. |
-| `scroll-mt-20` | `focus-visible:scroll-mt-20` | Scroll margin for Focus Not Obscured (2.4.11 AA). |
-| `min-h-6 min-w-6` | `className="min-h-6 min-w-6"` | 24×24px minimum target size (2.5.8 AA). |
-| `min-h-[44px] min-w-[44px]` | `className="min-h-[44px] min-w-[44px]"` | 44×44px recommended target size (2.5.5 AAA). |
-| Custom hooks | `src/client/hooks/` (`@/hooks`) | `useKeyPress`, `useReducedMotion`, `useDocumentTitle`, `useAnnounce`. |
+| `useFocusTrap` | `import { useFocusTrap } from '@/hooks'` | DSAI hook for focus trapping in modals/dialogs. |
+| `useRovingFocus` | `import { useRovingFocus } from '@/hooks'` | Arrow key navigation within tab lists, menus. |
+| `useReducedMotion` | `import { useReducedMotion } from '@/hooks'` | Respects `prefers-reduced-motion` OS preference. |
+| `visually-hidden` | `className="visually-hidden"` | Bootstrap class — visually hidden, screen-reader visible text. |
+| `useKeyPress` | `import { useKeyPress } from '@/hooks'` | Keyboard event handling hook. |
+| `useScrollLock` | `import { useScrollLock } from '@/hooks'` | Prevents body scroll when modal/sheet is open. |
+| `SafeHTMLAttributes` | `import type { SafeHTMLAttributes } from '@/types'` | Whitelisted HTML attributes — blocks event handlers in spread. |
+| `announceToScreenReader` | `import { announceToScreenReader } from '@/utils'` | DSAI utility for live region announcements. |
+| Custom hooks | `src/client/hooks/` (`@/hooks`) | `useFocusTrap`, `useKeyPress`, `useReducedMotion`, `useRovingFocus`, `useScrollLock`, `useHover`. |
 
 ---
 
-## shadcn/Radix Built-in Accessibility
+## DSAI Built-in Accessibility
 
-**shadcn/ui components are accessible by default** — built on Radix UI primitives that handle ARIA roles, keyboard navigation, and focus management automatically. Do not re-implement what these components already provide.
+**DSAI components implement accessibility patterns directly** — using SafeHTMLAttributes, ARIA props, keyboard hooks, and focus management. Components handle ARIA roles, keyboard navigation, and focus management through the DSAI hook system.
 
-| Component | What Radix Handles Automatically |
-|-----------|----------------------------------|
-| `Dialog` | `role="dialog"`, `aria-modal`, focus trap (`FocusScope`), `Escape` to close, return focus on close |
-| `AlertDialog` | `role="alertdialog"`, focus trap, prevents accidental `Escape` dismissal |
-| `DropdownMenu` | `role="menu"` / `menuitem`, roving tabindex, Arrow keys, `Escape` to close |
+| Component | What DSAI Handles |
+|-----------|-------------------|
+| `Modal` | Focus trap (`useFocusTrap`), scroll lock (`useScrollLock`), `Escape` to close, return focus on close, `aria-modal` |
+| `Dropdown` | `role="menu"` / `menuitem`, roving focus (`useRovingFocus`), Arrow keys, `Escape` to close |
 | `Select` | `role="listbox"` / `option`, Arrow keys, type-ahead search |
-| `Tabs` | `role="tablist"` / `tab` / `tabpanel`, Arrow Left/Right navigation |
+| `Tabs` | `role="tablist"` / `tab` / `tabpanel`, Arrow Left/Right (`useRovingFocus`), activation modes |
 | `Checkbox` | `role="checkbox"`, `Space` to toggle, `aria-checked` |
-| `Tooltip` | `role="tooltip"`, hoverable (pointer can move over it), dismissible with `Escape`, persistent |
+| `Tooltip` | `role="tooltip"`, hoverable, dismissible with `Escape`, persistent |
 | `Popover` | Focus-managed popup, `Escape` to close, returns focus to trigger |
 | `Accordion` | `aria-expanded`, Arrow keys for panel navigation |
-| `Slider` | `role="slider"`, `aria-valuenow` / `min` / `max`, Arrow key adjustments |
 | `Switch` | `role="switch"`, `aria-checked`, `Space`/`Enter` to toggle |
+| `Button` | FSM-based states (loading, error, disabled), `announceText` for screen readers |
 
-Install via: `npx shadcn@latest add dialog dropdown-menu select tabs` — components appear in `src/client/components/ui/` and **must never be modified directly.**
+Install via: `dsai add modal tabs select` — components appear in `src/client/components/ui/` as local source code you own and can customize.
 
 ---
 
@@ -106,7 +105,7 @@ See [semantic-html.md](references/semantic-html.md) for the full `AppLayout` imp
 
 ## Skip Links
 
-Skip links bypass repeated navigation — required by WCAG 2.4.1 (Level A). Place `<SkipLink />` as the **first** element in `<App />`. It uses `sr-only focus:not-sr-only` so it appears only on keyboard Tab.
+Skip links bypass repeated navigation — required by WCAG 2.4.1 (Level A). Place `<SkipLink />` as the **first** element in `<App />`. It uses `visually-hidden` (shown on focus via CSS) so it appears only on keyboard Tab.
 
 **Requirements:**
 
@@ -156,7 +155,7 @@ See [aria-attributes.md](references/aria-attributes.md) for:
 ## Focus Management
 
 See [focus-management.md](references/focus-management.md) for:
-- `FocusScope` (Radix UI) — focus trapping for modals
+- `useFocusTrap` (DSAI) — focus trapping for modals
 - Return focus pattern — restore trigger element focus on close
 - **Focus Not Obscured (WCAG 2.4.11 AA)** — `scroll-margin-top` fix for sticky headers
 - Skip link focus target setup
@@ -199,7 +198,7 @@ See [aria-attributes.md](references/aria-attributes.md) for the implementation.
 
 See [reduced-motion.md](references/reduced-motion.md) for:
 - `useReducedMotion` hook
-- Tailwind `motion-reduce:` variant (preferred for most cases)
+- CSS `@media (prefers-reduced-motion: reduce)` (preferred approach)
 - Framer Motion `useReducedMotion` integration
 - CSS `@media (prefers-reduced-motion: reduce)` global overrides
 - WCAG 2.3.3 Animation from Interactions (AAA)
@@ -221,36 +220,39 @@ See [reduced-motion.md](references/reduced-motion.md) for:
 
 ### Compliant Combinations (Project Design System)
 
-Use Tailwind semantic token pairs — they map to `oklch` values in `src/client/index.css`:
+Use DSAI semantic color tokens — they map to CSS custom properties via the token pipeline:
 
-| Pair | Token classes | Notes |
-|------|---------------|-------|
-| Body text | `text-foreground bg-background` | ~16:1 — passes ✔ |
-| Primary action | `bg-primary text-primary-foreground` | passes ✔ |
-| Destructive / error | `bg-destructive text-destructive-foreground` | passes ✔ |
-| Secondary surface | `bg-secondary text-secondary-foreground` | passes ✔ |
-| Muted text | `text-muted-foreground` | ⚠ Verify at your font size |
+| Pair | Token / Classes | Notes |
+|------|----------------|-------|
+| Body text | `text-body` / `bg-body` | Uses `var(--dsai-color-body)` — passes ✔ |
+| Primary action | `bg-primary text-white` | Uses `var(--dsai-color-primary)` — passes ✔ |
+| Danger / error | `bg-danger text-white` | Uses `var(--dsai-color-danger)` — passes ✔ |
+| Secondary surface | `bg-secondary text-white` | Uses `var(--dsai-color-secondary)` — passes ✔ |
+| Muted text | `text-body-secondary` | ⚠ Verify at your font size |
 
-> Use [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) or [APCA Calculator](https://apcacontrast.com/) to verify `oklch` values when adding new combinations.
+> Use [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) or [APCA Calculator](https://apcacontrast.com/) to verify contrast for custom color combinations. DSAI tokens are pre-validated for AA compliance.
 
 ### Non-text Contrast (WCAG 1.4.11 AA)
 
-Input borders, button outlines, checkbox frames, focus rings, and icon-only controls must have **3:1 contrast** against adjacent colors. Use `border-input` / `border-primary` tokens and verify them in the contrast checker when customizing.
+Input borders, button outlines, checkbox frames, focus rings, and icon-only controls must have **3:1 contrast** against adjacent colors. Use DSAI tokens `var(--dsai-border-color)` / `var(--dsai-color-primary)` and verify in the contrast checker when customizing.
 
 ---
 
 ## Visible Focus
 
-Use Tailwind's `focus-visible:` variant (keyboard only — does not appear on mouse click). Follow the pattern from `src/client/components/ui/button.tsx`:
+Use CSS `:focus-visible` pseudo-class (keyboard only — does not appear on mouse click). DSAI provides focus styles via CSS custom properties:
 
-```text
-focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none
+```css
+:focus-visible {
+  outline: 3px solid var(--dsai-color-primary);
+  outline-offset: 2px;
+}
 ```
 
-Add `focus-visible:scroll-mt-20` to prevent the focused element hiding behind a sticky header (WCAG 2.4.11 AA).
+Add `scroll-margin-top` to prevent the focused element hiding behind a sticky header (WCAG 2.4.11 AA).
 
-- Never use `focus:` alone for ring styles — it triggers on mouse too
-- Never override with raw CSS — Tailwind utilities keep the `--ring` token consistent
+- Never use `:focus` alone for ring styles — it triggers on mouse too
+- Use DSAI token `var(--dsai-color-primary)` for focus ring color (consistent across themes)
 - **(AAA) 2.4.13** — focus indicator must encircle with ≥ 2px perimeter and ≥ 3:1 contrast between focused/unfocused states
 
 See [focus-management.md](references/focus-management.md) for the sticky-header fix.
@@ -260,19 +262,16 @@ See [focus-management.md](references/focus-management.md) for the sticky-header 
 ## Screen Reader Only Text
 
 ```tsx
-// Icon-only button — always provide sr-only label
+// Icon-only button — always provide visually-hidden label
 <button aria-label="Close modal">
-  <XIcon aria-hidden="true" className="h-4 w-4" />
+  <XIcon aria-hidden="true" />
 </button>
 
-// Or use sr-only span (either approach is valid)
+// Or use visually-hidden span (Bootstrap class, either approach is valid)
 <button>
-  <XIcon aria-hidden="true" className="h-4 w-4" />
-  <span className="sr-only">Close modal</span>
+  <XIcon aria-hidden="true" />
+  <span className="visually-hidden">Close modal</span>
 </button>
-
-// Reverse sr-only to make content visible again
-<span className="not-sr-only">Visible text</span>
 ```
 
 ---

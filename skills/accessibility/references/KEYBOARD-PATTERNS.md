@@ -1,6 +1,6 @@
 # Keyboard Navigation Patterns
 
-Complete keyboard navigation patterns for draft_v0 components (React 19 + shadcn/ui).
+Complete keyboard navigation patterns for draft_v0 components (React 19 + DSAI Design System).
 
 ## Contents
 

@@ -1,6 +1,6 @@
 # Forms Accessibility — Reference
 
-Accessible forms work correctly for keyboard users, screen reader users, and users with cognitive and motor disabilities. This reference covers WCAG conformant implementation for all common form patterns in React 19 with shadcn/ui.
+Accessible forms work correctly for keyboard users, screen reader users, and users with cognitive and motor disabilities. This reference covers WCAG conformant implementation for all common form patterns in React 19 with DSAI Design System.
 
 ## Contents
 
@@ -57,6 +57,8 @@ Every input **must** have an associated label. Do not rely on `placeholder` alon
 </div>
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `space-y-2` → `mb-2` on children or Bootstrap spacing utility, `ml-1 text-destructive` → `ms-1` with DSAI error token `var(--dsai-danger)`, `sr-only` → `visually-hidden`, `relative` → `position-relative`. See the **dsai-styling** skill for the full conversion reference.
+
 ---
 
 ## autocomplete Attributes (WCAG 1.3.5 AA)
@@ -110,6 +112,8 @@ Input fields that collect personal information **must** have the appropriate `au
 </form>
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `grid grid-cols-2 gap-4` → Bootstrap grid `row g-3` with `col-6` children, `space-y-2` → `mb-2` on children. See the **dsai-styling** skill for the full conversion reference.
+
 ---
 
 ## Required Fields
@@ -143,6 +147,8 @@ Communicate required fields both visually and programmatically:
   <span className="sr-only">an asterisk</span> are required.
 </p>
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `space-y-2` → `mb-2` on children, `ml-1 text-destructive` → `ms-1` with DSAI error token, `text-xs text-muted-foreground` → `small text-muted`, `sr-only` → `visually-hidden`, `text-sm text-muted-foreground` → `small text-muted`. See the **dsai-styling** skill for the full conversion reference.
 
 ---
 
@@ -204,6 +210,8 @@ export function FormField({ id, label, error, hint, inputProps }: FormFieldProps
   );
 }
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `space-y-2` → `mb-2` on children, `border-destructive focus-visible:ring-destructive/50` → DSAI error token `var(--dsai-danger)` for border + DSAI focus ring, `text-xs text-muted-foreground` → `small text-muted`, `text-xs text-destructive` → `small` with DSAI error token. See the **dsai-styling** skill for the full conversion reference.
 
 ```tsx
 // Usage
@@ -272,6 +280,8 @@ export function ErrorSummary({ errors, formId }: ErrorSummaryProps) {
 }
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `rounded-md border border-destructive p-4` → `rounded border` with DSAI error token + `p-3`, `focus-visible:ring-2 focus-visible:ring-ring` → DSAI focus token `var(--dsai-focus-ring)`, `text-sm font-semibold text-destructive` → `small fw-semibold` with DSAI error token, `mt-2 list-disc pl-5` → `mt-2 ps-4` with default list style, `underline hover:no-underline` → CSS link styles or FSM state + `cn()`. See the **dsai-styling** skill for the full conversion reference.
+
 ---
 
 ## Grouped Inputs — fieldset / legend
@@ -316,6 +326,8 @@ Use `<fieldset>` and `<legend>` to group related inputs. Screen readers read the
 </fieldset>
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `space-y-3` → `mb-2` on children, `text-sm font-medium` → `small fw-medium`, `flex items-center gap-2` → `d-flex align-items-center gap-2`, `h-4 w-4` → Bootstrap form-check sizing. See the **dsai-styling** skill for the full conversion reference.
+
 ### Grouped address fields
 
 ```tsx
@@ -338,6 +350,8 @@ Use `<fieldset>` and `<legend>` to group related inputs. Screen readers read the
   </div>
 </fieldset>
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `space-y-4 rounded-md border p-4` → `rounded border p-3` with spacing on children, `px-2 text-sm font-semibold` → `px-1 small fw-semibold`, `grid grid-cols-2 gap-4` → Bootstrap grid `row g-3` with `col-6` children. See the **dsai-styling** skill for the full conversion reference.
 
 ---
 
@@ -387,6 +401,8 @@ export function TextareaWithCount({ label, maxLength, value, onChange }: Textare
 }
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `space-y-2` → `mb-2` on children, `text-xs text-muted-foreground` → `small text-muted`. See the **dsai-styling** skill for the full conversion reference.
+
 ---
 
 ## Multi-step Forms
@@ -420,6 +436,8 @@ export function TextareaWithCount({ label, maxLength, value, onChange }: Textare
   </ol>
 </nav>
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `flex gap-2` → `d-flex gap-2`, `text-sm` → `small`, `font-semibold text-primary` → `fw-semibold text-primary`, `text-muted-foreground` → `text-muted`, `sr-only` → `visually-hidden`. See the **dsai-styling** skill for the full conversion reference.
 
 ### State preservation across steps
 
@@ -564,6 +582,8 @@ After form submission, communicate success or failure to screen reader users:
 )}
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `rounded-md bg-green-50 p-4` → `rounded` with DSAI success surface token + `p-3`, `text-sm font-medium text-green-800` → `small fw-medium` with DSAI success text token, `rounded-md bg-destructive/10 p-4` → `rounded` with DSAI error surface token + `p-3`, `text-sm font-medium text-destructive` → `small fw-medium` with DSAI error token. See the **dsai-styling** skill for the full conversion reference.
+
 ---
 
 ## Search Forms
@@ -601,3 +621,5 @@ After form submission, communicate success or failure to screen reader users:
   {results.length} result{results.length !== 1 ? "s" : ""} found
 </div>
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `relative` → `position-relative`, `sr-only` → `visually-hidden`. See the **dsai-styling** skill for the full conversion reference.

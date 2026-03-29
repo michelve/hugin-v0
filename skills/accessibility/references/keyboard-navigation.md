@@ -98,7 +98,7 @@ const handleHorizontal = (e: React.KeyboardEvent) => {
 };
 ```
 
-> **Note:** For complex components (menus, comboboxes, data grids), use the shadcn
+> **Note:** For complex components (menus, comboboxes, data grids), use the DSAI
 > `DropdownMenu`, `Select`, or `Combobox` components instead - they handle roving
 > tabindex and arrow key navigation automatically via Radix primitives.
 

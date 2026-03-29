@@ -5,5 +5,28 @@
   "author": {
     "name": "Michel Velis",
     "email": "mvelis90@gmail.com"
-  }
+  },
+  "homepage": "https://github.com/michelve/hugin-v0",
+  "repository": "https://github.com/michelve/hugin-v0",
+  "license": "MIT",
+  "keywords": [
+    "fullstack",
+    "react",
+    "typescript",
+    "express",
+    "prisma",
+    "dsai",
+    "bootstrap",
+    "figma",
+    "playwright",
+    "code-quality",
+    "architecture",
+    "skills",
+    "agents",
+    "lsp"
+  ],
+  "skills": "./skills/",
+  "commands": "./commands/",
+  "hooks": "./hooks/hooks.json",
+  "outputStyles": "./output-styles/"
 }

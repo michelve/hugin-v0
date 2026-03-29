@@ -62,6 +62,8 @@ Interactive targets must be at least **24×24 CSS pixels**. This applies to the 
 </button>
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `min-h-6 min-w-6` → custom min-size via DSAI spacing tokens, `p-1` → `p-1`, `inline-flex items-center justify-center` → `d-inline-flex align-items-center justify-content-center`, `rounded` → `rounded`, `min-h-[44px] min-w-[44px]` → custom min-size, `px-4 py-3` → `px-3 py-2`, `h-8 w-8` → explicit size, `rounded-md` → `rounded`, `focus-visible:ring-2 focus-visible:ring-ring` → DSAI focus token `var(--dsai-focus-ring)`. See the **dsai-styling** skill for the full conversion reference.
+
 ### Common Problem Areas Audit
 
 | Component | Typical Visual Size | Fix |
@@ -133,6 +135,8 @@ Exception: The gesture is **essential** (e.g., a hand-drawing tool).
   </Button>
 </div>
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `relative` → `position-relative`, `absolute bottom-4 right-4` → `position-absolute bottom-0 end-0` with custom spacing, `flex flex-col gap-1` → `d-flex flex-column gap-1`, `absolute right-1 top-1/2 -translate-y-1/2` → `position-absolute` with `transform: translateY(-50%)`. See the **dsai-styling** skill for the full conversion reference.
 
 ---
 
@@ -241,6 +245,8 @@ export function OrientationSuggestion() {
 }
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `fixed inset-x-0 top-0 z-50` → `position-fixed top-0 start-0 end-0` with z-index via DSAI token, `bg-background` → DSAI token `var(--dsai-bg)`, `p-4` → `p-3`, `text-sm` → `small` or DSAI typography token. See the **dsai-styling** skill for the full conversion reference.
+
 ---
 
 ## Motion Actuation (WCAG 2.5.4 AA)
@@ -346,6 +352,8 @@ export function ActionButton() {
 }
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `h-4 w-4` → explicit icon size or DSAI icon token. Prefer DSAI `Tooltip` component over Radix if available. See the **dsai-styling** skill for the full conversion reference.
+
 **If building a custom tooltip:**
 
 ```tsx
@@ -385,6 +393,8 @@ function CustomTooltip({ trigger, content }: CustomTooltipProps) {
 }
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `relative inline-block` → `position-relative d-inline-block`, `absolute z-50` → `position-absolute` with DSAI z-index token, `rounded-md` → `rounded`, `bg-popover` → DSAI surface token `var(--dsai-surface)`, `px-3 py-2` → `px-2 py-1`, `text-sm` → `small`, `shadow-md` → `shadow`. See the **dsai-styling** skill for the full conversion reference.
+
 ---
 
 ## Reflow (WCAG 1.4.10 AA)
@@ -409,6 +419,8 @@ Content must reflow to a single column at **320 CSS pixels width** (equivalent t
 </div>
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `w-full max-w-screen-lg mx-auto px-4` → `w-100 container px-3`, `grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3` → Bootstrap grid `row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3`. See the **dsai-styling** skill for the full conversion reference.
+
 **Common failures:**
 
 ```tsx
@@ -429,6 +441,8 @@ Content must reflow to a single column at **320 CSS pixels width** (equivalent t
   <table>...</table>
 </div>
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `min-w-[500px]` → inline `min-width`, `overflow-x-auto` → `overflow-auto`, `focus-visible:ring-2 focus-visible:ring-ring` → DSAI focus token `var(--dsai-focus-ring)`. See the **dsai-styling** skill for the full conversion reference.
 
 **How to test:**
 

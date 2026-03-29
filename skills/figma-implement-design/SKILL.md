@@ -4,8 +4,7 @@ version: 1.0.0
 description: "Translate Figma nodes into production-ready code with 1:1 visual fidelity using the Figma MCP workflow (design context, screenshots, assets, and project-convention translation). Trigger when the user provides Figma URLs or node IDs, or asks to implement designs or components that must match Figma specs. Requires a working Figma MCP server connection."
 argument-hint: "Figma URL (https://figma.com/design/:fileKey/:fileName?node-id=1-2)"
 user-invocable: true
-context: fork
-allowed-tools: figma__get_design_context, figma__get_screenshot, figma__get_assets, figma__get_variables
+disable-model-invocation: false
 compatibility: "Requires Figma MCP server and FIGMA_API_KEY environment variable"
 metadata:
     mcp-server: figma
@@ -29,6 +28,14 @@ This skill uses extended thinking for complex design-to-code translation. ultrat
 
 This skill provides a structured workflow for translating Figma designs into production-ready code with pixel-perfect accuracy. It ensures consistent integration with the Figma MCP server, proper use of design tokens, and 1:1 visual parity with designs.
 
+## Skill Boundaries
+
+- Use this skill when the deliverable is code in the user's repository.
+- If the user asks to create/edit/delete nodes inside Figma itself, switch to [figma-use](../figma-use/SKILL.md).
+- If the user asks to build or update a full-page screen in Figma from code or a description, switch to [figma-generate-design](../figma-generate-design/SKILL.md).
+- If the user asks only for Code Connect mappings, switch to [figma-code-connect-components](../figma-code-connect-components/SKILL.md).
+- If the user asks to author reusable agent rules (`CLAUDE.md`/`AGENTS.md`), switch to [figma-create-design-system-rules](../figma-create-design-system-rules/SKILL.md).
+
 ## Prerequisites
 
 - Figma MCP server must be connected and accessible
@@ -37,6 +44,7 @@ This skill provides a structured workflow for translating Figma designs into pro
 - User must provide a Figma URL in the format: `https://figma.com/design/:fileKey/:fileName?node-id=1-2`
     - `:fileKey` is the file key
     - `1-2` is the node ID (the specific component or frame to implement)
+- **OR** when using `figma-desktop` MCP: User can select a node directly in the Figma desktop app (no URL required)
 - **OR** when using `figma-desktop` MCP: User can select a node directly in the Figma desktop app (no URL required)
 - Project should have an established design system or component library (preferred)
 
@@ -135,19 +143,42 @@ Download any assets (images, icons, SVGs) returned by the Figma MCP server.
 | ----------------------------------------------- | --------------------------------------------------------- |
 | Images / icons (Vite-processed, imported in TS) | `src/client/assets/images/` or `src/client/assets/icons/` |
 | Static fonts referenced by URL in CSS           | `public/fonts/`                                           |
-| Tailwind theme tokens (colors, spacing, radii)  | `src/client/index.css` - `@theme inline` block            |
+| DSAI design tokens (CSS custom properties)      | `src/generated/css/tokens.css` and `tokens-dark.css`      |
+| Bootstrap theme with DSAI overrides             | `src/generated/css/dsai-theme-bs.css`                     |
 | Custom CSS (keyframes, @font-face, overrides)   | `src/client/custom.css`                                   |
 
 ### Step 5: Translate to Project Conventions
+
+> **CRITICAL: NEVER output Tailwind CSS.** The Figma MCP generates React + Tailwind by default. You MUST convert ALL Tailwind classes to Bootstrap 5 utilities and DSAI tokens before writing any code. No Tailwind class should appear in the final output.
+
+#### Tailwind → Bootstrap/DSAI Conversion Reference
+
+| Tailwind | Bootstrap 5 / DSAI Equivalent |
+|---|---|
+| `flex` | `d-flex` |
+| `flex-col` | `flex-column` |
+| `items-center` | `align-items-center` |
+| `justify-between` | `justify-content-between` |
+| `gap-4` | `gap-3` (Bootstrap scale) |
+| `p-4` | `p-3` (Bootstrap scale) |
+| `mt-2` | `mt-2` (same scale name, different values) |
+| `rounded-lg` | `rounded` or `var(--dsai-border-radius)` |
+| `shadow-md` | `var(--dsai-shadow-default)` |
+| `text-sm` | `fs-6` or `var(--dsai-font-size-sm)` |
+| `text-gray-500` | `text-body-secondary` or `var(--dsai-color-neutral-500)` |
+| `bg-white` | `bg-body` or `var(--dsai-bg-surface)` |
+| `sr-only` | `visually-hidden` |
+| `hover:bg-gray-100` | Use FSM state + `cn()` conditional class |
 
 Translate the Figma output into this project's framework, styles, and conventions.
 
 **Key principles:**
 
 - Treat the Figma MCP output (typically React + Tailwind) as a representation of design and behavior, not as final code style
-- Replace Tailwind utility classes with the project's preferred utilities or design system tokens
-- Reuse existing components (buttons, inputs, typography, icon wrappers) instead of duplicating functionality
-- Use the project's color system, typography scale, and spacing tokens consistently
+- Replace Tailwind utility classes with Bootstrap 5 utilities and DSAI CSS custom properties (`var(--dsai-*)`)
+- Reuse DSAI components (Button, Input, Card, Modal, etc.) from `@/components/ui/` instead of creating new ones
+- Use DSAI semantic color tokens (`var(--dsai-color-primary)`, etc.) and Bootstrap spacing utilities (`m-3`, `p-2`, `gap-3`)
+- Use `cn()` from `@/lib/utils` for class name composition (simple filter+join, not tailwind-merge)
 - Respect existing routing, state management, and data-fetch patterns
 
 ### Step 6: Achieve 1:1 Visual Parity
@@ -180,19 +211,21 @@ Before marking complete, validate the final UI against the Figma screenshot.
 
 ### Component Organization
 
-- Place new UI components in `src/client/components/` (never in `src/client/components/ui/` - those are shadcn files and must not be modified)
-- To extend a shadcn/ui component, create a wrapper in `src/client/components/` that imports from `@/components/ui/`
-- Use **named exports only** - no default exports
+- DSAI components live in `src/client/components/ui/` — they are local source code you own (installed via `dsai add`)
+- Place app-specific components in `src/client/components/` that compose DSAI components from `@/components/ui/`
+- Use **named exports only** — no default exports
 - Component names must be PascalCase; file names must match the component name
-- Never use inline `style={}` when an equivalent Tailwind utility class exists
-- Use `cn()` from `@/lib/utils` for conditional class merging
+- Every component uses `forwardRef` + `displayName` (DSAI convention)
+- Never use inline `style={}` when an equivalent Bootstrap utility class exists
+- Use `cn()` from `@/lib/utils` for conditional class merging (simple filter+join)
 
 ### Design System Integration
 
-- ALWAYS check `src/client/components/` for an existing component before creating a new one
-- Map Figma design tokens to project tokens: colors from `@theme inline` in `src/client/index.css`, typography from the theme block, spacing via Tailwind scale
-- When a matching component exists, extend it (create a wrapper) rather than duplicating
+- ALWAYS check `src/client/components/ui/` for an existing DSAI component before creating a new one
+- Map Figma design tokens to DSAI tokens: colors via `var(--dsai-color-*)`, typography via `var(--dsai-font-*)`, spacing via Bootstrap scale
+- When a matching DSAI component exists, compose with it rather than duplicating
 - Use `cn()` from `@/lib/utils` for all conditional class merging
+- Run `dsai add <component>` if a needed component isn't installed yet
 
 ### Code Quality
 

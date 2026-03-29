@@ -2,7 +2,7 @@
 
 A Claude Code plugin that helps **product designers and engineers ship design-to-production react apps** — translating Figma mockups into accessible, production-ready components with automated code reviews, architecture guardrails, and quality gates baked into every workflow.
 
-Packed with **23 skills**, **13 agents**, **8 event hooks**, **7 MCP servers**, **4 output styles**, and **1 LSP server** covering the full stack: React 19, TypeScript, Express, Prisma, Tailwind CSS v4, and shadcn/ui.
+Packed with **27 skills**, **13 agents**, **8 event hooks**, **7 MCP servers**, **4 output styles**, and **1 LSP server** covering the full stack: React 19, TypeScript, Express, Prisma, DSAI Design System, and Bootstrap 5.
 
 Built for and tested with [draft_v0](https://github.com/michelve/draft_v0) — a full-stack starter with opinionated architecture, ADR workflows, task management, Figma integration, and automated code quality gates.
 
@@ -34,19 +34,22 @@ Or from within Claude Code:
 
 ## What's included
 
-### Skills (23)
+### Skills (28)
 
 | Skill                          | Description                                                              |           Invocable           |
 | ------------------------------ | ------------------------------------------------------------------------ | :---------------------------: |
 | **accessibility**              | WCAG 2.1 AA — keyboard nav, ARIA, focus management, color contrast       |       `/accessibility`        |
 | **adr-writer**                 | Write Architecture Decision Records in MADR 4.0.0 format                 |         `/adr-writer`         |
 | **automatic-code-review**      | Semantic code review on modified files (hook-driven)                     |             auto              |
-| **code-connect-components**    | Connect Figma components to code via Code Connect                        |  `/code-connect-components`   |
+| **figma-code-connect-components** | Connect Figma components to code via Code Connect                     | `/figma-code-connect-components` |
 | **component-visualizer**       | Generate interactive HTML dependency graphs for React components         |    `/component-visualizer`    |
-| **create-design-system-rules** | Generate project-specific design system Figma-to-code rules              | `/create-design-system-rules` |
+| **figma-create-design-system-rules** | Generate project-specific design system Figma-to-code rules         | `/figma-create-design-system-rules` |
+| **figma-create-new-file**      | Create a new blank Figma design or FigJam file                           |   `/figma-create-new-file`    |
 | **create-tasks**               | Break PRDs into well-formed, INVEST-compliant tasks                      |        `/create-tasks`        |
-| **figma**                      | Fetch design context, screenshots, variables from Figma MCP              |           `/figma`            |
+| **figma-generate-design**      | Build or update full-page screens in Figma from design system            |  `/figma-generate-design`     |
+| **figma-generate-library**     | Build professional design systems in Figma from codebase                 |  `/figma-generate-library`    |
 | **figma-implement-design**     | Translate Figma nodes into production-ready code                         |   `/figma-implement-design`   |
+| **figma-use**                  | Mandatory prerequisite for every `use_figma` Plugin API call             |         `/figma-use`          |
 | **miro-mcp**                   | Create diagrams, tables, docs on Miro boards via MCP                     |          `/miro-mcp`          |
 | **nodejs**                     | Node.js backend patterns — async/await, middleware, layered architecture |           `/nodejs`           |
 | **playwright-skill**           | Browser automation, e2e testing, UI validation                           |      `/playwright-skill`      |
@@ -54,10 +57,12 @@ Or from within Claude Code:
 | **react**                      | React 19 hooks, Suspense, lazy loading, TypeScript patterns              |           `/react`            |
 | **react-best-practices**       | Vercel Engineering performance optimization guidelines                   |    `/react-best-practices`    |
 | **route-tester**               | HTTP API route testing, auth strategies, integration tests               |        `/route-tester`        |
-| **shadcn**                     | shadcn/ui component management — add, search, fix, compose               |           `/shadcn`           |
+| **dsai-components**            | DSAI component catalog, types, patterns, compound components, FSM        |     `/dsai-components`      |
 | **skill-creator**              | Create new Claude Code skills and instruction files                      |       `/skill-creator`        |
 | **skill-developer**            | Develop and iterate on existing skills                                   |      `/skill-developer`       |
-| **tailwindcss**                | Tailwind CSS v4 utility-first styling, responsive, dark mode             |        `/tailwindcss`         |
+| **dsai-styling**               | Bootstrap 5 + DSAI CSS custom properties, cn(), token pipeline           |       `/dsai-styling`        |
+| **dsai-tools**                 | DSAI CLI tools — dsai add, tokens build, icons, framework mappers        |        `/dsai-tools`         |
+| **dsai-figma**                 | DSAI Figma integration — token sync, FigmaClient, Code Connect           |        `/dsai-figma`         |
 | **task-check**                 | Verify task completion against acceptance criteria                       |         `/task-check`         |
 | **web-design-guidelines**      | UI accessibility and design review                                       |   `/web-design-guidelines`    |
 | **writing-tests**              | Test naming, assertions, edge case coverage (BugMagnet-based)            |       `/writing-tests`        |
@@ -103,7 +108,7 @@ Or from within Claude Code:
 | **figma-console**       | `figma-console-mcp`                  | Requires `$FIGMA_API_KEY`          |
 | **sequential-thinking** | `@anthropic/sequential-thinking-mcp` | Complex reasoning chains           |
 | **miro-mcp**            | URL-based (`mcp.miro.com`)           | Board creation and data extraction |
-| **shadcn**              | `shadcn@latest mcp`                  | Component registry access          |
+| **dsai**                | `dsai@latest mcp`                    | DSAI component registry access     |
 
 ### Output Styles (4)
 
@@ -216,3 +221,7 @@ The hook detects which staged files are plugin-relevant and runs targeted or ful
 ## Author
 
 [michelve](https://github.com/michelve)
+
+## License
+
+MIT — see [LICENSE](LICENSE)

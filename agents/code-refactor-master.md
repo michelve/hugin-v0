@@ -14,8 +14,9 @@ tools:
 skills:
   - react
   - react-best-practices
-  - tailwindcss
-  - shadcn
+  - dsai-components
+  - dsai-styling
+  - dsai-tools
 memory: project
 ---
 

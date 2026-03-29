@@ -1,6 +1,8 @@
 # WCAG 2.2 New Criteria — Implementation Guide
 
-WCAG 2.2 added 9 success criteria not present in WCAG 2.1. This file provides detailed implementation guidance for each one in the context of React 19 + shadcn/ui + Tailwind CSS v4.
+WCAG 2.2 added 9 success criteria not present in WCAG 2.1. This file provides detailed implementation guidance for each one in the context of React 19 + DSAI Design System + Bootstrap 5.
+
+> **Note:** Some code examples below may still show Tailwind-style class names as reference patterns. In DSAI projects, translate these to Bootstrap 5 utilities and DSAI CSS custom properties (--dsai-*).
 
 **Required (AA):** 2.4.11 · 2.5.7 · 2.5.8 · 3.2.6 · 3.3.7 · 3.3.8
 **Aspirational (AAA):** 2.4.12 · 2.4.13 · 3.3.9
@@ -57,6 +59,8 @@ A user navigating by keyboard reaches a link at the top of the page content. The
 </a>
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `focus-visible:scroll-mt-20` → CSS `scroll-margin-top` via DSAI spacing token, `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring` → DSAI focus token `var(--dsai-focus-ring)`. See the **dsai-styling** skill for the full conversion reference.
+
 **Reading the sticky header height dynamically:**
 
 ```tsx
@@ -92,6 +96,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   );
 }
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `sticky top-0 z-50` → `sticky-top` (Bootstrap), `h-16` → custom height via DSAI spacing token. See the **dsai-styling** skill for the full conversion reference.
 
 ```css
 /* src/client/index.css */
@@ -174,6 +180,8 @@ The project focus ring (`focus-visible:ring-[3px]` with `--ring` token) should a
   )}
 />
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `rounded-md px-4 py-2` → `rounded px-3 py-1`, `focus-visible:ring-[3px] focus-visible:ring-ring/50` → DSAI focus token `var(--dsai-focus-ring)` with 3px width. See the **dsai-styling** skill for the full conversion reference.
 
 **Checking ring contrast:** In `src/client/index.css`, look up `--ring` in `oklch()`. Convert this to hex and run through [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) against the background color (`--background`). The result must be ≥ 3:1.
 
@@ -307,6 +315,8 @@ export function SortableList({ initialItems, onReorder }: SortableListProps) {
 }
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `space-y-2` → `mb-2` on children, `flex items-center gap-2` → `d-flex align-items-center gap-2`, `rounded-md border px-3 py-2` → `rounded border px-2 py-1`, `cursor-grab text-muted-foreground` → `text-muted` with cursor style, `flex-1` → `flex-grow-1`, `flex gap-1` → `d-flex gap-1`, `h-7 w-7` → explicit size. See the **dsai-styling** skill for the full conversion reference.
+
 **Custom range slider with increment/decrement buttons:**
 
 ```tsx
@@ -337,6 +347,8 @@ export function SortableList({ initialItems, onReorder }: SortableListProps) {
   >+</Button>
 </div>
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `flex items-center gap-2` → `d-flex align-items-center gap-2`, `w-48` → custom width via DSAI token. See the **dsai-styling** skill for the full conversion reference.
 
 ### Common Failures
 
@@ -380,6 +392,8 @@ The size of the target for pointer inputs is at least **24×24 CSS pixels**, wit
 </button>
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `min-h-6 min-w-6 p-1` → custom min-size via DSAI spacing tokens + `p-1`, `h-4 w-4` → explicit icon size, `min-h-[44px] min-w-[44px] px-4 py-2` → custom min-size + `px-3 py-1`. See the **dsai-styling** skill for the full conversion reference.
+
 **Icon button with invisible tap area (common pattern for icon-dense UIs):**
 
 ```tsx
@@ -399,6 +413,8 @@ The size of the target for pointer inputs is at least **24×24 CSS pixels**, wit
   <XIcon aria-hidden="true" className="h-4 w-4" /> {/* 16×16 visual icon */}
 </button>
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `min-h-8 min-w-8` → custom min-size via DSAI spacing, `rounded-full` → `rounded-circle`, `focus-visible:ring-2 focus-visible:ring-ring` → DSAI focus token `var(--dsai-focus-ring)`, `p-0` → `p-0`. See the **dsai-styling** skill for the full conversion reference.
 
 **Audit common problem areas:**
 
@@ -472,6 +488,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 }
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `flex min-h-screen flex-col` → `d-flex min-vh-100 flex-column`, `sticky top-0 z-50 h-16 border-b bg-background` → `sticky-top` with DSAI tokens, `flex-1` → `flex-grow-1`, `border-t bg-muted py-8` → `border-top bg-light py-4`, `flex gap-4` → `d-flex gap-3`. See the **dsai-styling** skill for the full conversion reference.
+
 **Persistent help widget (fixed position):**
 
 ```tsx
@@ -488,6 +506,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   <MessageCircleIcon aria-hidden="true" className="h-5 w-5" />
 </button>
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `fixed bottom-6 right-6 z-50` → `position-fixed` with DSAI z-index and spacing tokens, `h-12 w-12 rounded-full` → `rounded-circle` with explicit size, `bg-primary text-primary-foreground shadow-lg` → Bootstrap `bg-primary text-white shadow-lg`, `focus-visible:ring-2 focus-visible:ring-ring` → DSAI focus token `var(--dsai-focus-ring)`. See the **dsai-styling** skill for the full conversion reference.
 
 ### Common Failures
 
@@ -569,6 +589,8 @@ export function CheckoutBilling({ formData, onChange }: CheckoutBillingProps) {
   );
 }
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `text-lg font-semibold` → `fs-5 fw-semibold`, `flex items-center gap-2 mb-4` → `d-flex align-items-center gap-2 mb-3`, `text-sm text-muted-foreground mb-4` → `small text-muted mb-3`. See the **dsai-styling** skill for the full conversion reference.
 
 **Session-level reuse (profile data):**
 
@@ -685,6 +707,8 @@ export function PasswordInput({ id, label, autoComplete, value, onChange }: Pass
   );
 }
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `text-sm font-medium` → `small fw-medium`, `relative mt-1` → `position-relative mt-1`, `pr-10` → `pe-5`, `absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7` → `position-absolute` with `transform: translateY(-50%)` and explicit size, `h-4 w-4` → explicit icon size, `mt-1 text-xs text-muted-foreground` → `mt-1 small text-muted`. See the **dsai-styling** skill for the full conversion reference.
 
 **Magic link / email OTP as CAPTCHA alternative:**
 

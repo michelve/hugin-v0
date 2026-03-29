@@ -1,7 +1,7 @@
 ---
 name: react
 version: 1.0.0
-description: Core React 19 patterns including hooks, Suspense, lazy loading, component structure, TypeScript best practices, and performance optimization. Use when working with React components, hooks, lazy loading, Suspense boundaries, or React-specific TypeScript patterns.
+description: Core React 19 patterns for DSAI projects including hooks, Suspense, lazy loading, component structure with forwardRef, TypeScript best practices, and performance optimization. Use when working with React components, hooks, lazy loading, Suspense boundaries, or React-specific TypeScript patterns.
 user-invocable: true
 ---
 
@@ -21,12 +21,14 @@ user-invocable: true
 
 Essential React 19 patterns for building modern applications with hooks, Suspense, lazy loading, and TypeScript.
 
-**Note**: React 19 (released December 2024) breaking changes:
+**Note**: DSAI Component Convention (React 19):
 
-- `forwardRef` no longer needed - pass `ref` as a prop directly
-- `propTypes` removed (silently ignored)
+- `forwardRef` is **REQUIRED** for all DSAI components — use `memo(forwardRef(function Name(props, ref)))` pattern
+- Every component MUST have a `displayName` property
+- Props go in separate `*.types.ts` files
+- `propTypes` removed (use TypeScript interfaces)
 - New JSX transform required
-- `React.FC` type discouraged - use direct function components instead
+- `React.FC` type discouraged — use direct function components with typed props
 
 ## When to Use This Skill
 
@@ -44,49 +46,53 @@ Essential React 19 patterns for building modern applications with hooks, Suspens
 ### Component Structure Template
 
 ```typescript
-import { useState, useCallback } from 'react';
+import { forwardRef, memo, useState, useCallback } from 'react';
+import { cn } from '@/lib/utils';
+import type { UserProfileProps } from './UserProfile.types';
 
-interface Props {
-  userId: string;
-  onUpdate?: (data: UserData) => void;
-}
+// Props defined in UserProfile.types.ts:
+// interface UserProfileProps {
+//   userId: string;
+//   onUpdate?: (data: UserData) => void;
+//   className?: string;
+// }
 
-interface UserData {
-  name: string;
-  email: string;
-}
+export const UserProfile = memo(
+  forwardRef<HTMLDivElement, UserProfileProps>(
+    function UserProfile({ userId, onUpdate, className }, ref) {
+      const [data, setData] = useState<UserData | null>(null);
 
-function UserProfile({ userId, onUpdate }: Props) {
-  const [data, setData] = useState<UserData | null>(null);
+      const handleUpdate = useCallback((newData: UserData) => {
+        setData(newData);
+        onUpdate?.(newData);
+      }, [onUpdate]);
 
-  const handleUpdate = useCallback((newData: UserData) => {
-    setData(newData);
-    onUpdate?.(newData);
-  }, [onUpdate]);
-
-  return (
-    <div>
-      {/* Component content */}
-    </div>
-  );
-}
-
-export default UserProfile;
+      return (
+        <div ref={ref} className={cn('user-profile', className)}>
+          {/* Component content */}
+        </div>
+      );
+    }
+  )
+);
+UserProfile.displayName = 'UserProfile';
 ```
 
 ### Component Checklist
 
 Creating a React component? Follow this:
 
-- [ ] Use function components with typed props (not `React.FC`)
-- [ ] Define interfaces for Props and local state
+- [ ] Use `memo(forwardRef(function Name(props, ref)))` pattern
+- [ ] Set `displayName` on every component
+- [ ] Props in separate `*.types.ts` file
+- [ ] Use `cn()` for class name composition (Bootstrap classes, not Tailwind)
 - [ ] Use `useCallback` for event handlers passed to children
 - [ ] Use `useMemo` for expensive computations
 - [ ] Lazy load if heavy component: `lazy(() => import())`
 - [ ] Wrap lazy components in `<Suspense>` with fallback
 - [ ] Named export only (no default exports)
 - [ ] No conditional hooks (hooks must be called in same order)
-- [ ] Pass `ref` as a prop (no `forwardRef` needed in React 19)
+- [ ] Import from `@/components/ui/` for DSAI components
 
 ---
 
@@ -199,37 +205,35 @@ function Component() {
 ### Feature-Based Structure
 
 ```
-src/
-├── features/
-│   ├── auth/
-│   │   ├── components/
-│   │   ├── hooks/
-│   │   ├── types/
-│   │   └── index.tsx
-│   └── posts/
-│       ├── components/
-│       ├── hooks/
-│       ├── types/
-│       └── index.tsx
-├── components/  # Shared components
-├── hooks/       # Shared hooks
-└── types/       # Shared types
+src/client/
+├── components/
+│   ├── ui/              # DSAI components (installed via `dsai add`)
+│   │   ├── button/
+│   │   │   ├── Button.tsx
+│   │   │   ├── Button.types.ts
+│   │   │   ├── Button.fsm.ts
+│   │   │   └── index.ts
+│   │   ├── modal/
+│   │   └── card/
+│   └── features/        # App-specific feature components
+│       ├── auth/
+│       └── posts/
+├── hooks/               # Shared hooks (DSAI + custom)
+├── lib/
+│   └── utils/           # Utilities (cn, validators, etc.)
+└── types/               # Shared types
 ```
 
 ### Component Co-location
 
 ```
-features/posts/
-├── components/
-│   ├── PostCard.tsx
-│   ├── PostList.tsx
-│   └── PostForm.tsx
-├── hooks/
-│   ├── usePost.ts
-│   └── usePosts.ts
-├── types/
-│   └── post.ts
-└── index.tsx  # Public API
+components/ui/button/
+├── Button.tsx           # Component with forwardRef + displayName
+├── Button.types.ts      # TypeScript prop interfaces
+├── Button.fsm.ts        # FSM reducer (interactive components)
+├── Button.test.tsx       # Unit tests (Jest 30 + RTL)
+├── Button.a11y.test.tsx  # Accessibility tests (jest-axe)
+└── index.ts             # Barrel exports
 ```
 
 ---

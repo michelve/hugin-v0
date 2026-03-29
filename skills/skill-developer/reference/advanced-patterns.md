@@ -92,10 +92,10 @@ of project state.
 
 ### Real-World Usage
 
-The `shadcn` skill uses this pattern to show available components:
+The `dsai-components` skill uses this pattern to show available components:
 
 ```markdown
-The following shadcn/ui components are already installed:
+The following DSAI components are already installed:
 `!`ls src/client/components/ui/ 2>/dev/null | sed 's/\.tsx$//' | sort | tr '\n' ', '``
 ```
 
@@ -250,7 +250,7 @@ model: claude-opus-4-20250514
 
 ### Evaluation Finding: NOT RECOMMENDED
 
-After evaluating 4 candidate skills (adr-writer, skill-creator, create-design-system-rules,
+After evaluating 4 candidate skills (adr-writer, skill-creator, figma-create-design-system-rules,
 figma-implement-design), the recommendation is **do not add model field to any skills**.
 
 **Why:**
@@ -303,8 +303,8 @@ agent: default # or Explore, Plan, custom
 
 ### Evaluation Finding: Keep Default
 
-All 5 fork-context skills (adr-writer, code-connect-components,
-create-design-system-rules, create-tasks, figma-implement-design) require
+All 5 fork-context skills (adr-writer, figma-code-connect-components,
+figma-create-design-system-rules, create-tasks, figma-implement-design) require
 file write capabilities, which eliminates Explore and Plan.
 
 ### Decision Framework
@@ -359,7 +359,7 @@ The `component-visualizer` skill demonstrates this pattern:
 - Scans `src/client/components/` and `src/client/routes/` for imports
 - Builds a dependency graph from import statements
 - Generates interactive force-directed HTML visualization
-- Categorizes nodes: routes (blue), components (green), UI/shadcn (purple)
+- Categorizes nodes: routes (blue), components (green), UI/DSAI (purple)
 - Features: drag, zoom, hover highlight, category filtering
 
 ### POC Evaluation

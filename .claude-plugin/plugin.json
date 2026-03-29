@@ -9,6 +9,7 @@
   "homepage": "https://github.com/michelve/hugin-v0",
   "repository": "https://github.com/michelve/hugin-v0",
   "license": "MIT",
+  "summary": "30 skills, 13 agents, 1 command, 4 output styles — Figma-to-code, code reviews, architecture guardrails, accessibility enforcement, and more.",
   "keywords": [
     "fullstack",
     "react",

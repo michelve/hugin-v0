@@ -2,18 +2,18 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/michelve/hugin-v0/schemas/marketplace.schema.json",
   "title": "Claude Code Marketplace",
-  "description": "Schema for Claude Code marketplace.json — inferred from anthropics/claude-plugins-official (upstream $schema URL returns 404, see https://github.com/anthropics/claude-code/issues/9686).",
+  "description": "Schema for Claude Code marketplace.json — based on official documentation at code.claude.com/docs/en/plugin-marketplaces.",
   "type": "object",
-  "required": ["name", "description", "owner", "plugins"],
+  "required": ["name", "owner", "plugins"],
   "additionalProperties": false,
   "properties": {
     "$schema": {
       "type": "string",
-      "description": "JSON Schema reference (canonical URL is https://anthropic.com/claude-code/marketplace.schema.json but returns 404)."
+      "description": "JSON Schema reference."
     },
     "name": {
       "type": "string",
-      "description": "Marketplace catalog name."
+      "description": "Marketplace catalog name (kebab-case, no spaces)."
     },
     "description": {
       "type": "string",
@@ -28,6 +28,15 @@
         "email": { "type": "string", "format": "email" }
       }
     },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "description": { "type": "string" },
+        "version": { "type": "string" },
+        "pluginRoot": { "type": "string", "description": "Base directory prepended to relative plugin source paths." }
+      }
+    },
     "plugins": {
       "type": "array",
       "items": { "$ref": "#/$defs/pluginEntry" }
@@ -36,7 +45,7 @@
   "$defs": {
     "pluginEntry": {
       "type": "object",
-      "required": ["name", "description", "source", "category"],
+      "required": ["name", "source"],
       "additionalProperties": false,
       "properties": {
         "name": {
@@ -62,14 +71,16 @@
           }
         },
         "source": {
-          "description": "Plugin source location — relative path (monorepo) or remote git reference.",
+          "description": "Plugin source location — relative path, github, url, git-subdir, or npm.",
           "oneOf": [
             {
               "type": "string",
               "description": "Relative path within the same marketplace repo (e.g. './plugins/my-plugin')."
             },
+            { "$ref": "#/$defs/sourceGithub" },
             { "$ref": "#/$defs/sourceUrl" },
-            { "$ref": "#/$defs/sourceGitSubdir" }
+            { "$ref": "#/$defs/sourceGitSubdir" },
+            { "$ref": "#/$defs/sourceNpm" }
           ]
         },
         "category": {
@@ -91,7 +102,7 @@
         },
         "strict": {
           "type": "boolean",
-          "description": "When true, restricts the plugin to files matching its lspServers extensions. Used only by LSP plugins."
+          "description": "Controls whether plugin.json is the authority for component definitions. Default: true."
         },
         "lspServers": {
           "type": "object",
@@ -101,12 +112,46 @@
         "homepage": {
           "type": "string",
           "format": "uri",
-          "description": "URL to the plugin's homepage or repository."
+          "description": "URL to the plugin's homepage or documentation."
+        },
+        "repository": {
+          "type": "string",
+          "description": "Source code repository URL."
+        },
+        "license": {
+          "type": "string",
+          "description": "SPDX license identifier (e.g. MIT, Apache-2.0)."
+        },
+        "keywords": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Tags for plugin discovery and categorization."
         },
         "tags": {
           "type": "array",
           "items": { "type": "string" },
           "description": "Freeform tags (e.g. 'community-managed')."
+        }
+      }
+    },
+    "sourceGithub": {
+      "type": "object",
+      "required": ["source", "repo"],
+      "additionalProperties": false,
+      "properties": {
+        "source": { "const": "github" },
+        "repo": {
+          "type": "string",
+          "description": "GitHub repository in owner/repo format."
+        },
+        "ref": {
+          "type": "string",
+          "description": "Git branch or tag (defaults to repository default branch)."
+        },
+        "sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$",
+          "description": "Pin to a specific commit SHA."
         }
       }
     },
@@ -119,7 +164,11 @@
         "url": {
           "type": "string",
           "format": "uri",
-          "description": "Git clone URL (must end in .git)."
+          "description": "Full git repository URL (https:// or git@). The .git suffix is optional."
+        },
+        "ref": {
+          "type": "string",
+          "description": "Git branch or tag (defaults to repository default branch)."
         },
         "sha": {
           "type": "string",
@@ -150,6 +199,26 @@
           "type": "string",
           "pattern": "^[0-9a-f]{40}$",
           "description": "Pin to a specific commit SHA."
+        }
+      }
+    },
+    "sourceNpm": {
+      "type": "object",
+      "required": ["source", "package"],
+      "additionalProperties": false,
+      "properties": {
+        "source": { "const": "npm" },
+        "package": {
+          "type": "string",
+          "description": "Package name or scoped package (e.g. @org/plugin)."
+        },
+        "version": {
+          "type": "string",
+          "description": "Version or version range (e.g. 2.1.0, ^2.0.0, ~1.5.0)."
+        },
+        "registry": {
+          "type": "string",
+          "description": "Custom npm registry URL."
         }
       }
     },

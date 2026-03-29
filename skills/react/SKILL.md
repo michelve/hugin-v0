@@ -1,5 +1,6 @@
 ---
 name: react
+version: 1.0.0
 description: Core React 19 patterns for DSAI projects including hooks, Suspense, lazy loading, component structure with forwardRef, TypeScript best practices, and performance optimization. Use when working with React components, hooks, lazy loading, Suspense boundaries, or React-specific TypeScript patterns.
 user-invocable: true
 ---

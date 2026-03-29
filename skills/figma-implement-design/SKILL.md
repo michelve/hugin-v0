@@ -1,9 +1,13 @@
 ---
 name: "figma-implement-design"
+version: 1.0.0
 description: "Translate Figma nodes into production-ready code with 1:1 visual fidelity using the Figma MCP workflow (design context, screenshots, assets, and project-convention translation). Trigger when the user provides Figma URLs or node IDs, or asks to implement designs or components that must match Figma specs. Requires a working Figma MCP server connection."
 argument-hint: "Figma URL (https://figma.com/design/:fileKey/:fileName?node-id=1-2)"
 user-invocable: true
 disable-model-invocation: false
+compatibility: "Requires Figma MCP server and FIGMA_API_KEY environment variable"
+metadata:
+    mcp-server: figma
 ---
 
 This skill uses extended thinking for complex design-to-code translation. ultrathink

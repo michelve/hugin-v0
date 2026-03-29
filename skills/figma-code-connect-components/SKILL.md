@@ -1,10 +1,12 @@
 ---
 name: figma-code-connect-components
-description: "Connects Figma design components to code components using Code Connect mapping tools. Use when user says \"code connect\", \"connect this component to code\", \"map this component\", \"link component to code\", \"create code connect mapping\", or wants to establish mappings between Figma designs and code implementations. For canvas writes via `use_figma`, use `figma-use`."
+version: 1.0.0
+description: "Connects Figma design components to code components using Code Connect mapping tools. Use when user says \"code connect\", \"connect this component to code\", \"connect Figma to code\", \"map this component\", \"link component to code\", \"create code connect mapping\", \"add code connect\", \"connect design to code\", or wants to establish mappings between Figma designs and code implementations. For canvas writes via `use_figma`, use `figma-use`. Requires Figma MCP server connection."
 argument-hint: "Figma URL + node-id (optional specific component)"
 user-invocable: true
 context: fork
 disable-model-invocation: false
+compatibility: "Requires Figma MCP server and FIGMA_API_KEY environment variable"
 metadata:
     mcp-server: figma
 ---

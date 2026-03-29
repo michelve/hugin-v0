@@ -1,5 +1,6 @@
 ---
 name: nodejs
+version: 1.0.0
 description: Core Node.js backend patterns for TypeScript applications including async/await error handling, middleware concepts, configuration management, testing strategies, and layered architecture principles. Use when building Node.js backend services, APIs, or microservices.
 user-invocable: true
 ---

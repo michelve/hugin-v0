@@ -1,10 +1,10 @@
 # hugin-v0
 
-A Claude Code plugin that helps **product designers and engineers ship design-to-production React 19 apps** — translating Figma mockups into accessible, production-ready components with automated code reviews, architecture guardrails, and quality gates baked into every workflow.
+A Claude Code plugin that helps **product designers and engineers ship design-to-production react apps** — translating Figma mockups into accessible, production-ready components with automated code reviews, architecture guardrails, and quality gates baked into every workflow.
 
 Packed with **27 skills**, **13 agents**, **8 event hooks**, **7 MCP servers**, **4 output styles**, and **1 LSP server** covering the full stack: React 19, TypeScript, Express, Prisma, DSAI Design System, and Bootstrap 5.
 
-Built for and tested with [draft_v0](https://github.com/michelve/draft_v0) — a full-stack React 19 + Express + Prisma starter with opinionated architecture, ADR workflows, task management, Figma integration, and automated code quality gates.
+Built for and tested with [draft_v0](https://github.com/michelve/draft_v0) — a full-stack starter with opinionated architecture, ADR workflows, task management, Figma integration, and automated code quality gates.
 
 ## Requirements
 
@@ -15,8 +15,8 @@ Built for and tested with [draft_v0](https://github.com/michelve/draft_v0) — a
 ### From a marketplace (recommended)
 
 ```bash
-/plugin marketplace add michelve/hugin-v0
-/plugin install hugin-v0@michelve
+/plugin marketplace add michelve/hugin-marketplace
+/plugin install hugin-v0@hugin-marketplace
 ```
 
 ### Local testing
@@ -145,31 +145,15 @@ Some MCP servers and skills require API keys to function. Set them in your shell
 | ---------------- | ----------------- | ------------------------------------------------------------------ |
 | `MIRO_API_KEY`   | miro-mcp server   | Only needed if your Miro board requires auth beyond the web URL    |
 
-### Setup by OS
+### Setup
 
-**macOS / Linux** — add to your `~/.zshrc`, `~/.bashrc`, or `~/.profile`:
+Add to your `~/.zshrc`, `~/.bashrc`, or `~/.profile`:
 
 ```bash
 export FIGMA_API_KEY=fig_xxxxxxxxxxxxxxxxxxxxx
 ```
 
 Then reload: `source ~/.zshrc`
-
-**Windows (PowerShell)** — add to your `$PROFILE`:
-
-```powershell
-$env:FIGMA_API_KEY = "fig_xxxxxxxxxxxxxxxxxxxxx"
-```
-
-Then reload: `. $PROFILE`
-
-**Windows (system-wide)** — or set it permanently:
-
-```powershell
-[Environment]::SetEnvironmentVariable("FIGMA_API_KEY", "fig_xxxxxxxxxxxxxxxxxxxxx", "User")
-```
-
-Restart your terminal after setting system-wide variables.
 
 ### Verify your setup
 
@@ -180,28 +164,6 @@ After setting your keys, run the `/setup` command inside Claude Code to verify e
 ```
 
 This checks that required environment variables are set, MCP servers can initialize, and the TypeScript LSP binary is installed.
-
-## Plugin Structure
-
-```
-hugin-v0/
-├── .claude-plugin/
-│   └── plugin.json           # Plugin manifest
-├── skills/                   # 23 skills (SKILL.md + supporting files)
-├── agents/                   # 13 specialized agents
-├── agent-rules/              # Agent routing metadata (JSON)
-├── commands/                 # Slash commands (check.md)
-├── hooks/
-│   └── hooks.json            # Hook event configuration (8 hooks)
-├── scripts/                  # Hook scripts (Python + shell + cross-platform runners)
-├── output-styles/            # 4 custom output styles
-├── .mcp.json                 # MCP server configurations (7 servers)
-├── .lsp.json                 # LSP server configurations
-├── settings.json             # Default plugin settings (agent: principal-engineer)
-├── LICENSE
-├── CHANGELOG.md
-└── README.md
-```
 
 ## Development
 
@@ -255,6 +217,10 @@ The hook detects which staged files are plugin-relevant and runs targeted or ful
 ```bash
 /reload-plugins
 ```
+
+## Author
+
+[michelve](https://github.com/michelve)
 
 ## License
 

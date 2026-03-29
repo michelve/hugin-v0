@@ -1,5 +1,6 @@
 ---
 name: accessibility
+version: 1.0.0
 description: "Use this skill for any accessibility concern: WCAG compliance (any success criterion including SC 1.3.5 autocomplete, SC 2.4.11 focus obscured), ARIA roles/attributes, screen reader behavior, axe-core or WAVE audit failures, color/non-text contrast, keyboard navigation, focus trapping/management, skip links, touch targets, VPAT reports, or accessible form patterns. Also trigger when a user asks whether a UI library (DSAI) handles keyboard interactions — but only if the question is specifically about accessibility behavior, not general usage. Do NOT trigger for general component usage questions where keyboard behavior is incidental (e.g., \"does DSAI Tooltip show on hover and focus?\" without an accessibility problem to solve)."
 user-invocable: true
 argument-hint: "Describe the accessibility problem, WCAG criterion (e.g. SC 1.3.5), component to audit, or topic (aria, keyboard nav, contrast, screen reader, VPAT)"

@@ -1,5 +1,6 @@
 ---
 name: route-tester
+version: 1.0.0
 description: Framework-agnostic HTTP API route testing patterns, authentication strategies, and integration testing best practices. Supports REST APIs with JWT cookie authentication and other common auth patterns.
 argument-hint: "<route-path-to-test>"
 user-invocable: true

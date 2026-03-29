@@ -1,5 +1,6 @@
 ---
 name: automatic-code-review
+version: 1.0.0
 description: "Automatic semantic code review triggered after file modifications. Hook-driven skill that logs file changes via PostToolUse and runs the automatic-code-reviewer agent on Stop. Not user-invocable — triggered automatically by lifecycle hooks."
 user-invocable: false
 disable-model-invocation: true

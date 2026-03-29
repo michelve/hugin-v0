@@ -135,6 +135,40 @@ else
     fi
 fi
 
+# --- Hook linter (optional, only on full validation) ---
+HOOK_LINTER="$REPO_ROOT/scripts/hook-linter.sh"
+HOOKS_JSON="$REPO_ROOT/hooks/hooks.json"
+
+if [ $RC -eq 0 ] && [ "$STAGED_MODE" = false ] && [ -f "$HOOK_LINTER" ] && [ -f "$HOOKS_JSON" ]; then
+    # Collect hook scripts from hooks.json
+    HOOK_SCRIPTS=()
+    if command -v python3 &>/dev/null; then
+        while IFS= read -r hs; do
+            # Resolve ${CLAUDE_PLUGIN_ROOT} to repo root
+            resolved="${hs//\$\{CLAUDE_PLUGIN_ROOT\}/$REPO_ROOT}"
+            if [ -f "$resolved" ]; then
+                HOOK_SCRIPTS+=("$resolved")
+            fi
+        done < <(python3 -c "
+import json, re, sys
+with open(sys.argv[1]) as f:
+    data = json.load(f)
+for event_handlers in data.get('hooks', {}).values():
+    for handler in event_handlers:
+        for hook in handler.get('hooks', []):
+            cmd = hook.get('command', '')
+            if cmd:
+                print(cmd)
+" "$HOOKS_JSON" 2>/dev/null)
+    fi
+
+    if [ ${#HOOK_SCRIPTS[@]} -gt 0 ]; then
+        echo ""
+        echo -e "${BOLD}Running hook linter...${RESET}"
+        bash "$HOOK_LINTER" "${HOOK_SCRIPTS[@]}" || true
+    fi
+fi
+
 # --- Result ---
 echo ""
 if [ $RC -eq 0 ]; then

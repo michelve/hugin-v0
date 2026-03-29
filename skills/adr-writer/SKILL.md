@@ -1,5 +1,6 @@
 ---
 name: adr-writer
+version: 1.0.0
 description: "Write, validate, and commit Architecture Decision Records in MADR 4.0.0 format. Use when user says 'write an ADR', 'create an ADR', 'document this decision', 'ADR for X', 'architecture decision record for X', 'record this decision', 'document the decision to use X', or wants to formally capture an architectural choice. Do NOT trigger on 'what ADR covers X?', 'show me the ADR for Y', 'does this violate an ADR?', or 'check ADR compliance' - those are lookup/audit tasks."
 argument-hint: "supersedes: NNNN (optional, when replacing an existing ADR)"
 user-invocable: true

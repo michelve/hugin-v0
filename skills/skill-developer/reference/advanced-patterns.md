@@ -68,7 +68,7 @@ of project state.
 - **Read-only commands only** — never use commands that modify files
 - **Fast commands only** — must complete in <1s to avoid latency
 - **No secrets** — never inject env vars containing credentials
-- **Cross-platform** — test on macOS/Linux; Windows may need PowerShell equivalents
+- **Test on macOS/Linux** before deploying
 
 ### Examples
 
@@ -106,7 +106,6 @@ The following DSAI components are already installed:
 | Command output not appearing | Wrong backtick syntax  | Use `` `!`command`` `` (backtick-bang-backtick)            |
 | Empty output                 | Command fails silently | Add `2>/dev/null` or test command manually                 |
 | Slow skill loading           | Expensive command      | Use `head`, `tail`, or `                                   | head -N` to limit output |
-| Windows incompatibility      | Unix-only command      | Provide PowerShell alternative or use cross-platform tools |
 
 ---
 
@@ -170,8 +169,8 @@ Keep inline when:
 
 After editing `.claude/skills/`, always sync to `.github/skills/`:
 
-```powershell
-Copy-Item -Path ".claude/skills/<name>/*" -Destination ".github/skills/<name>/" -Recurse -Force
+```bash
+cp -r .claude/skills/<name>/* .github/skills/<name>/
 ```
 
 ---
@@ -376,7 +375,7 @@ The `component-visualizer` skill demonstrates this pattern:
 
 | Problem              | Fix                                                                |
 | -------------------- | ------------------------------------------------------------------ |
-| `python3 not found`  | Install Python 3 or use `python` on Windows                        |
+| `python3 not found`  | Install Python 3                                                   |
 | Empty graph          | Verify `src/client/components/` exists and contains `.tsx` files   |
 | Broken HTML          | Check script output for Python errors before opening browser       |
 | Imports not detected | Script resolves `@/` alias only; other aliases need manual mapping |

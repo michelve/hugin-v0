@@ -326,7 +326,7 @@ The following content may not yet fully conform to WCAG 2.2 AA:
 | PDF reports not screen-reader accessible | 1.1.1 (A) Non-text Content | Under investigation |
 
 ## Technical specifications
-This website is built with React 19, Tailwind CSS, and Radix UI components.
+This website is built with React 19, Bootstrap 5, and DSAI Design System components.
 It relies on the following technologies for conformance:
 - HTML, CSS, JavaScript
 - WAI-ARIA

@@ -3,7 +3,7 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "I'm building a custom DropdownMenu component with shadcn/ui. My list items are all in the DOM but keyboard users can't Tab through them — they have to Tab to the trigger and then the whole menu closes. Fix the keyboard navigation so Arrow keys move through items and Tab closes the menu. Use roving tabindex.",
+      "prompt": "I'm building a custom DropdownMenu component with DSAI. My list items are all in the DOM but keyboard users can't Tab through them — they have to Tab to the trigger and then the whole menu closes. Fix the keyboard navigation so Arrow keys move through items and Tab closes the menu. Use roving tabindex.",
       "expected_output": "Component updated with roving tabindex — only the active item has tabIndex=0, others have tabIndex=-1. Arrow Down/Up navigate items, wrapping at ends. Home/End jump to first/last. Tab and Escape close the menu and return focus to the trigger. Items use role='menuitem', container uses role='menu', trigger uses aria-haspopup='menu' and aria-expanded.",
       "files": [],
       "expectations": [
@@ -16,7 +16,7 @@
     },
     {
       "id": 2,
-      "prompt": "I have a custom modal dialog built without shadcn Dialog. When it opens, focus goes to the document body. When it closes, focus is lost completely. Also keyboard users can Tab out of the modal while it's open. Fix these issues using FocusScope from radix-ui.",
+      "prompt": "I have a custom modal dialog built without DSAI Modal. When it opens, focus goes to the document body. When it closes, focus is lost completely. Also keyboard users can Tab out of the modal while it's open. Fix these issues using the useFocusTrap hook from DSAI.",
       "expected_output": "Dialog uses FocusScope with loop and trapped props. On open, focus moves to the first focusable element or a defined autoFocus target. On close, focus returns to the element that triggered the dialog (stored in a ref). The implementation uses the correct import: import { FocusScope } from 'radix-ui'.",
       "files": [],
       "expectations": [

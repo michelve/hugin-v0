@@ -44,10 +44,9 @@ function AnimatedComponent() {
 }
 ```
 
-## Tailwind Variant (preferred)
+## CSS Media Query Variant
 
-For most cases, use Tailwind's `motion-reduce:` variant directly on the element —
-no hook required:
+For projects using Bootstrap 5 / DSAI, use the CSS `@media (prefers-reduced-motion: reduce)` query or the `useReducedMotion` hook above. The following shows the Tailwind pattern for reference only:
 
 ```tsx
 <div className="transition-transform duration-300 motion-reduce:transition-none">
@@ -58,6 +57,8 @@ no hook required:
   <Spinner />
 </div>
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `transition-transform duration-300` → CSS transition via DSAI motion tokens, `motion-reduce:transition-none` → `@media (prefers-reduced-motion: reduce)` override or `useReducedMotion` hook, `animate-spin` → DSAI spinner component or custom `@keyframes`. See the **dsai-styling** skill for the full conversion reference.
 
 ## CSS Alternative
 
@@ -91,6 +92,8 @@ conformance — but it is the right thing to do for users with vestibular disord
   Hover card
 </div>
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `transition-transform duration-300` → CSS transition via DSAI motion tokens, `hover:-translate-y-1` → FSM state + `cn()` with `transform: translateY(-0.25rem)`, `motion-reduce:*` → `@media (prefers-reduced-motion: reduce)` override. See the **dsai-styling** skill for the full conversion reference.
 
 **CSS-level blanket rule** (add to `src/client/index.css`):
 

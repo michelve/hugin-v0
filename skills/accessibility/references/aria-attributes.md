@@ -161,6 +161,8 @@ export function Combobox({ options, onSelect }: ComboboxProps) {
 }
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `relative` → `position-relative`, `w-full rounded-md border border-input px-3 py-2` → Bootstrap form control classes, `absolute z-50 mt-1 w-full rounded-md border bg-popover shadow-md` → `position-absolute` with DSAI surface token and `shadow`, `cursor-default px-3 py-2` → `px-2 py-1`, `aria-selected:bg-accent` → conditional class via `cn()` with DSAI accent token. See the **dsai-styling** skill for the full conversion reference.
+
 ---
 
 ## Data Grid (Interactive Grid)
@@ -221,6 +223,8 @@ A data grid differs from a data table: cells are interactive (editable, selectab
 </div>
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `px-4 py-2` → `px-3 py-1`, `font-semibold` → `fw-semibold`. See the **dsai-styling** skill for the full conversion reference.
+
 See [keyboard-navigation.md](keyboard-navigation.md) for the 2D Arrow-key grid navigation handler.
 
 ---
@@ -275,6 +279,8 @@ function TreeItem({ node, level }: { node: TreeNode; level: number }) {
   ))}
 </ul>
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `flex items-center gap-1` → `d-flex align-items-center gap-1`, `rounded px-2 py-1` → `rounded px-1 py-1`, `h-4 w-4` → explicit icon size, `transition-transform` / `rotate-90` → CSS transition + `cn()` conditional. See the **dsai-styling** skill for the full conversion reference.
 
 ---
 
@@ -386,6 +392,8 @@ export function Carousel({ slides, label }: CarouselProps) {
 }
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `overflow-hidden` → `overflow-hidden`, `transition-transform` / `hidden` → CSS transition + `d-none`, `sr-only` → `visually-hidden`, `h-2 w-2 rounded-full min-h-6 min-w-6` → custom sizing with `rounded-circle`, `focus-visible:ring-2 focus-visible:ring-ring` → DSAI focus token `var(--dsai-focus-ring)`, `bg-primary` / `bg-muted` → Bootstrap `bg-primary` / `bg-secondary`. See the **dsai-styling** skill for the full conversion reference.
+
 ---
 
 ## Breadcrumb
@@ -411,6 +419,8 @@ export function Carousel({ slides, label }: CarouselProps) {
   </ol>
 </nav>
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `flex items-center gap-1 text-sm text-muted-foreground` → `d-flex align-items-center gap-1 small text-muted`, `hover:text-foreground` → FSM state + `cn()` with DSAI color token, `select-none` → `user-select-none` (Bootstrap), `font-medium text-foreground` → `fw-medium` with DSAI text token. See the **dsai-styling** skill for the full conversion reference.
 
 ---
 
@@ -463,6 +473,8 @@ export function Carousel({ slides, label }: CarouselProps) {
 </nav>
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `flex items-center gap-1` → `d-flex align-items-center gap-1`, `sr-only` → `visually-hidden`. See the **dsai-styling** skill for the full conversion reference.
+
 ---
 
 ## Loading / Spinner States
@@ -511,6 +523,8 @@ export function Carousel({ slides, label }: CarouselProps) {
     Saving your changes, please wait
   </div>
 )}
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `flex items-center gap-2` → `d-flex align-items-center gap-2`, `h-4 w-4 animate-spin` → DSAI spinner component or custom `@keyframes` with explicit size, `text-sm text-muted-foreground` → `small text-muted`, `sr-only` → `visually-hidden`, `mr-2` → `me-2`. See the **dsai-styling** skill for the full conversion reference.
 
 ---
 

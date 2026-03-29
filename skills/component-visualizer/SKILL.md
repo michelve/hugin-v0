@@ -1,9 +1,6 @@
 ---
 name: component-visualizer
-description: >-
-    Generate interactive HTML dependency graphs for React components.
-    Use when asked to "visualize components", "show component dependencies",
-    "dependency graph", "component map", or "what depends on what".
+description: Generate interactive HTML dependency graphs for React components. Use when asked to "visualize components", "show component dependencies", "dependency graph", "component map", or "what depends on what".
 user-invocable: true
 ---
 
@@ -42,7 +39,7 @@ python3 "${CLAUDE_SKILL_DIR}/scripts/visualize-components.py" /tmp/graph.html
 - **Color-coded categories**:
     - Blue: Route files (`src/client/routes/`)
     - Green: Feature components (`src/client/components/`)
-    - Purple: UI components (`src/client/components/ui/` — shadcn)
+    - Purple: UI components (`src/client/components/ui/` — DSAI)
     - Gray: Other files
 - **Interactive** — drag nodes, scroll to zoom, click for file details
 - **Filterable** — toggle category visibility with checkboxes
@@ -51,11 +48,11 @@ python3 "${CLAUDE_SKILL_DIR}/scripts/visualize-components.py" /tmp/graph.html
 
 ## What It Scans
 
-| Directory                   | Category    | Purpose                     |
-| --------------------------- | ----------- | --------------------------- |
-| `src/client/components/ui/` | UI (shadcn) | Installed shadcn primitives |
-| `src/client/components/`    | Component   | Project feature components  |
-| `src/client/routes/`        | Route       | TanStack Router page files  |
+| Directory                   | Category  | Purpose                              |
+| --------------------------- | --------- | ------------------------------------ |
+| `src/client/components/ui/` | UI (DSAI) | DSAI components (installed via `dsai add`) |
+| `src/client/components/`    | Component | Project feature components            |
+| `src/client/routes/`        | Route     | TanStack Router page files            |
 
 ## Import Resolution
 
@@ -72,15 +69,15 @@ Node module imports (e.g., `react`, `@tanstack/router`) are excluded.
 
 **Healthy patterns:**
 
-- Routes (blue) connect to components (green), which compose UI (purple)
+- Routes (blue) connect to components (green), which compose DSAI UI (purple)
 - Clusters indicate feature groupings
-- UI nodes have many incoming edges (high reuse)
+- DSAI UI nodes have many incoming edges (high reuse)
 
 **Warning signs:**
 
 - Components with no incoming edges may be dead code
 - Circular dependency clusters (tight bidirectional edges)
-- Routes importing directly from `ui/` (skipping abstraction layer)
+- Routes importing directly from `ui/` (skipping feature abstraction layer)
 - Single components with excessive outgoing edges (doing too much)
 
 ## Limitations

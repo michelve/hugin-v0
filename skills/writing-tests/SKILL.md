@@ -274,6 +274,147 @@ When you discover a bug, don't stop—explore related scenarios:
 
 - If you're skipping edge cases because "that won't happen": STOP. It will happen. In production. At 3 AM.
 
+## DSAI Component Testing
+
+When testing DSAI components, follow these additional patterns:
+
+### Component Test Structure
+```typescript
+import { render, screen, fireEvent } from '@testing-library/react';
+import { axe, toHaveNoViolations } from 'jest-axe';
+import { Button } from '@/components/ui/button';
+
+expect.extend(toHaveNoViolations);
+
+describe('Button', () => {
+  it('renders with correct variant class', () => {
+    render(<Button variant="primary">Click me</Button>);
+    expect(screen.getByRole('button')).toHaveClass('btn', 'btn-primary');
+  });
+
+  it('shows spinner when loading', () => {
+    render(<Button loading>Save</Button>);
+    expect(screen.getByRole('status')).toBeInTheDocument();
+    expect(screen.getByRole('button')).toBeDisabled();
+  });
+
+  it('forwards ref to button element', () => {
+    const ref = { current: null };
+    render(<Button ref={ref}>Click</Button>);
+    expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+  });
+});
+```
+
+### Accessibility Tests (Separate File)
+```typescript
+// Button.a11y.test.tsx
+import { render } from '@testing-library/react';
+import { axe, toHaveNoViolations } from 'jest-axe';
+import { Button } from '@/components/ui/button';
+
+expect.extend(toHaveNoViolations);
+
+it('has no accessibility violations', async () => {
+  const { container } = render(<Button variant="primary">Click me</Button>);
+  expect(await axe(container)).toHaveNoViolations();
+});
+```
+
+### DSAI-Specific Test Checklist
+- [ ] `forwardRef` — verify ref is forwarded to DOM element
+- [ ] `displayName` — verify component.displayName matches expected name
+- [ ] `cn()` — verify className composition with custom classes
+- [ ] FSM states — test all state transitions (idle → hovered → pressed → loading → error)
+- [ ] Compound components — test sub-components throw when used outside parent context
+- [ ] Controlled/Uncontrolled — test both `value`+`onChange` and `defaultValue` modes
+- [ ] Accessibility — separate `.a11y.test.tsx` file with jest-axe
+- [ ] SemanticColorVariant — test all 8 color variants render correct classes
+- [ ] ComponentSize — test sm/md/lg size variants
+
+### forwardRef Forwarding Test
+
+```typescript
+it('forwards ref to the root DOM element', () => {
+  const ref = React.createRef<HTMLButtonElement>();
+  render(<Button ref={ref}>Click</Button>);
+  expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+  expect(ref.current?.tagName).toBe('BUTTON');
+});
+```
+
+### displayName Verification Test
+
+```typescript
+it('has correct displayName', () => {
+  expect(Button.displayName).toBe('Button');
+});
+```
+
+### FSM State Transition Test
+
+```typescript
+import { buttonFSMReducer, createInitialButtonFSMState } from './Button.fsm';
+
+describe('Button FSM', () => {
+  it('transitions idle → hovered on HOVER', () => {
+    const initial = createInitialButtonFSMState({});
+    const next = buttonFSMReducer(initial, { type: 'HOVER' });
+    expect(next.status).toBe('hovered');
+  });
+
+  it('transitions hovered → pressed on PRESS', () => {
+    const hovered = buttonFSMReducer(
+      createInitialButtonFSMState({}),
+      { type: 'HOVER' }
+    );
+    const pressed = buttonFSMReducer(hovered, { type: 'PRESS' });
+    expect(pressed.status).toBe('pressed');
+  });
+
+  it('stays disabled when receiving HOVER in disabled state', () => {
+    const disabled = buttonFSMReducer(
+      createInitialButtonFSMState({}),
+      { type: 'DISABLE' }
+    );
+    const result = buttonFSMReducer(disabled, { type: 'HOVER' });
+    expect(result.status).toBe('disabled');
+  });
+});
+```
+
+### cn() Class Composition Test
+
+```typescript
+import { cn } from '@/utils/cn';
+
+describe('cn()', () => {
+  it('joins truthy values', () => {
+    expect(cn('btn', 'btn-primary', 'btn-lg')).toBe('btn btn-primary btn-lg');
+  });
+
+  it('filters out falsy values', () => {
+    expect(cn('btn', false && 'btn-primary', undefined, null, '')).toBe('btn');
+  });
+
+  it('applies conditional classes', () => {
+    const variant = 'danger';
+    const size: string | undefined = undefined;
+    expect(cn('btn', `btn-${variant}`, size && `btn-${size}`)).toBe('btn btn-danger');
+  });
+});
+```
+
+### Compound Component Context Test
+
+```typescript
+it('throws when sub-component used outside parent', () => {
+  const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+  expect(() => render(<Card.Header>Orphan</Card.Header>)).toThrow();
+  consoleSpy.mockRestore();
+});
+```
+
 ## Integration with Other Skills
 
 **With TDD Process:** This skill guides the RED phase—how to write the failing test well.

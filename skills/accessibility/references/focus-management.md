@@ -2,7 +2,7 @@
 
 ## Contents
 
-- [FocusScope (Radix UI)](#focusscope-radix-ui)
+- [Focus Trapping](#focus-trapping)
 - [Return Focus Pattern](#return-focus-pattern)
 - [Focus Not Obscured (WCAG 2.4.11 AA)](#focus-not-obscured-wcag-2411-aa)
 - [Skip Link Focus Target](#skip-link-focus-target)
@@ -13,10 +13,10 @@
 
 ---
 
-## FocusScope (Radix UI)
+## Focus Trapping
 
-The `FocusScope` component from `radix-ui` is the standard way to trap focus in modals and
-dialogs. It is already installed (`radix-ui` v1.4.3) - no install required.
+The `useFocusTrap` hook from DSAI is the standard way to trap focus in modals and
+dialogs. For projects still using Radix UI, `FocusScope` is also available.
 
 ```tsx
 import { FocusScope } from "radix-ui";
@@ -44,9 +44,9 @@ function Modal({ isOpen, onClose, children }: ModalProps) {
 | `onMountAutoFocus`   | `(e) => void` | Override the default auto-focus target                                   |
 | `onUnmountAutoFocus` | `(e) => void` | Override where focus returns on unmount                                  |
 
-> **Prefer shadcn `Dialog`** over a manual `FocusScope` whenever possible - the
-> shadcn `Dialog` component wraps `FocusScope` and also handles `aria-modal`,
-> `role="dialog"`, Escape key dismissal, and return focus automatically.
+> **Prefer DSAI `Modal`** over manual focus trapping whenever possible - the
+> DSAI `Modal` component handles `aria-modal`, `role="dialog"`,
+> Escape key dismissal, and return focus automatically.
 
 ## Return Focus Pattern
 
@@ -132,6 +132,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 }
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `fixed top-0 inset-x-0 z-40` → `position-fixed top-0 start-0 end-0` with DSAI z-index token, `h-16` → custom height via DSAI spacing, `bg-background` → DSAI token `var(--dsai-bg)`, `border-b` → `border-bottom`, `outline-none` → DSAI focus override, `pt-16` → custom padding-top matching header height. See the **dsai-styling** skill for the full conversion reference.
+
 > See [`wcag22-new-criteria.md`](./wcag22-new-criteria.md) for the full 2.4.11 implementation with testing steps.
 
 ---
@@ -152,6 +154,8 @@ NOT make the element keyboard-tabbable, only programmatically focusable.
   {children}
 </main>
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `outline-none` → custom CSS `outline: none` or DSAI focus override. See the **dsai-styling** skill for the full conversion reference.
 
 > **Anti-pattern:** Omitting `tabIndex={-1}` causes some browsers (Firefox) to
 > ignore the scroll-into-view and focus activation triggered by the skip link.
@@ -237,6 +241,8 @@ Override this to focus a specific element (e.g. the heading or a descriptive par
 </FocusScope>
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `outline-none` → custom CSS `outline: none` or DSAI focus override. See the **dsai-styling** skill for the full conversion reference.
+
 > Focus the heading rather than the first button when the dialog contains
 > a destructive action — this gives the user context before they interact.
 
@@ -265,6 +271,8 @@ export function SkipLink() {
   );
 }
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `sr-only` → `visually-hidden`, `focus:not-sr-only` → `focus-visible` override to remove `visually-hidden`, `fixed left-4 top-4 z-[9999]` → `position-fixed` with DSAI z-index token, `rounded-md bg-background px-4 py-2` → `rounded` with DSAI bg token and `px-3 py-1`, `text-sm font-medium text-foreground` → `small fw-medium` with DSAI text token, `ring-2 ring-ring` → DSAI focus token `var(--dsai-focus-ring)`. See the **dsai-styling** skill for the full conversion reference.
 
 ```tsx
 // src/client/App.tsx — must be the FIRST focusable element on the page
@@ -353,5 +361,7 @@ export function RouteAnnouncer() {
   );
 }
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `sr-only` → `visually-hidden`. See the **dsai-styling** skill for the full conversion reference.
 
 Add `<RouteAnnouncer />` once inside `<App />`, alongside `<SkipLink />`.

@@ -1,6 +1,6 @@
 [
   {
-    "query": "hey so i'm building this dropdown menu with shadcn and when you tab to it and hit enter it opens but then you can't navigate the items with arrow keys. do i need to add keyboard support myself or does radix handle it?",
+    "query": "hey so i'm building this dropdown menu with DSAI and when you tab to it and hit enter it opens but then you can't navigate the items with arrow keys. do i need to add keyboard support myself or does the component handle it?",
     "should_trigger": true
   },
   {
@@ -28,7 +28,7 @@
     "should_trigger": true
   },
   {
-    "query": "the focus ring only shows up sometimes on our buttons. looks like it triggers on mouse click too which our designer hates. how do i show it only for keyboard navigation in tailwind",
+    "query": "the focus ring only shows up sometimes on our buttons. looks like it triggers on mouse click too which our designer hates. how do i show it only for keyboard navigation in our css",
     "should_trigger": true
   },
   {
@@ -48,15 +48,15 @@
     "should_trigger": false
   },
   {
-    "query": "need to style a button component using tailwind css v4. want it to have a hover effect, active state, and disabled state. what's the cleanest way to do this?",
+    "query": "need to style a button component using bootstrap 5. want it to have a hover effect, active state, and disabled state. what's the cleanest way to do this?",
     "should_trigger": false
   },
   {
-    "query": "my shadcn Dialog component doesn't close when i click outside. how do i override the default behavior to keep it open until the user explicitly clicks the X button?",
+    "query": "my DSAI Dialog component doesn't close when i click outside. how do i override the default behavior to keep it open until the user explicitly clicks the X button?",
     "should_trigger": false
   },
   {
-    "query": "how do i add dark mode support to my shadcn/ui app? i want to use the class strategy with a toggle button that saves the preference to localStorage",
+    "query": "how do i add dark mode support to my DSAI app? i want to use the data-dsai-theme attribute with a toggle button that saves the preference to localStorage",
     "should_trigger": false
   },
   {
@@ -68,7 +68,7 @@
     "should_trigger": false
   },
   {
-    "query": "want to add a tooltip to my icon buttons using shadcn Tooltip. it should show on hover and also when the button is focused with keyboard. is this already built in?",
+    "query": "want to add a tooltip to my icon buttons using DSAI Tooltip. it should show on hover and also when the button is focused with keyboard. is this already built in?",
     "should_trigger": false
   },
   {

@@ -52,6 +52,8 @@ Is the image purely decorative (only adds visual polish, conveys no information)
 <div className="bg-[url('/hero-bg.jpg')] h-64 bg-cover" aria-hidden="true" />
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `bg-[url(...)]` → inline `style={{ backgroundImage }}` or custom CSS class, `h-64` → custom height via DSAI spacing token, `bg-cover` → `style={{ backgroundSize: 'cover' }}`. See the **dsai-styling** skill for the full conversion reference.
+
 ### Functional Images (Image is the Entire Link or Button)
 
 ```tsx
@@ -128,6 +130,8 @@ Inline SVGs are not automatically accessible. Always choose one of the two appro
 </svg>
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `h-4 w-4` → explicit `width`/`height` or DSAI icon size token, `text-muted-foreground` → `text-muted` (Bootstrap) or DSAI color token `var(--dsai-text-muted)`. See the **dsai-styling** skill for the full conversion reference.
+
 ### Using lucide-react icons
 
 ```tsx
@@ -144,6 +148,8 @@ import { SearchIcon, ArrowRightIcon } from "lucide-react";
   <ArrowRightIcon aria-hidden="true" className="h-4 w-4" />
 </Button>
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `mr-2` → `me-2`, `h-4 w-4` → explicit `width`/`height` or DSAI icon size token. See the **dsai-styling** skill for the full conversion reference.
 
 ---
 
@@ -257,6 +263,8 @@ Headings provide page structure and enable screen reader users to navigate by `H
 </h2>
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `text-2xl font-bold` → `fs-4 fw-bold`, `text-sm font-medium text-muted-foreground` → `small fw-medium text-muted` or DSAI typography tokens. See the **dsai-styling** skill for the full conversion reference.
+
 ---
 
 ## Data Tables
@@ -355,6 +363,8 @@ When column headers span multiple rows, or row headers span multiple columns, us
 </th>
 ```
 
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring` → DSAI focus token `var(--dsai-focus-ring)` applied via `cn()`. See the **dsai-styling** skill for the full conversion reference.
+
 ---
 
 ## Lists
@@ -399,6 +409,8 @@ Use the correct list type based on the content's meaning:
   <li>...</li>
 </ul>
 ```
+
+> **DSAI translate:** In this project, replace Tailwind classes with Bootstrap 5 utilities and DSAI tokens. `flex gap-2` → `d-flex gap-2`, `list-none p-0` → `list-unstyled p-0`. See the **dsai-styling** skill for the full conversion reference.
 
 ---
 

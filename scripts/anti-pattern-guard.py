@@ -8,9 +8,12 @@ Catches drift at write-time rather than in code review.
 
 Covered patterns:
   - React.FC           (removed in React 19)
-  - forwardRef(        (removed in React 19)
   - .propTypes =       (removed in React 19)
   - export default function in .tsx  (banned - named exports only)
+  - dangerouslySetInnerHTML  (security risk - use DSAI SafeHTMLAttributes)
+  - hardcoded hex colors     (use DSAI tokens var(--dsai-*) or Bootstrap classes)
+
+Note: forwardRef is REQUIRED by DSAI components - do NOT flag it.
 """
 
 import sys
@@ -23,11 +26,6 @@ ANTI_PATTERNS = [
         'fix': 'function MyComponent(props: Props) { ... }',
     },
     {
-        'pattern': 'forwardRef(',
-        'rule': 'forwardRef was removed in React 19 - pass ref as a regular prop.',
-        'fix': 'function MyComponent({ ref, ...props }: Props & { ref?: React.Ref<T> }) { ... }',
-    },
-    {
         'pattern': '.propTypes =',
         'rule': 'propTypes were removed in React 19 - use TypeScript interface instead.',
         'fix': 'interface Props { name: string; }',
@@ -37,6 +35,21 @@ ANTI_PATTERNS = [
         'rule': 'Default exports are banned - named exports only.',
         'fix': 'export function MyComponent() { ... }',
         'tsx_only': True,
+    },
+    {
+        'pattern': 'dangerouslySetInnerHTML',
+        'rule': 'dangerouslySetInnerHTML is banned - use DSAI SafeHTMLAttributes for safe HTML rendering.',
+        'fix': 'import { sanitizeHtml } from "@/lib/utils"; Use sanitizeHtml() or SafeHTMLAttributes.',
+    },
+    {
+        'pattern': 'className="bg-[#',
+        'rule': 'Hardcoded hex colors are banned - use DSAI tokens or Bootstrap semantic classes.',
+        'fix': 'Use var(--dsai-color-primary) or Bootstrap classes like bg-primary, text-danger.',
+    },
+    {
+        'pattern': "className='bg-[#",
+        'rule': 'Hardcoded hex colors are banned - use DSAI tokens or Bootstrap semantic classes.',
+        'fix': 'Use var(--dsai-color-primary) or Bootstrap classes like bg-primary, text-danger.',
     },
 ]
 

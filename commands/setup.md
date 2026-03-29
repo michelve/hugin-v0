@@ -54,7 +54,7 @@ Print a single summary table:
 │ figma-console MCP   │ ✅/⚠️  │
 │ sequential-thinking │ ✅/⚠️  │
 │ miro-mcp            │ ✅/⚠️  │
-│ shadcn MCP          │ ✅/⚠️  │
+│ dsai MCP             │ ✅/⚠️  │
 └─────────────────────┴────────┘
 ```
 

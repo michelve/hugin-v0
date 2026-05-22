@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 /**
- * Hook runner.
+ * Cross-platform hook runner.
+ * On Windows: uses `py` launcher (C:\WINDOWS\py.exe) to bypass the
+ * App Execution Alias stub that intercepts `python`/`python3` in some
+ * subprocess environments.
+ * On macOS/Linux: uses `python3` (standard).
  *
  * Usage: node .claude/hooks/run-hook.js <hook-filename.py>
  * Stdin is forwarded so Claude Code's JSON payload reaches the hook.
@@ -14,7 +18,7 @@ if (!script) {
     process.exit(1);
 }
 
-const python = "python3";
+const python = process.platform === "win32" ? "py" : "python3";
 const hookPath = path.resolve(__dirname, script);
 
 const result = spawnSync(python, [hookPath], {
